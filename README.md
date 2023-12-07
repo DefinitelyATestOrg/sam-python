@@ -27,7 +27,7 @@ client = Sam()
 
 detailed_account_response = client.v1.customers.accounts.retrieve(
     "REPLACE_ME",
-    customer_id="REPLACE_ME",
+    customer_id="somechange",
 )
 print(detailed_account_response.account)
 ```
@@ -46,7 +46,7 @@ client = AsyncSam()
 async def main() -> None:
     detailed_account_response = await client.v1.customers.accounts.retrieve(
         "REPLACE_ME",
-        customer_id="REPLACE_ME",
+        customer_id="somechange",
     )
     print(detailed_account_response.account)
 
@@ -83,7 +83,7 @@ client = Sam()
 try:
     client.v1.customers.accounts.retrieve(
         "REPLACE_ME",
-        customer_id="REPLACE_ME",
+        customer_id="somechange",
     )
 except sam.APIConnectionError as e:
     print("The server could not be reached")
@@ -129,7 +129,7 @@ client = Sam(
 # Or, configure per-request:
 client.with_options(max_retries=5).v1.customers.accounts.retrieve(
     "REPLACE_ME",
-    customer_id="REPLACE_ME",
+    customer_id="somechange",
 )
 ```
 
@@ -155,7 +155,7 @@ client = Sam(
 # Override per-request:
 client.with_options(timeout=5 * 1000).v1.customers.accounts.retrieve(
     "REPLACE_ME",
-    customer_id="REPLACE_ME",
+    customer_id="somechange",
 )
 ```
 
@@ -197,7 +197,7 @@ from sam import Sam
 client = Sam()
 response = client.v1.customers.accounts.with_raw_response.retrieve(
     "REPLACE_ME",
-    customer_id="REPLACE_ME",
+    customer_id="somechange",
 )
 print(response.headers.get('X-My-Header'))
 
