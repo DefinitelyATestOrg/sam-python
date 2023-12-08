@@ -41,7 +41,7 @@ __all__ = [
 
 
 class Sam(SyncAPIClient):
-    v1: resources.V1
+    customers: resources.Customers
     with_raw_response: SamWithRawResponse
 
     # client options
@@ -83,7 +83,7 @@ class Sam(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.v1 = resources.V1(self)
+        self.customers = resources.Customers(self)
         self.with_raw_response = SamWithRawResponse(self)
 
     @property
@@ -136,7 +136,7 @@ class Sam(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            base_url=base_url or str(self.base_url),
+            base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
@@ -194,7 +194,7 @@ class Sam(SyncAPIClient):
 
 
 class AsyncSam(AsyncAPIClient):
-    v1: resources.AsyncV1
+    customers: resources.AsyncCustomers
     with_raw_response: AsyncSamWithRawResponse
 
     # client options
@@ -236,7 +236,7 @@ class AsyncSam(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.v1 = resources.AsyncV1(self)
+        self.customers = resources.AsyncCustomers(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
 
     @property
@@ -289,7 +289,7 @@ class AsyncSam(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            base_url=base_url or str(self.base_url),
+            base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
             max_retries=max_retries if is_given(max_retries) else self.max_retries,
@@ -351,12 +351,12 @@ class AsyncSam(AsyncAPIClient):
 
 class SamWithRawResponse:
     def __init__(self, client: Sam) -> None:
-        self.v1 = resources.V1WithRawResponse(client.v1)
+        self.customers = resources.CustomersWithRawResponse(client.customers)
 
 
 class AsyncSamWithRawResponse:
     def __init__(self, client: AsyncSam) -> None:
-        self.v1 = resources.AsyncV1WithRawResponse(client.v1)
+        self.customers = resources.AsyncCustomersWithRawResponse(client.customers)
 
 
 Client = Sam

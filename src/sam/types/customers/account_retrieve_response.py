@@ -6,9 +6,9 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ...._models import BaseModel
+from ..._models import BaseModel
 
-__all__ = ["AccountsResponse", "Account", "AccountBalance", "AccountBalanceBalanceAmount", "AccountOwnerName"]
+__all__ = ["AccountRetrieveResponse", "Account", "AccountBalance", "AccountBalanceBalanceAmount", "AccountOwnerName"]
 
 
 class AccountBalanceBalanceAmount(BaseModel):
@@ -178,5 +178,5 @@ class Account(BaseModel):
     """
 
 
-class AccountsResponse(BaseModel):
-    accounts: Optional[List[Account]] = None
+class AccountRetrieveResponse(BaseModel):
+    account: Optional[Account] = None
