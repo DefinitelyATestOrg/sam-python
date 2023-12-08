@@ -10,10 +10,10 @@ from .accounts import (
     AccountsWithRawResponse,
     AsyncAccountsWithRawResponse,
 )
-from ...._resource import SyncAPIResource, AsyncAPIResource
+from ..._resource import SyncAPIResource, AsyncAPIResource
 
 if TYPE_CHECKING:
-    from ...._client import Sam, AsyncSam
+    from ..._client import Sam, AsyncSam
 
 __all__ = ["Customers", "AsyncCustomers"]
 

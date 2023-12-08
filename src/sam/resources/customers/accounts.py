@@ -7,19 +7,19 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ...._utils import maybe_transform
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper
-from ...._base_client import make_request_options
-from ....types.v1.customers import (
-    AccountsResponse,
-    DetailedAccountResponse,
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import maybe_transform
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..._base_client import make_request_options
+from ...types.customers import (
+    AccountListResponse,
+    AccountRetrieveResponse,
     account_list_params,
 )
 
 if TYPE_CHECKING:
-    from ...._client import Sam, AsyncSam
+    from ..._client import Sam, AsyncSam
 
 __all__ = ["Accounts", "AsyncAccounts"]
 
@@ -42,7 +42,7 @@ class Accounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DetailedAccountResponse:
+    ) -> AccountRetrieveResponse:
         """
         Allows retrieval of a single account, fetched by its id.
 
@@ -60,7 +60,7 @@ class Accounts(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DetailedAccountResponse,
+            cast_to=AccountRetrieveResponse,
         )
 
     def list(
@@ -102,7 +102,7 @@ class Accounts(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountsResponse:
+    ) -> AccountListResponse:
         """Allows retrieval of accounts associated with the current authorised user.
 
         It's
@@ -142,7 +142,7 @@ class Accounts(SyncAPIResource):
                     account_list_params.AccountListParams,
                 ),
             ),
-            cast_to=AccountsResponse,
+            cast_to=AccountListResponse,
         )
 
     def close(
@@ -197,7 +197,7 @@ class AsyncAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DetailedAccountResponse:
+    ) -> AccountRetrieveResponse:
         """
         Allows retrieval of a single account, fetched by its id.
 
@@ -215,7 +215,7 @@ class AsyncAccounts(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=DetailedAccountResponse,
+            cast_to=AccountRetrieveResponse,
         )
 
     async def list(
@@ -257,7 +257,7 @@ class AsyncAccounts(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountsResponse:
+    ) -> AccountListResponse:
         """Allows retrieval of accounts associated with the current authorised user.
 
         It's
@@ -297,7 +297,7 @@ class AsyncAccounts(AsyncAPIResource):
                     account_list_params.AccountListParams,
                 ),
             ),
-            cast_to=AccountsResponse,
+            cast_to=AccountListResponse,
         )
 
     async def close(
