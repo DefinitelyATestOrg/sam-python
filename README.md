@@ -8,7 +8,7 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 
 ## Documentation
 
-The API documentation can be found [here](https://sam.elborai.me).
+The API documentation can be found [here](https://docs.sam.com).
 
 ## Installation
 
@@ -25,11 +25,11 @@ from sam import Sam
 
 client = Sam()
 
-detailed_account_response = client.v1.customers.accounts.retrieve(
+account_retrieve_response = client.customers.accounts.retrieve(
     "REPLACE_ME",
-    customer_id="somechange",
+    customer_id="REPLACE_ME",
 )
-print(detailed_account_response.account)
+print(account_retrieve_response.account)
 ```
 
 ## Async usage
@@ -44,11 +44,11 @@ client = AsyncSam()
 
 
 async def main() -> None:
-    detailed_account_response = await client.v1.customers.accounts.retrieve(
+    account_retrieve_response = await client.customers.accounts.retrieve(
         "REPLACE_ME",
-        customer_id="somechange",
+        customer_id="REPLACE_ME",
     )
-    print(detailed_account_response.account)
+    print(account_retrieve_response.account)
 
 
 asyncio.run(main())
@@ -81,9 +81,9 @@ from sam import Sam
 client = Sam()
 
 try:
-    client.v1.customers.accounts.retrieve(
+    client.customers.accounts.retrieve(
         "REPLACE_ME",
-        customer_id="somechange",
+        customer_id="REPLACE_ME",
     )
 except sam.APIConnectionError as e:
     print("The server could not be reached")
@@ -127,9 +127,9 @@ client = Sam(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).v1.customers.accounts.retrieve(
+client.with_options(max_retries=5).customers.accounts.retrieve(
     "REPLACE_ME",
-    customer_id="somechange",
+    customer_id="REPLACE_ME",
 )
 ```
 
@@ -153,9 +153,9 @@ client = Sam(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).v1.customers.accounts.retrieve(
+client.with_options(timeout=5 * 1000).customers.accounts.retrieve(
     "REPLACE_ME",
-    customer_id="somechange",
+    customer_id="REPLACE_ME",
 )
 ```
 
@@ -195,13 +195,13 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from sam import Sam
 
 client = Sam()
-response = client.v1.customers.accounts.with_raw_response.retrieve(
+response = client.customers.accounts.with_raw_response.retrieve(
     "REPLACE_ME",
-    customer_id="somechange",
+    customer_id="REPLACE_ME",
 )
 print(response.headers.get('X-My-Header'))
 
-account = response.parse()  # get the object that `v1.customers.accounts.retrieve()` would have returned
+account = response.parse()  # get the object that `customers.accounts.retrieve()` would have returned
 print(account.account)
 ```
 

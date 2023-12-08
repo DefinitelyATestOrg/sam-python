@@ -9,7 +9,7 @@ import pytest
 from sam import Sam, AsyncSam
 from sam._client import Sam, AsyncSam
 from tests.utils import assert_matches_type
-from sam.types.v1.customers import AccountsResponse, DetailedAccountResponse
+from sam.types.customers import AccountListResponse, AccountRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,50 +21,50 @@ class TestAccounts:
 
     @parametrize
     def test_method_retrieve(self, client: Sam) -> None:
-        account = client.v1.customers.accounts.retrieve(
+        account = client.customers.accounts.retrieve(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
-        assert_matches_type(DetailedAccountResponse, account, path=["response"])
+        assert_matches_type(AccountRetrieveResponse, account, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Sam) -> None:
-        response = client.v1.customers.accounts.with_raw_response.retrieve(
+        response = client.customers.accounts.with_raw_response.retrieve(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(DetailedAccountResponse, account, path=["response"])
+        assert_matches_type(AccountRetrieveResponse, account, path=["response"])
 
     @parametrize
     def test_method_list(self, client: Sam) -> None:
-        account = client.v1.customers.accounts.list(
+        account = client.customers.accounts.list(
             "6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
-        assert_matches_type(AccountsResponse, account, path=["response"])
+        assert_matches_type(AccountListResponse, account, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Sam) -> None:
-        account = client.v1.customers.accounts.list(
+        account = client.customers.accounts.list(
             "6878951b-256b-4baa-9e81-ad4c577adc4e",
             cash_account_type=["CACC", "CARD", "CASH"],
             status=["enabled", "deleted", "blocked"],
         )
-        assert_matches_type(AccountsResponse, account, path=["response"])
+        assert_matches_type(AccountListResponse, account, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Sam) -> None:
-        response = client.v1.customers.accounts.with_raw_response.list(
+        response = client.customers.accounts.with_raw_response.list(
             "6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(AccountsResponse, account, path=["response"])
+        assert_matches_type(AccountListResponse, account, path=["response"])
 
     @parametrize
     def test_method_close(self, client: Sam) -> None:
-        account = client.v1.customers.accounts.close(
+        account = client.customers.accounts.close(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
@@ -72,7 +72,7 @@ class TestAccounts:
 
     @parametrize
     def test_raw_response_close(self, client: Sam) -> None:
-        response = client.v1.customers.accounts.with_raw_response.close(
+        response = client.customers.accounts.with_raw_response.close(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
@@ -88,50 +88,50 @@ class TestAsyncAccounts:
 
     @parametrize
     async def test_method_retrieve(self, client: AsyncSam) -> None:
-        account = await client.v1.customers.accounts.retrieve(
+        account = await client.customers.accounts.retrieve(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
-        assert_matches_type(DetailedAccountResponse, account, path=["response"])
+        assert_matches_type(AccountRetrieveResponse, account, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, client: AsyncSam) -> None:
-        response = await client.v1.customers.accounts.with_raw_response.retrieve(
+        response = await client.customers.accounts.with_raw_response.retrieve(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(DetailedAccountResponse, account, path=["response"])
+        assert_matches_type(AccountRetrieveResponse, account, path=["response"])
 
     @parametrize
     async def test_method_list(self, client: AsyncSam) -> None:
-        account = await client.v1.customers.accounts.list(
+        account = await client.customers.accounts.list(
             "6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
-        assert_matches_type(AccountsResponse, account, path=["response"])
+        assert_matches_type(AccountListResponse, account, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, client: AsyncSam) -> None:
-        account = await client.v1.customers.accounts.list(
+        account = await client.customers.accounts.list(
             "6878951b-256b-4baa-9e81-ad4c577adc4e",
             cash_account_type=["CACC", "CARD", "CASH"],
             status=["enabled", "deleted", "blocked"],
         )
-        assert_matches_type(AccountsResponse, account, path=["response"])
+        assert_matches_type(AccountListResponse, account, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, client: AsyncSam) -> None:
-        response = await client.v1.customers.accounts.with_raw_response.list(
+        response = await client.customers.accounts.with_raw_response.list(
             "6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         account = response.parse()
-        assert_matches_type(AccountsResponse, account, path=["response"])
+        assert_matches_type(AccountListResponse, account, path=["response"])
 
     @parametrize
     async def test_method_close(self, client: AsyncSam) -> None:
-        account = await client.v1.customers.accounts.close(
+        account = await client.customers.accounts.close(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
@@ -139,7 +139,7 @@ class TestAsyncAccounts:
 
     @parametrize
     async def test_raw_response_close(self, client: AsyncSam) -> None:
-        response = await client.v1.customers.accounts.with_raw_response.close(
+        response = await client.customers.accounts.with_raw_response.close(
             "3dc3d5b3-7023-4848-9853-f5400a64e80f",
             customer_id="6878951b-256b-4baa-9e81-ad4c577adc4e",
         )
