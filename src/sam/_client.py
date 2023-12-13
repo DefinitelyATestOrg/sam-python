@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import os
-import asyncio
 from typing import Any, Union, Mapping
 from typing_extensions import Self, override
 
@@ -149,16 +148,6 @@ class Sam(SyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
-    def __del__(self) -> None:
-        if not hasattr(self, "_has_custom_http_client") or not hasattr(self, "close"):
-            # this can happen if the '__init__' method raised an error
-            return
-
-        if self._has_custom_http_client:
-            return
-
-        self.close()
-
     @override
     def _make_status_error(
         self,
@@ -301,19 +290,6 @@ class AsyncSam(AsyncAPIClient):
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
-
-    def __del__(self) -> None:
-        if not hasattr(self, "_has_custom_http_client") or not hasattr(self, "close"):
-            # this can happen if the '__init__' method raised an error
-            return
-
-        if self._has_custom_http_client:
-            return
-
-        try:
-            asyncio.get_running_loop().create_task(self.close())
-        except Exception:
-            pass
 
     @override
     def _make_status_error(
