@@ -1,1 +1,2 @@
-print("hello from sam/lib/hello.py")
+def hello():
+	pass
