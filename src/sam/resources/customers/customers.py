@@ -2,40 +2,31 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-from .accounts import (
-    Accounts,
-    AsyncAccounts,
-    AccountsWithRawResponse,
-    AsyncAccountsWithRawResponse,
-)
+from .accounts import Accounts, AsyncAccounts, AccountsWithRawResponse, AsyncAccountsWithRawResponse
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-
-if TYPE_CHECKING:
-    from ..._client import Sam, AsyncSam
 
 __all__ = ["Customers", "AsyncCustomers"]
 
 
 class Customers(SyncAPIResource):
-    accounts: Accounts
-    with_raw_response: CustomersWithRawResponse
+    @cached_property
+    def accounts(self) -> Accounts:
+        return Accounts(self._client)
 
-    def __init__(self, client: Sam) -> None:
-        super().__init__(client)
-        self.accounts = Accounts(client)
-        self.with_raw_response = CustomersWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> CustomersWithRawResponse:
+        return CustomersWithRawResponse(self)
 
 
 class AsyncCustomers(AsyncAPIResource):
-    accounts: AsyncAccounts
-    with_raw_response: AsyncCustomersWithRawResponse
+    @cached_property
+    def accounts(self) -> AsyncAccounts:
+        return AsyncAccounts(self._client)
 
-    def __init__(self, client: AsyncSam) -> None:
-        super().__init__(client)
-        self.accounts = AsyncAccounts(client)
-        self.with_raw_response = AsyncCustomersWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncCustomersWithRawResponse:
+        return AsyncCustomersWithRawResponse(self)
 
 
 class CustomersWithRawResponse:
