@@ -2,34 +2,28 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List
+from typing import List
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
-from ..._base_client import make_request_options
-from ...types.customers import (
-    AccountListResponse,
-    AccountRetrieveResponse,
-    account_list_params,
+from ..._base_client import (
+    make_request_options,
 )
-
-if TYPE_CHECKING:
-    from ..._client import Sam, AsyncSam
+from ...types.customers import AccountListResponse, AccountRetrieveResponse, account_list_params
 
 __all__ = ["Accounts", "AsyncAccounts"]
 
 
 class Accounts(SyncAPIResource):
-    with_raw_response: AccountsWithRawResponse
-
-    def __init__(self, client: Sam) -> None:
-        super().__init__(client)
-        self.with_raw_response = AccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AccountsWithRawResponse:
+        return AccountsWithRawResponse(self)
 
     def retrieve(
         self,
@@ -180,11 +174,9 @@ class Accounts(SyncAPIResource):
 
 
 class AsyncAccounts(AsyncAPIResource):
-    with_raw_response: AsyncAccountsWithRawResponse
-
-    def __init__(self, client: AsyncSam) -> None:
-        super().__init__(client)
-        self.with_raw_response = AsyncAccountsWithRawResponse(self)
+    @cached_property
+    def with_raw_response(self) -> AsyncAccountsWithRawResponse:
+        return AsyncAccountsWithRawResponse(self)
 
     async def retrieve(
         self,

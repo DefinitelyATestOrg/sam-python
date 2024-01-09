@@ -20,12 +20,7 @@ from sam import Sam, AsyncSam, APIResponseValidationError
 from sam._client import Sam, AsyncSam
 from sam._models import BaseModel, FinalRequestOptions
 from sam._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
-from sam._base_client import (
-    DEFAULT_TIMEOUT,
-    HTTPX_DEFAULT_TIMEOUT,
-    BaseClient,
-    make_request_options,
-)
+from sam._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
 
 from .utils import update_env
 
