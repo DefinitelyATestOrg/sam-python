@@ -8,7 +8,12 @@ from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
 from sam._types import NoneType
-from sam._utils import is_dict, is_list, is_list_type, is_union_type
+from sam._utils import (
+    is_dict,
+    is_list,
+    is_list_type,
+    is_union_type,
+)
 from sam._compat import PYDANTIC_V2, field_outer_type, get_model_fields
 from sam._models import BaseModel
 
