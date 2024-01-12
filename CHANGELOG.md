@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.0 (2024-01-12)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* **api:** OpenAPI spec update ([#20](https://github.com/DefinitelyATestOrg/sam-python/issues/20)) ([6c2eddd](https://github.com/DefinitelyATestOrg/sam-python/commit/6c2eddd59b8868871d2c67ecee91dc90ab20fc63))
+
+
+### Chores
+
+* sam testing stuff ([#18](https://github.com/DefinitelyATestOrg/sam-python/issues/18)) ([ee65297](https://github.com/DefinitelyATestOrg/sam-python/commit/ee652973426d2fcc41dc4eb79067d00a32323452))
+
 ## 0.6.0 (2023-12-26)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.5.0...v0.6.0)
