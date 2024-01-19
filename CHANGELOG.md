@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.0 (2024-01-19)
+
+Full Changelog: [v0.7.0...v0.8.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.7.0...v0.8.0)
+
+### Features
+
+* **api:** OpenAPI spec update ([#21](https://github.com/DefinitelyATestOrg/sam-python/issues/21)) ([b027f11](https://github.com/DefinitelyATestOrg/sam-python/commit/b027f11bc6f0c2c5373012d65f8951cabbda455b))
+
 ## 0.7.0 (2024-01-12)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.6.0...v0.7.0)
