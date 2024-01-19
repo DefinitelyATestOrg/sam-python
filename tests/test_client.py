@@ -19,6 +19,7 @@ from pydantic import ValidationError
 from sam import Sam, AsyncSam, APIResponseValidationError
 from sam._client import Sam, AsyncSam
 from sam._models import BaseModel, FinalRequestOptions
+from sam._constants import RAW_RESPONSE_HEADER
 from sam._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from sam._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
 
@@ -210,6 +211,7 @@ class TestSam:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
+                        "sam/_legacy_response.py",
                         "sam/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
                         "sam/_compat.py",
@@ -629,7 +631,7 @@ class TestSam:
             self.client.get(
                 "/v1/customers/6878951b-256b-4baa-9e81-ad4c577adc4e/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f",
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -645,7 +647,7 @@ class TestSam:
             self.client.get(
                 "/v1/customers/6878951b-256b-4baa-9e81-ad4c577adc4e/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f",
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -818,6 +820,7 @@ class TestAsyncSam:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
+                        "sam/_legacy_response.py",
                         "sam/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
                         "sam/_compat.py",
@@ -1241,7 +1244,7 @@ class TestAsyncSam:
             await self.client.get(
                 "/v1/customers/6878951b-256b-4baa-9e81-ad4c577adc4e/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f",
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0
@@ -1257,7 +1260,7 @@ class TestAsyncSam:
             await self.client.get(
                 "/v1/customers/6878951b-256b-4baa-9e81-ad4c577adc4e/accounts/3dc3d5b3-7023-4848-9853-f5400a64e80f",
                 cast_to=httpx.Response,
-                options={"headers": {"X-Stainless-Streamed-Raw-Response": "true"}},
+                options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
 
         assert _get_open_connections(self.client) == 0

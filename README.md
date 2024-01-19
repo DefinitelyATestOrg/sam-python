@@ -189,7 +189,7 @@ if response.my_field is None:
 
 ### Accessing raw response data (e.g. headers)
 
-The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call.
+The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
 from sam import Sam
@@ -206,6 +206,27 @@ print(account.account)
 ```
 
 These methods return an [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam/_response.py) object.
+
+The async client returns an [`AsyncAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+
+#### `.with_streaming_response`
+
+The above interface eagerly reads the full response body when you make the request, which may not always be what you want.
+
+To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
+
+```python
+with client.customers.accounts.with_streaming_response.retrieve(
+    "REPLACE_ME",
+    customer_id="REPLACE_ME",
+) as response:
+    print(response.headers.get("X-My-Header"))
+
+    for line in response.iter_lines():
+        print(line)
+```
+
+The context manager is required so that the response will reliably be closed.
 
 ### Configuring the HTTP client
 

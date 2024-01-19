@@ -11,7 +11,12 @@ from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._base_client import (
     make_request_options,
 )
@@ -24,6 +29,10 @@ class Accounts(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AccountsWithRawResponse:
         return AccountsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AccountsWithStreamingResponse:
+        return AccountsWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -49,6 +58,10 @@ class Accounts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/v1/customers/{customer_id}/accounts/{account_id}",
             options=make_request_options(
@@ -121,6 +134,8 @@ class Accounts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return self._get(
             f"/v1/customers/{customer_id}/accounts",
             options=make_request_options(
@@ -163,6 +178,10 @@ class Accounts(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._post(
             f"/v1/customers/{customer_id}/accounts/{account_id}/close",
@@ -177,6 +196,10 @@ class AsyncAccounts(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncAccountsWithRawResponse:
         return AsyncAccountsWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncAccountsWithStreamingResponse:
+        return AsyncAccountsWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -202,6 +225,10 @@ class AsyncAccounts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/v1/customers/{customer_id}/accounts/{account_id}",
             options=make_request_options(
@@ -274,6 +301,8 @@ class AsyncAccounts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
         return await self._get(
             f"/v1/customers/{customer_id}/accounts",
             options=make_request_options(
@@ -316,6 +345,10 @@ class AsyncAccounts(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not customer_id:
+            raise ValueError(f"Expected a non-empty value for `customer_id` but received {customer_id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._post(
             f"/v1/customers/{customer_id}/accounts/{account_id}/close",
@@ -328,6 +361,8 @@ class AsyncAccounts(AsyncAPIResource):
 
 class AccountsWithRawResponse:
     def __init__(self, accounts: Accounts) -> None:
+        self._accounts = accounts
+
         self.retrieve = to_raw_response_wrapper(
             accounts.retrieve,
         )
@@ -341,6 +376,8 @@ class AccountsWithRawResponse:
 
 class AsyncAccountsWithRawResponse:
     def __init__(self, accounts: AsyncAccounts) -> None:
+        self._accounts = accounts
+
         self.retrieve = async_to_raw_response_wrapper(
             accounts.retrieve,
         )
@@ -348,5 +385,35 @@ class AsyncAccountsWithRawResponse:
             accounts.list,
         )
         self.close = async_to_raw_response_wrapper(
+            accounts.close,
+        )
+
+
+class AccountsWithStreamingResponse:
+    def __init__(self, accounts: Accounts) -> None:
+        self._accounts = accounts
+
+        self.retrieve = to_streamed_response_wrapper(
+            accounts.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            accounts.list,
+        )
+        self.close = to_streamed_response_wrapper(
+            accounts.close,
+        )
+
+
+class AsyncAccountsWithStreamingResponse:
+    def __init__(self, accounts: AsyncAccounts) -> None:
+        self._accounts = accounts
+
+        self.retrieve = async_to_streamed_response_wrapper(
+            accounts.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            accounts.list,
+        )
+        self.close = async_to_streamed_response_wrapper(
             accounts.close,
         )
