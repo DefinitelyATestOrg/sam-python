@@ -48,6 +48,7 @@ __all__ = [
 class Sam(SyncAPIClient):
     customers: resources.Customers
     with_raw_response: SamWithRawResponse
+    with_streaming_response: SamWithStreamedResponse
 
     # client options
 
@@ -90,6 +91,7 @@ class Sam(SyncAPIClient):
 
         self.customers = resources.Customers(self)
         self.with_raw_response = SamWithRawResponse(self)
+        self.with_streaming_response = SamWithStreamedResponse(self)
 
     @property
     @override
@@ -191,6 +193,7 @@ class Sam(SyncAPIClient):
 class AsyncSam(AsyncAPIClient):
     customers: resources.AsyncCustomers
     with_raw_response: AsyncSamWithRawResponse
+    with_streaming_response: AsyncSamWithStreamedResponse
 
     # client options
 
@@ -233,6 +236,7 @@ class AsyncSam(AsyncAPIClient):
 
         self.customers = resources.AsyncCustomers(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
+        self.with_streaming_response = AsyncSamWithStreamedResponse(self)
 
     @property
     @override
@@ -339,6 +343,16 @@ class SamWithRawResponse:
 class AsyncSamWithRawResponse:
     def __init__(self, client: AsyncSam) -> None:
         self.customers = resources.AsyncCustomersWithRawResponse(client.customers)
+
+
+class SamWithStreamedResponse:
+    def __init__(self, client: Sam) -> None:
+        self.customers = resources.CustomersWithStreamingResponse(client.customers)
+
+
+class AsyncSamWithStreamedResponse:
+    def __init__(self, client: AsyncSam) -> None:
+        self.customers = resources.AsyncCustomersWithStreamingResponse(client.customers)
 
 
 Client = Sam
