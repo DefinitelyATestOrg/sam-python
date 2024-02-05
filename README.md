@@ -8,7 +8,7 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 
 ## Documentation
 
-The REST API documentation can be found [on docs.sam.com](https://docs.sam.com). The full API of this library can be found in [api.md](https://www.github.com/DefinitelyATestOrg/sam-python/blob/main/api.md).
+The REST API documentation can be found [on docs.sam.com](https://docs.sam.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -18,7 +18,7 @@ pip install sam
 
 ## Usage
 
-The full API of this library can be found in [api.md](https://www.github.com/DefinitelyATestOrg/sam-python/blob/main/api.md).
+The full API of this library can be found in [api.md](api.md).
 
 ```python
 from sam import Sam
