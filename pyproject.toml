@@ -5,7 +5,7 @@ description = "The official Python library for the sam API"
 readme = "README.md"
 license = "Apache-2.0"
 authors = [
-{ name = "Sam", email = "dev-feedback@sam.com" },
+{ name = "Sam", email = "hello@elborai.software" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
@@ -72,6 +72,10 @@ format = { chain = [
 "format:ruff" = "ruff format"
 "format:isort" = "isort ."
 
+"lint" = { chain = [
+  "check:ruff",
+  "typecheck",
+]}
 "check:ruff" = "ruff ."
 "fix:ruff" = "ruff --fix ."
 
