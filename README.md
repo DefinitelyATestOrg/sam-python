@@ -27,7 +27,7 @@ client = Sam()
 
 account_retrieve_response = client.customers.accounts.retrieve(
     "REPLACE_ME",
-    customer_id="REPLACE_ME",
+    customer_id="REPLACE_MEEEEEE",
 )
 print(account_retrieve_response.account)
 ```
@@ -46,7 +46,7 @@ client = AsyncSam()
 async def main() -> None:
     account_retrieve_response = await client.customers.accounts.retrieve(
         "REPLACE_ME",
-        customer_id="REPLACE_ME",
+        customer_id="REPLACE_MEEEEEE",
     )
     print(account_retrieve_response.account)
 
@@ -82,7 +82,7 @@ client = Sam()
 
 try:
     client.customers.accounts.retrieve(
-        "REPLACE_ME",
+        "REPLACE_MEeeeee",
         customer_id="REPLACE_ME",
     )
 except sam.APIConnectionError as e:
@@ -128,7 +128,7 @@ client = Sam(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).customers.accounts.retrieve(
-    "REPLACE_ME",
+    "REPLACE_MEeeeee",
     customer_id="REPLACE_ME",
 )
 ```
@@ -154,7 +154,7 @@ client = Sam(
 
 # Override per-request:
 client.with_options(timeout=5 * 1000).customers.accounts.retrieve(
-    "REPLACE_ME",
+    "REPLACE_MEeeeee",
     customer_id="REPLACE_ME",
 )
 ```
@@ -196,7 +196,7 @@ from sam import Sam
 
 client = Sam()
 response = client.customers.accounts.with_raw_response.retrieve(
-    "REPLACE_ME",
+    "REPLACE_MEeeeee",
     customer_id="REPLACE_ME",
 )
 print(response.headers.get('X-My-Header'))
@@ -217,7 +217,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.customers.accounts.with_streaming_response.retrieve(
-    "REPLACE_ME",
+    "REPLACE_MEeeeee",
     customer_id="REPLACE_ME",
 ) as response:
     print(response.headers.get("X-My-Header"))
