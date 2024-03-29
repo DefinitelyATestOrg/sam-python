@@ -71,15 +71,15 @@ from ._response import (
     extract_response_type,
 )
 from ._constants import (
-    DEFAULT_LIMITS,
     DEFAULT_TIMEOUT,
     MAX_RETRY_DELAY,
     DEFAULT_MAX_RETRIES,
     INITIAL_RETRY_DELAY,
     RAW_RESPONSE_HEADER,
     OVERRIDE_CAST_TO_HEADER,
+    DEFAULT_CONNECTION_LIMITS,
 )
-from ._streaming import Stream, AsyncStream
+from ._streaming import Stream, SSEDecoder, AsyncStream, SSEBytesDecoder
 from ._exceptions import (
     APIStatusError,
     APITimeoutError,
@@ -430,6 +430,9 @@ class BaseClient(Generic[_HttpxClientT, _DefaultStreamT]):
 
         return merge_url
 
+    def _make_sse_decoder(self) -> SSEDecoder | SSEBytesDecoder:
+        return SSEDecoder()
+
     def _build_request(
         self,
         options: FinalRequestOptions,
@@ -743,7 +746,7 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
             if http_client is not None:
                 raise ValueError("The `http_client` argument is mutually exclusive with `connection_pool_limits`")
         else:
-            limits = DEFAULT_LIMITS
+            limits = DEFAULT_CONNECTION_LIMITS
 
         if transport is not None:
             warnings.warn(
@@ -775,6 +778,11 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
                 timeout = http_client.timeout
             else:
                 timeout = DEFAULT_TIMEOUT
+
+        if http_client is not None and not isinstance(http_client, httpx.Client):  # pyright: ignore[reportUnnecessaryIsInstance]
+            raise TypeError(
+                f"Invalid `http_client` argument; Expected an instance of `httpx.Client` but got {type(http_client)}"
+            )
 
         super().__init__(
             version=version,
@@ -1272,7 +1280,7 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
             if http_client is not None:
                 raise ValueError("The `http_client` argument is mutually exclusive with `connection_pool_limits`")
         else:
-            limits = DEFAULT_LIMITS
+            limits = DEFAULT_CONNECTION_LIMITS
 
         if transport is not None:
             warnings.warn(
@@ -1304,6 +1312,11 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
                 timeout = http_client.timeout
             else:
                 timeout = DEFAULT_TIMEOUT
+
+        if http_client is not None and not isinstance(http_client, httpx.AsyncClient):  # pyright: ignore[reportUnnecessaryIsInstance]
+            raise TypeError(
+                f"Invalid `http_client` argument; Expected an instance of `httpx.AsyncClient` but got {type(http_client)}"
+            )
 
         super().__init__(
             version=version,
