@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.10.0 (2024-03-29)
+
+Full Changelog: [v0.9.0...v0.10.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.9.0...v0.10.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#38](https://github.com/DefinitelyATestOrg/sam-python/issues/38)) ([d6fa8ca](https://github.com/DefinitelyATestOrg/sam-python/commit/d6fa8ca9fe87ea3045b2486c3d6382c814501c3d))
+* **api:** update via SDK Studio ([#39](https://github.com/DefinitelyATestOrg/sam-python/issues/39)) ([c04a420](https://github.com/DefinitelyATestOrg/sam-python/commit/c04a420651e8f06049b74a7b3d512df83e6e1a7f))
+* OpenAPI spec update ([#26](https://github.com/DefinitelyATestOrg/sam-python/issues/26)) ([43ad6ec](https://github.com/DefinitelyATestOrg/sam-python/commit/43ad6ec1e6bfc4212321b9892076792183152038))
+* OpenAPI spec update ([#28](https://github.com/DefinitelyATestOrg/sam-python/issues/28)) ([972e80f](https://github.com/DefinitelyATestOrg/sam-python/commit/972e80fa69e6c660c7657564c552535a19df3a44))
+* OpenAPI spec update ([#29](https://github.com/DefinitelyATestOrg/sam-python/issues/29)) ([e6ac5ac](https://github.com/DefinitelyATestOrg/sam-python/commit/e6ac5ac180fb2f12e1e9a2ab58f0dfdd6a95b352))
+* update via SDK Studio ([e1ed739](https://github.com/DefinitelyATestOrg/sam-python/commit/e1ed739248b1d70e194763104976f596c23a9cf5))
+* update via SDK Studio ([#31](https://github.com/DefinitelyATestOrg/sam-python/issues/31)) ([c740d3c](https://github.com/DefinitelyATestOrg/sam-python/commit/c740d3c3afdda7ecdada0bcbcbf1f83265f10cff))
+* update via SDK Studio ([#32](https://github.com/DefinitelyATestOrg/sam-python/issues/32)) ([40fa874](https://github.com/DefinitelyATestOrg/sam-python/commit/40fa8741bb35da635bc62425d3666a307ed8a4db))
+* update via SDK Studio ([#34](https://github.com/DefinitelyATestOrg/sam-python/issues/34)) ([054e919](https://github.com/DefinitelyATestOrg/sam-python/commit/054e91958c2a2b1228a711a52027645d2cc97da2))
+* update via SDK Studio ([#35](https://github.com/DefinitelyATestOrg/sam-python/issues/35)) ([b617109](https://github.com/DefinitelyATestOrg/sam-python/commit/b617109f9a814515d4329003924c7d8a46b8972d))
+* update via SDK Studio ([#36](https://github.com/DefinitelyATestOrg/sam-python/issues/36)) ([b22aab0](https://github.com/DefinitelyATestOrg/sam-python/commit/b22aab0424418eb308f66d097bd1cd3b7c54684d))
+* update via SDK Studio ([#37](https://github.com/DefinitelyATestOrg/sam-python/issues/37)) ([36f7b01](https://github.com/DefinitelyATestOrg/sam-python/commit/36f7b01d763fd00c6cb753906dc4ca876e76d51f))
+
+
+### Chores
+
+* configure new SDK language ([#33](https://github.com/DefinitelyATestOrg/sam-python/issues/33)) ([43b189b](https://github.com/DefinitelyATestOrg/sam-python/commit/43b189bbaaa51f9fe08daa36a22c0175ddb17353))
+
 ## 0.9.0 (2024-02-05)
 
 Full Changelog: [v0.8.0...v0.9.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.8.0...v0.9.0)
