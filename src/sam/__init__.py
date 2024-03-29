@@ -7,6 +7,7 @@ from ._client import Sam, Client, Stream, Timeout, AsyncSam, Transport, AsyncCli
 from ._models import BaseModel
 from ._version import __title__, __version__
 from ._response import APIResponse as APIResponse, AsyncAPIResponse as AsyncAPIResponse
+from ._constants import DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES, DEFAULT_CONNECTION_LIMITS
 from ._exceptions import (
     APIError,
     SamError,
@@ -58,6 +59,9 @@ __all__ = [
     "AsyncSam",
     "file_from_path",
     "BaseModel",
+    "DEFAULT_TIMEOUT",
+    "DEFAULT_MAX_RETRIES",
+    "DEFAULT_CONNECTION_LIMITS",
 ]
 
 _setup_logging()
