@@ -608,6 +608,10 @@ class TestSam:
 
         assert isinstance(exc.value.__cause__, ValidationError)
 
+    def test_client_max_retries_validation(self) -> None:
+        with pytest.raises(TypeError, match=r"max_retries cannot be None"):
+            Sam(base_url=base_url, _strict_response_validation=True, max_retries=cast(Any, None))
+
     @pytest.mark.respx(base_url=base_url)
     def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
         class Model(BaseModel):
@@ -1252,6 +1256,10 @@ class TestAsyncSam:
             await self.client.get("/foo", cast_to=Model)
 
         assert isinstance(exc.value.__cause__, ValidationError)
+
+    async def test_client_max_retries_validation(self) -> None:
+        with pytest.raises(TypeError, match=r"max_retries cannot be None"):
+            AsyncSam(base_url=base_url, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
