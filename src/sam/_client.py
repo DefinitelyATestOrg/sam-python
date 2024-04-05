@@ -25,7 +25,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import APIStatusError
+from ._exceptions import SamError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -51,10 +51,12 @@ class Sam(SyncAPIClient):
     with_streaming_response: SamWithStreamedResponse
 
     # client options
+    plop: str
 
     def __init__(
         self,
         *,
+        plop: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -72,7 +74,18 @@ class Sam(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous sam client instance."""
+        """Construct a new synchronous sam client instance.
+
+        This automatically infers the `plop` argument from the `PLOP` environment variable if it is not provided.
+        """
+        if plop is None:
+            plop = os.environ.get("PLOP")
+        if plop is None:
+            raise SamError(
+                "The plop client option must be set either by passing plop to the client or by setting the PLOP environment variable"
+            )
+        self.plop = plop
+
         if base_url is None:
             base_url = os.environ.get("SAM_BASE_URL")
         if base_url is None:
@@ -110,6 +123,7 @@ class Sam(SyncAPIClient):
     def copy(
         self,
         *,
+        plop: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -143,6 +157,7 @@ class Sam(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            plop=plop or self.plop,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -196,10 +211,12 @@ class AsyncSam(AsyncAPIClient):
     with_streaming_response: AsyncSamWithStreamedResponse
 
     # client options
+    plop: str
 
     def __init__(
         self,
         *,
+        plop: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -217,7 +234,18 @@ class AsyncSam(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async sam client instance."""
+        """Construct a new async sam client instance.
+
+        This automatically infers the `plop` argument from the `PLOP` environment variable if it is not provided.
+        """
+        if plop is None:
+            plop = os.environ.get("PLOP")
+        if plop is None:
+            raise SamError(
+                "The plop client option must be set either by passing plop to the client or by setting the PLOP environment variable"
+            )
+        self.plop = plop
+
         if base_url is None:
             base_url = os.environ.get("SAM_BASE_URL")
         if base_url is None:
@@ -255,6 +283,7 @@ class AsyncSam(AsyncAPIClient):
     def copy(
         self,
         *,
+        plop: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -288,6 +317,7 @@ class AsyncSam(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
+            plop=plop or self.plop,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
