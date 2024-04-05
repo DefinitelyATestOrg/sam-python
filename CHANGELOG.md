@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.11.0 (2024-04-05)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.10.0...v0.11.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#40](https://github.com/DefinitelyATestOrg/sam-python/issues/40)) ([0d69689](https://github.com/DefinitelyATestOrg/sam-python/commit/0d6968965ff8f5ada245de9d266022d2d9c65cb0))
+* **api:** update via SDK Studio ([#42](https://github.com/DefinitelyATestOrg/sam-python/issues/42)) ([802561f](https://github.com/DefinitelyATestOrg/sam-python/commit/802561fd5c1beccb5a44193978f45491377af4db))
+
 ## 0.10.0 (2024-03-29)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.9.0...v0.10.0)
