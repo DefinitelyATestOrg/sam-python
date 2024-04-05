@@ -26,7 +26,9 @@ The full API of this library can be found in [api.md](api.md).
 ```python
 from sam import Sam
 
-client = Sam()
+client = Sam(
+    plop="you plop plop",
+)
 
 account_retrieve_response = client.customers.accounts.retrieve(
     "REPLACE_ME",
@@ -43,7 +45,9 @@ Simply import `AsyncSam` instead of `Sam` and use `await` with each API call:
 import asyncio
 from sam import AsyncSam
 
-client = AsyncSam()
+client = AsyncSam(
+    plop="you plop plop",
+)
 
 
 async def main() -> None:
@@ -81,7 +85,9 @@ All errors inherit from `sam.APIError`.
 import sam
 from sam import Sam
 
-client = Sam()
+client = Sam(
+    plop="you plop plop",
+)
 
 try:
     client.customers.accounts.retrieve(
@@ -127,6 +133,7 @@ from sam import Sam
 client = Sam(
     # default is 2
     max_retries=0,
+    plop="you plop plop",
 )
 
 # Or, configure per-request:
@@ -148,11 +155,13 @@ from sam import Sam
 client = Sam(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
+    plop="you plop plop",
 )
 
 # More granular control:
 client = Sam(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
+    plop="you plop plop",
 )
 
 # Override per-request:
@@ -197,7 +206,9 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from sam import Sam
 
-client = Sam()
+client = Sam(
+    plop="you plop plop",
+)
 response = client.customers.accounts.with_raw_response.retrieve(
     "REPLACE_ME",
     customer_id="REPLACE_ME",
@@ -255,12 +266,12 @@ response = client.post(
 print(response.headers.get("x-foo"))
 ```
 
-#### Undocumented params
+#### Undocumented request params
 
 If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` request
 options.
 
-#### Undocumented properties
+#### Undocumented response properties
 
 To access undocumented response properties, you can access the extra fields like `response.unknown_prop`. You
 can also get all the extra fields on the Pydantic model as a dict with
@@ -285,6 +296,7 @@ client = Sam(
         proxies="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
+    plop="you plop plop",
 )
 ```
 
