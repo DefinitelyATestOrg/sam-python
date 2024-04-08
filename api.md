@@ -33,6 +33,14 @@ Methods:
 
 - <code title="put /api/v1/feedbacks/{feedback_id}">client.feedbacks.<a href="./src/sam/resources/feedbacks.py">update</a>(feedback_id, \*\*<a href="src/sam/types/feedback_update_params.py">params</a>) -> BinaryAPIResponse</code>
 
+# Documents
+
+Methods:
+
+- <code title="get /api/v1/document/{doc_id}">client.documents.<a href="./src/sam/resources/documents.py">retrieve</a>(doc_id, \*\*<a href="src/sam/types/document_retrieve_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="put /api/v1/document/{doc_id}">client.documents.<a href="./src/sam/resources/documents.py">update</a>(doc_id, \*\*<a href="src/sam/types/document_update_params.py">params</a>) -> BinaryAPIResponse</code>
+- <code title="delete /api/v1/document/{doc_id}">client.documents.<a href="./src/sam/resources/documents.py">delete</a>(doc_id) -> None</code>
+
 # Corpora
 
 Methods:
@@ -48,6 +56,12 @@ Methods:
 - <code title="get /api/v1/agents/{id}">client.agents.<a href="./src/sam/resources/agents/agents.py">retrieve</a>(id) -> BinaryAPIResponse</code>
 - <code title="put /api/v1/agents/{id}">client.agents.<a href="./src/sam/resources/agents/agents.py">update</a>(id, \*\*<a href="src/sam/types/agent_update_params.py">params</a>) -> BinaryAPIResponse</code>
 - <code title="delete /api/v1/agents/{id}">client.agents.<a href="./src/sam/resources/agents/agents.py">delete</a>(id) -> None</code>
+
+## HiddenTags
+
+Methods:
+
+- <code title="put /api/v1/agents/{id}/hiddenTags">client.agents.hidden_tags.<a href="./src/sam/resources/agents/hidden_tags.py">update</a>(id, \*\*<a href="src/sam/types/agents/hidden_tag_update_params.py">params</a>) -> BinaryAPIResponse</code>
 
 ## Configs
 

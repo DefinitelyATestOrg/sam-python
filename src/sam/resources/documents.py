@@ -2,25 +2,21 @@
 
 from __future__ import annotations
 
+from typing import Union
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from ...types import agent_update_params
-from .configs import (
-    Configs,
-    AsyncConfigs,
-    ConfigsWithRawResponse,
-    AsyncConfigsWithRawResponse,
-    ConfigsWithStreamingResponse,
-    AsyncConfigsWithStreamingResponse,
-)
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
-from ..._utils import (
+from ..types import document_update_params, document_retrieve_params
+from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
     StreamedBinaryAPIResponse,
@@ -34,43 +30,27 @@ from ..._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from .hidden_tags import (
-    HiddenTags,
-    AsyncHiddenTags,
-    HiddenTagsWithRawResponse,
-    AsyncHiddenTagsWithRawResponse,
-    HiddenTagsWithStreamingResponse,
-    AsyncHiddenTagsWithStreamingResponse,
-)
-from ..._base_client import (
+from .._base_client import (
     make_request_options,
 )
-from .configs.configs import Configs, AsyncConfigs
 
-__all__ = ["Agents", "AsyncAgents"]
+__all__ = ["Documents", "AsyncDocuments"]
 
 
-class Agents(SyncAPIResource):
+class Documents(SyncAPIResource):
     @cached_property
-    def hidden_tags(self) -> HiddenTags:
-        return HiddenTags(self._client)
-
-    @cached_property
-    def configs(self) -> Configs:
-        return Configs(self._client)
+    def with_raw_response(self) -> DocumentsWithRawResponse:
+        return DocumentsWithRawResponse(self)
 
     @cached_property
-    def with_raw_response(self) -> AgentsWithRawResponse:
-        return AgentsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AgentsWithStreamingResponse:
-        return AgentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> DocumentsWithStreamingResponse:
+        return DocumentsWithStreamingResponse(self)
 
     def retrieve(
         self,
-        id: str,
+        doc_id: str,
         *,
+        text: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -88,26 +68,38 @@ class Agents(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not doc_id:
+            raise ValueError(f"Expected a non-empty value for `doc_id` but received {doc_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
-            f"/api/v1/agents/{id}",
+            f"/api/v1/document/{doc_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"text": text}, document_retrieve_params.DocumentRetrieveParams),
             ),
             cast_to=BinaryAPIResponse,
         )
 
     def update(
         self,
-        id: str,
+        doc_id: str,
         *,
-        agent: agent_update_params.Agent,
-        chat_icon: FileTypes | NotGiven = NOT_GIVEN,
-        chat_icon_deleted: bool | NotGiven = NOT_GIVEN,
-        logo: FileTypes | NotGiven = NOT_GIVEN,
-        logo_deleted: bool | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        corpus_policy: Literal["INCLUDE", "EXCLUDE_ALWAYS"] | NotGiven = NOT_GIVEN,
+        created_by: document_update_params.CreatedBy | NotGiven = NOT_GIVEN,
+        external_lookup_key: str | NotGiven = NOT_GIVEN,
+        language_code: document_update_params.LanguageCode | NotGiven = NOT_GIVEN,
+        processing_version: int | NotGiven = NOT_GIVEN,
+        source_author: str | NotGiven = NOT_GIVEN,
+        source_created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        source_updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        source_url: str | NotGiven = NOT_GIVEN,
+        text: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        updated_by: document_update_params.UpdatedBy | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,20 +117,28 @@ class Agents(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not doc_id:
+            raise ValueError(f"Expected a non-empty value for `doc_id` but received {doc_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/api/v1/agents/{id}",
+            f"/api/v1/document/{doc_id}",
             body=maybe_transform(
                 {
-                    "agent": agent,
-                    "chat_icon": chat_icon,
-                    "chat_icon_deleted": chat_icon_deleted,
-                    "logo": logo,
-                    "logo_deleted": logo_deleted,
+                    "id": id,
+                    "corpus_policy": corpus_policy,
+                    "created_by": created_by,
+                    "external_lookup_key": external_lookup_key,
+                    "language_code": language_code,
+                    "processing_version": processing_version,
+                    "source_author": source_author,
+                    "source_created_at": source_created_at,
+                    "source_updated_at": source_updated_at,
+                    "source_url": source_url,
+                    "text": text,
+                    "title": title,
+                    "updated_by": updated_by,
                 },
-                agent_update_params.AgentUpdateParams,
+                document_update_params.DocumentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -148,7 +148,7 @@ class Agents(SyncAPIResource):
 
     def delete(
         self,
-        id: str,
+        doc_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -167,11 +167,11 @@ class Agents(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not doc_id:
+            raise ValueError(f"Expected a non-empty value for `doc_id` but received {doc_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/api/v1/agents/{id}",
+            f"/api/v1/document/{doc_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -179,27 +179,20 @@ class Agents(SyncAPIResource):
         )
 
 
-class AsyncAgents(AsyncAPIResource):
+class AsyncDocuments(AsyncAPIResource):
     @cached_property
-    def hidden_tags(self) -> AsyncHiddenTags:
-        return AsyncHiddenTags(self._client)
+    def with_raw_response(self) -> AsyncDocumentsWithRawResponse:
+        return AsyncDocumentsWithRawResponse(self)
 
     @cached_property
-    def configs(self) -> AsyncConfigs:
-        return AsyncConfigs(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> AsyncAgentsWithRawResponse:
-        return AsyncAgentsWithRawResponse(self)
-
-    @cached_property
-    def with_streaming_response(self) -> AsyncAgentsWithStreamingResponse:
-        return AsyncAgentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncDocumentsWithStreamingResponse:
+        return AsyncDocumentsWithStreamingResponse(self)
 
     async def retrieve(
         self,
-        id: str,
+        doc_id: str,
         *,
+        text: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -217,26 +210,38 @@ class AsyncAgents(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not doc_id:
+            raise ValueError(f"Expected a non-empty value for `doc_id` but received {doc_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
-            f"/api/v1/agents/{id}",
+            f"/api/v1/document/{doc_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"text": text}, document_retrieve_params.DocumentRetrieveParams),
             ),
             cast_to=AsyncBinaryAPIResponse,
         )
 
     async def update(
         self,
-        id: str,
+        doc_id: str,
         *,
-        agent: agent_update_params.Agent,
-        chat_icon: FileTypes | NotGiven = NOT_GIVEN,
-        chat_icon_deleted: bool | NotGiven = NOT_GIVEN,
-        logo: FileTypes | NotGiven = NOT_GIVEN,
-        logo_deleted: bool | NotGiven = NOT_GIVEN,
+        id: str | NotGiven = NOT_GIVEN,
+        corpus_policy: Literal["INCLUDE", "EXCLUDE_ALWAYS"] | NotGiven = NOT_GIVEN,
+        created_by: document_update_params.CreatedBy | NotGiven = NOT_GIVEN,
+        external_lookup_key: str | NotGiven = NOT_GIVEN,
+        language_code: document_update_params.LanguageCode | NotGiven = NOT_GIVEN,
+        processing_version: int | NotGiven = NOT_GIVEN,
+        source_author: str | NotGiven = NOT_GIVEN,
+        source_created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        source_updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        source_url: str | NotGiven = NOT_GIVEN,
+        text: str | NotGiven = NOT_GIVEN,
+        title: str | NotGiven = NOT_GIVEN,
+        updated_by: document_update_params.UpdatedBy | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -254,20 +259,28 @@ class AsyncAgents(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not doc_id:
+            raise ValueError(f"Expected a non-empty value for `doc_id` but received {doc_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/api/v1/agents/{id}",
+            f"/api/v1/document/{doc_id}",
             body=await async_maybe_transform(
                 {
-                    "agent": agent,
-                    "chat_icon": chat_icon,
-                    "chat_icon_deleted": chat_icon_deleted,
-                    "logo": logo,
-                    "logo_deleted": logo_deleted,
+                    "id": id,
+                    "corpus_policy": corpus_policy,
+                    "created_by": created_by,
+                    "external_lookup_key": external_lookup_key,
+                    "language_code": language_code,
+                    "processing_version": processing_version,
+                    "source_author": source_author,
+                    "source_created_at": source_created_at,
+                    "source_updated_at": source_updated_at,
+                    "source_url": source_url,
+                    "text": text,
+                    "title": title,
+                    "updated_by": updated_by,
                 },
-                agent_update_params.AgentUpdateParams,
+                document_update_params.DocumentUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -277,7 +290,7 @@ class AsyncAgents(AsyncAPIResource):
 
     async def delete(
         self,
-        id: str,
+        doc_id: str,
         *,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -296,11 +309,11 @@ class AsyncAgents(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not doc_id:
+            raise ValueError(f"Expected a non-empty value for `doc_id` but received {doc_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/api/v1/agents/{id}",
+            f"/api/v1/document/{doc_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -308,101 +321,69 @@ class AsyncAgents(AsyncAPIResource):
         )
 
 
-class AgentsWithRawResponse:
-    def __init__(self, agents: Agents) -> None:
-        self._agents = agents
+class DocumentsWithRawResponse:
+    def __init__(self, documents: Documents) -> None:
+        self._documents = documents
 
         self.retrieve = to_custom_raw_response_wrapper(
-            agents.retrieve,
+            documents.retrieve,
             BinaryAPIResponse,
         )
         self.update = to_custom_raw_response_wrapper(
-            agents.update,
+            documents.update,
             BinaryAPIResponse,
         )
         self.delete = to_raw_response_wrapper(
-            agents.delete,
+            documents.delete,
         )
 
-    @cached_property
-    def hidden_tags(self) -> HiddenTagsWithRawResponse:
-        return HiddenTagsWithRawResponse(self._agents.hidden_tags)
 
-    @cached_property
-    def configs(self) -> ConfigsWithRawResponse:
-        return ConfigsWithRawResponse(self._agents.configs)
-
-
-class AsyncAgentsWithRawResponse:
-    def __init__(self, agents: AsyncAgents) -> None:
-        self._agents = agents
+class AsyncDocumentsWithRawResponse:
+    def __init__(self, documents: AsyncDocuments) -> None:
+        self._documents = documents
 
         self.retrieve = async_to_custom_raw_response_wrapper(
-            agents.retrieve,
+            documents.retrieve,
             AsyncBinaryAPIResponse,
         )
         self.update = async_to_custom_raw_response_wrapper(
-            agents.update,
+            documents.update,
             AsyncBinaryAPIResponse,
         )
         self.delete = async_to_raw_response_wrapper(
-            agents.delete,
+            documents.delete,
         )
 
-    @cached_property
-    def hidden_tags(self) -> AsyncHiddenTagsWithRawResponse:
-        return AsyncHiddenTagsWithRawResponse(self._agents.hidden_tags)
 
-    @cached_property
-    def configs(self) -> AsyncConfigsWithRawResponse:
-        return AsyncConfigsWithRawResponse(self._agents.configs)
-
-
-class AgentsWithStreamingResponse:
-    def __init__(self, agents: Agents) -> None:
-        self._agents = agents
+class DocumentsWithStreamingResponse:
+    def __init__(self, documents: Documents) -> None:
+        self._documents = documents
 
         self.retrieve = to_custom_streamed_response_wrapper(
-            agents.retrieve,
+            documents.retrieve,
             StreamedBinaryAPIResponse,
         )
         self.update = to_custom_streamed_response_wrapper(
-            agents.update,
+            documents.update,
             StreamedBinaryAPIResponse,
         )
         self.delete = to_streamed_response_wrapper(
-            agents.delete,
+            documents.delete,
         )
 
-    @cached_property
-    def hidden_tags(self) -> HiddenTagsWithStreamingResponse:
-        return HiddenTagsWithStreamingResponse(self._agents.hidden_tags)
 
-    @cached_property
-    def configs(self) -> ConfigsWithStreamingResponse:
-        return ConfigsWithStreamingResponse(self._agents.configs)
-
-
-class AsyncAgentsWithStreamingResponse:
-    def __init__(self, agents: AsyncAgents) -> None:
-        self._agents = agents
+class AsyncDocumentsWithStreamingResponse:
+    def __init__(self, documents: AsyncDocuments) -> None:
+        self._documents = documents
 
         self.retrieve = async_to_custom_streamed_response_wrapper(
-            agents.retrieve,
+            documents.retrieve,
             AsyncStreamedBinaryAPIResponse,
         )
         self.update = async_to_custom_streamed_response_wrapper(
-            agents.update,
+            documents.update,
             AsyncStreamedBinaryAPIResponse,
         )
         self.delete = async_to_streamed_response_wrapper(
-            agents.delete,
+            documents.delete,
         )
-
-    @cached_property
-    def hidden_tags(self) -> AsyncHiddenTagsWithStreamingResponse:
-        return AsyncHiddenTagsWithStreamingResponse(self._agents.hidden_tags)
-
-    @cached_property
-    def configs(self) -> AsyncConfigsWithStreamingResponse:
-        return AsyncConfigsWithStreamingResponse(self._agents.configs)
