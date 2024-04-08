@@ -13,6 +13,7 @@ from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
     Omit,
+    Headers,
     Timeout,
     NotGiven,
     Transport,
@@ -25,7 +26,7 @@ from ._utils import (
 )
 from ._version import __version__
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
-from ._exceptions import SamError, APIStatusError
+from ._exceptions import APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
@@ -46,23 +47,33 @@ __all__ = [
 
 
 class Sam(SyncAPIClient):
-    customers: resources.Customers
+    reference_sets: resources.ReferenceSets
+    reference_sessions: resources.ReferenceSessions
+    organizations: resources.Organizations
+    members: resources.Members
+    feedbacks: resources.Feedbacks
+    corpora: resources.Corpora
+    agents: resources.Agents
+    action_sets: resources.ActionSets
+    actions: resources.Actions
     with_raw_response: SamWithRawResponse
     with_streaming_response: SamWithStreamedResponse
 
     # client options
-    plop: str
+    auth_token: str | None
 
     def __init__(
         self,
         *,
-        plop: str | None = None,
+        auth_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
-        # Configure a custom httpx client. See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
+        # Configure a custom httpx client.
+        # We provide a `DefaultHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
+        # See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
         http_client: httpx.Client | None = None,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
@@ -76,15 +87,11 @@ class Sam(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous sam client instance.
 
-        This automatically infers the `plop` argument from the `PLOP` environment variable if it is not provided.
+        This automatically infers the `auth_token` argument from the `MAVENAGI_AUTH_TOKEN` environment variable if it is not provided.
         """
-        if plop is None:
-            plop = os.environ.get("PLOP")
-        if plop is None:
-            raise SamError(
-                "The plop client option must be set either by passing plop to the client or by setting the PLOP environment variable"
-            )
-        self.plop = plop
+        if auth_token is None:
+            auth_token = os.environ.get("MAVENAGI_AUTH_TOKEN")
+        self.auth_token = auth_token
 
         if base_url is None:
             base_url = os.environ.get("SAM_BASE_URL")
@@ -102,7 +109,15 @@ class Sam(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.customers = resources.Customers(self)
+        self.reference_sets = resources.ReferenceSets(self)
+        self.reference_sessions = resources.ReferenceSessions(self)
+        self.organizations = resources.Organizations(self)
+        self.members = resources.Members(self)
+        self.feedbacks = resources.Feedbacks(self)
+        self.corpora = resources.Corpora(self)
+        self.agents = resources.Agents(self)
+        self.action_sets = resources.ActionSets(self)
+        self.actions = resources.Actions(self)
         self.with_raw_response = SamWithRawResponse(self)
         self.with_streaming_response = SamWithStreamedResponse(self)
 
@@ -113,6 +128,14 @@ class Sam(SyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        auth_token = self.auth_token
+        if auth_token is None:
+            return {}
+        return {"Authorization": f"Bearer {auth_token}"}
+
+    @property
+    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
@@ -120,10 +143,21 @@ class Sam(SyncAPIClient):
             **self._custom_headers,
         }
 
+    @override
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        if self.auth_token and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        raise TypeError(
+            '"Could not resolve authentication method. Expected the auth_token to be set. Or for the `Authorization` headers to be explicitly omitted"'
+        )
+
     def copy(
         self,
         *,
-        plop: str | None = None,
+        auth_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.Client | None = None,
@@ -157,7 +191,7 @@ class Sam(SyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            plop=plop or self.plop,
+            auth_token=auth_token or self.auth_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -206,23 +240,33 @@ class Sam(SyncAPIClient):
 
 
 class AsyncSam(AsyncAPIClient):
-    customers: resources.AsyncCustomers
+    reference_sets: resources.AsyncReferenceSets
+    reference_sessions: resources.AsyncReferenceSessions
+    organizations: resources.AsyncOrganizations
+    members: resources.AsyncMembers
+    feedbacks: resources.AsyncFeedbacks
+    corpora: resources.AsyncCorpora
+    agents: resources.AsyncAgents
+    action_sets: resources.AsyncActionSets
+    actions: resources.AsyncActions
     with_raw_response: AsyncSamWithRawResponse
     with_streaming_response: AsyncSamWithStreamedResponse
 
     # client options
-    plop: str
+    auth_token: str | None
 
     def __init__(
         self,
         *,
-        plop: str | None = None,
+        auth_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
-        # Configure a custom httpx client. See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
+        # Configure a custom httpx client.
+        # We provide a `DefaultAsyncHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
+        # See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
         http_client: httpx.AsyncClient | None = None,
         # Enable or disable schema validation for data returned by the API.
         # When enabled an error APIResponseValidationError is raised
@@ -236,15 +280,11 @@ class AsyncSam(AsyncAPIClient):
     ) -> None:
         """Construct a new async sam client instance.
 
-        This automatically infers the `plop` argument from the `PLOP` environment variable if it is not provided.
+        This automatically infers the `auth_token` argument from the `MAVENAGI_AUTH_TOKEN` environment variable if it is not provided.
         """
-        if plop is None:
-            plop = os.environ.get("PLOP")
-        if plop is None:
-            raise SamError(
-                "The plop client option must be set either by passing plop to the client or by setting the PLOP environment variable"
-            )
-        self.plop = plop
+        if auth_token is None:
+            auth_token = os.environ.get("MAVENAGI_AUTH_TOKEN")
+        self.auth_token = auth_token
 
         if base_url is None:
             base_url = os.environ.get("SAM_BASE_URL")
@@ -262,7 +302,15 @@ class AsyncSam(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.customers = resources.AsyncCustomers(self)
+        self.reference_sets = resources.AsyncReferenceSets(self)
+        self.reference_sessions = resources.AsyncReferenceSessions(self)
+        self.organizations = resources.AsyncOrganizations(self)
+        self.members = resources.AsyncMembers(self)
+        self.feedbacks = resources.AsyncFeedbacks(self)
+        self.corpora = resources.AsyncCorpora(self)
+        self.agents = resources.AsyncAgents(self)
+        self.action_sets = resources.AsyncActionSets(self)
+        self.actions = resources.AsyncActions(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
         self.with_streaming_response = AsyncSamWithStreamedResponse(self)
 
@@ -273,6 +321,14 @@ class AsyncSam(AsyncAPIClient):
 
     @property
     @override
+    def auth_headers(self) -> dict[str, str]:
+        auth_token = self.auth_token
+        if auth_token is None:
+            return {}
+        return {"Authorization": f"Bearer {auth_token}"}
+
+    @property
+    @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
             **super().default_headers,
@@ -280,10 +336,21 @@ class AsyncSam(AsyncAPIClient):
             **self._custom_headers,
         }
 
+    @override
+    def _validate_headers(self, headers: Headers, custom_headers: Headers) -> None:
+        if self.auth_token and headers.get("Authorization"):
+            return
+        if isinstance(custom_headers.get("Authorization"), Omit):
+            return
+
+        raise TypeError(
+            '"Could not resolve authentication method. Expected the auth_token to be set. Or for the `Authorization` headers to be explicitly omitted"'
+        )
+
     def copy(
         self,
         *,
-        plop: str | None = None,
+        auth_token: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
         http_client: httpx.AsyncClient | None = None,
@@ -317,7 +384,7 @@ class AsyncSam(AsyncAPIClient):
 
         http_client = http_client or self._client
         return self.__class__(
-            plop=plop or self.plop,
+            auth_token=auth_token or self.auth_token,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -367,22 +434,54 @@ class AsyncSam(AsyncAPIClient):
 
 class SamWithRawResponse:
     def __init__(self, client: Sam) -> None:
-        self.customers = resources.CustomersWithRawResponse(client.customers)
+        self.reference_sets = resources.ReferenceSetsWithRawResponse(client.reference_sets)
+        self.reference_sessions = resources.ReferenceSessionsWithRawResponse(client.reference_sessions)
+        self.organizations = resources.OrganizationsWithRawResponse(client.organizations)
+        self.members = resources.MembersWithRawResponse(client.members)
+        self.feedbacks = resources.FeedbacksWithRawResponse(client.feedbacks)
+        self.corpora = resources.CorporaWithRawResponse(client.corpora)
+        self.agents = resources.AgentsWithRawResponse(client.agents)
+        self.action_sets = resources.ActionSetsWithRawResponse(client.action_sets)
+        self.actions = resources.ActionsWithRawResponse(client.actions)
 
 
 class AsyncSamWithRawResponse:
     def __init__(self, client: AsyncSam) -> None:
-        self.customers = resources.AsyncCustomersWithRawResponse(client.customers)
+        self.reference_sets = resources.AsyncReferenceSetsWithRawResponse(client.reference_sets)
+        self.reference_sessions = resources.AsyncReferenceSessionsWithRawResponse(client.reference_sessions)
+        self.organizations = resources.AsyncOrganizationsWithRawResponse(client.organizations)
+        self.members = resources.AsyncMembersWithRawResponse(client.members)
+        self.feedbacks = resources.AsyncFeedbacksWithRawResponse(client.feedbacks)
+        self.corpora = resources.AsyncCorporaWithRawResponse(client.corpora)
+        self.agents = resources.AsyncAgentsWithRawResponse(client.agents)
+        self.action_sets = resources.AsyncActionSetsWithRawResponse(client.action_sets)
+        self.actions = resources.AsyncActionsWithRawResponse(client.actions)
 
 
 class SamWithStreamedResponse:
     def __init__(self, client: Sam) -> None:
-        self.customers = resources.CustomersWithStreamingResponse(client.customers)
+        self.reference_sets = resources.ReferenceSetsWithStreamingResponse(client.reference_sets)
+        self.reference_sessions = resources.ReferenceSessionsWithStreamingResponse(client.reference_sessions)
+        self.organizations = resources.OrganizationsWithStreamingResponse(client.organizations)
+        self.members = resources.MembersWithStreamingResponse(client.members)
+        self.feedbacks = resources.FeedbacksWithStreamingResponse(client.feedbacks)
+        self.corpora = resources.CorporaWithStreamingResponse(client.corpora)
+        self.agents = resources.AgentsWithStreamingResponse(client.agents)
+        self.action_sets = resources.ActionSetsWithStreamingResponse(client.action_sets)
+        self.actions = resources.ActionsWithStreamingResponse(client.actions)
 
 
 class AsyncSamWithStreamedResponse:
     def __init__(self, client: AsyncSam) -> None:
-        self.customers = resources.AsyncCustomersWithStreamingResponse(client.customers)
+        self.reference_sets = resources.AsyncReferenceSetsWithStreamingResponse(client.reference_sets)
+        self.reference_sessions = resources.AsyncReferenceSessionsWithStreamingResponse(client.reference_sessions)
+        self.organizations = resources.AsyncOrganizationsWithStreamingResponse(client.organizations)
+        self.members = resources.AsyncMembersWithStreamingResponse(client.members)
+        self.feedbacks = resources.AsyncFeedbacksWithStreamingResponse(client.feedbacks)
+        self.corpora = resources.AsyncCorporaWithStreamingResponse(client.corpora)
+        self.agents = resources.AsyncAgentsWithStreamingResponse(client.agents)
+        self.action_sets = resources.AsyncActionSetsWithStreamingResponse(client.action_sets)
+        self.actions = resources.AsyncActionsWithStreamingResponse(client.actions)
 
 
 Client = Sam
