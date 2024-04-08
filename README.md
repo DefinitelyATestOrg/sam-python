@@ -24,38 +24,43 @@ pip install sam
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from sam import Sam
 
 client = Sam(
-    plop="you plop plop",
+    # This is the default and can be omitted
+    auth_token=os.environ.get("MAVENAGI_AUTH_TOKEN"),
 )
 
-account_retrieve_response = client.customers.accounts.retrieve(
-    "REPLACE_ME",
-    customer_id="REPLACE_ME",
+action_set = client.action_sets.retrieve(
+    "abc123",
 )
-print(account_retrieve_response.account)
 ```
+
+While you can provide a `auth_token` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `MAVENAGI_AUTH_TOKEN="My Auth Token"` to your `.env` file
+so that your Auth Token is not stored in source control.
 
 ## Async usage
 
 Simply import `AsyncSam` instead of `Sam` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from sam import AsyncSam
 
 client = AsyncSam(
-    plop="you plop plop",
+    # This is the default and can be omitted
+    auth_token=os.environ.get("MAVENAGI_AUTH_TOKEN"),
 )
 
 
 async def main() -> None:
-    account_retrieve_response = await client.customers.accounts.retrieve(
-        "REPLACE_ME",
-        customer_id="REPLACE_ME",
+    action_set = await client.action_sets.retrieve(
+        "abc123",
     )
-    print(account_retrieve_response.account)
 
 
 asyncio.run(main())
@@ -85,14 +90,11 @@ All errors inherit from `sam.APIError`.
 import sam
 from sam import Sam
 
-client = Sam(
-    plop="you plop plop",
-)
+client = Sam()
 
 try:
-    client.customers.accounts.retrieve(
-        "REPLACE_ME",
-        customer_id="REPLACE_ME",
+    client.agents.retrieve(
+        "abc123",
     )
 except sam.APIConnectionError as e:
     print("The server could not be reached")
@@ -133,13 +135,11 @@ from sam import Sam
 client = Sam(
     # default is 2
     max_retries=0,
-    plop="you plop plop",
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).customers.accounts.retrieve(
-    "REPLACE_ME",
-    customer_id="REPLACE_ME",
+client.with_options(max_retries=5).agents.retrieve(
+    "abc123",
 )
 ```
 
@@ -155,19 +155,16 @@ from sam import Sam
 client = Sam(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
-    plop="you plop plop",
 )
 
 # More granular control:
 client = Sam(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
-    plop="you plop plop",
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).customers.accounts.retrieve(
-    "REPLACE_ME",
-    customer_id="REPLACE_ME",
+client.with_options(timeout=5 * 1000).agents.retrieve(
+    "abc123",
 )
 ```
 
@@ -206,17 +203,14 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from sam import Sam
 
-client = Sam(
-    plop="you plop plop",
-)
-response = client.customers.accounts.with_raw_response.retrieve(
-    "REPLACE_ME",
-    customer_id="REPLACE_ME",
+client = Sam()
+response = client.agents.with_raw_response.retrieve(
+    "abc123",
 )
 print(response.headers.get('X-My-Header'))
 
-account = response.parse()  # get the object that `customers.accounts.retrieve()` would have returned
-print(account.account)
+agent = response.parse()  # get the object that `agents.retrieve()` would have returned
+print(agent)
 ```
 
 These methods return an [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam/_response.py) object.
@@ -230,9 +224,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.customers.accounts.with_streaming_response.retrieve(
-    "REPLACE_ME",
-    customer_id="REPLACE_ME",
+with client.agents.with_streaming_response.retrieve(
+    "abc123",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
@@ -286,17 +279,15 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/#client-instances) functionality
 
 ```python
-import httpx
-from sam import Sam
+from sam import Sam, DefaultHttpxClient
 
 client = Sam(
     # Or use the `SAM_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
-    http_client=httpx.Client(
+    http_client=DefaultHttpxClient(
         proxies="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
-    plop="you plop plop",
 )
 ```
 
