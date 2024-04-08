@@ -32,6 +32,14 @@ from .members import (
     MembersWithStreamingResponse,
     AsyncMembersWithStreamingResponse,
 )
+from .documents import (
+    Documents,
+    AsyncDocuments,
+    DocumentsWithRawResponse,
+    AsyncDocumentsWithRawResponse,
+    DocumentsWithStreamingResponse,
+    AsyncDocumentsWithStreamingResponse,
+)
 from .feedbacks import (
     Feedbacks,
     AsyncFeedbacks,
@@ -104,6 +112,12 @@ __all__ = [
     "AsyncFeedbacksWithRawResponse",
     "FeedbacksWithStreamingResponse",
     "AsyncFeedbacksWithStreamingResponse",
+    "Documents",
+    "AsyncDocuments",
+    "DocumentsWithRawResponse",
+    "AsyncDocumentsWithRawResponse",
+    "DocumentsWithStreamingResponse",
+    "AsyncDocumentsWithStreamingResponse",
     "Corpora",
     "AsyncCorpora",
     "CorporaWithRawResponse",

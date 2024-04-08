@@ -52,6 +52,7 @@ class Sam(SyncAPIClient):
     organizations: resources.Organizations
     members: resources.Members
     feedbacks: resources.Feedbacks
+    documents: resources.Documents
     corpora: resources.Corpora
     agents: resources.Agents
     action_sets: resources.ActionSets
@@ -114,6 +115,7 @@ class Sam(SyncAPIClient):
         self.organizations = resources.Organizations(self)
         self.members = resources.Members(self)
         self.feedbacks = resources.Feedbacks(self)
+        self.documents = resources.Documents(self)
         self.corpora = resources.Corpora(self)
         self.agents = resources.Agents(self)
         self.action_sets = resources.ActionSets(self)
@@ -245,6 +247,7 @@ class AsyncSam(AsyncAPIClient):
     organizations: resources.AsyncOrganizations
     members: resources.AsyncMembers
     feedbacks: resources.AsyncFeedbacks
+    documents: resources.AsyncDocuments
     corpora: resources.AsyncCorpora
     agents: resources.AsyncAgents
     action_sets: resources.AsyncActionSets
@@ -307,6 +310,7 @@ class AsyncSam(AsyncAPIClient):
         self.organizations = resources.AsyncOrganizations(self)
         self.members = resources.AsyncMembers(self)
         self.feedbacks = resources.AsyncFeedbacks(self)
+        self.documents = resources.AsyncDocuments(self)
         self.corpora = resources.AsyncCorpora(self)
         self.agents = resources.AsyncAgents(self)
         self.action_sets = resources.AsyncActionSets(self)
@@ -439,6 +443,7 @@ class SamWithRawResponse:
         self.organizations = resources.OrganizationsWithRawResponse(client.organizations)
         self.members = resources.MembersWithRawResponse(client.members)
         self.feedbacks = resources.FeedbacksWithRawResponse(client.feedbacks)
+        self.documents = resources.DocumentsWithRawResponse(client.documents)
         self.corpora = resources.CorporaWithRawResponse(client.corpora)
         self.agents = resources.AgentsWithRawResponse(client.agents)
         self.action_sets = resources.ActionSetsWithRawResponse(client.action_sets)
@@ -452,6 +457,7 @@ class AsyncSamWithRawResponse:
         self.organizations = resources.AsyncOrganizationsWithRawResponse(client.organizations)
         self.members = resources.AsyncMembersWithRawResponse(client.members)
         self.feedbacks = resources.AsyncFeedbacksWithRawResponse(client.feedbacks)
+        self.documents = resources.AsyncDocumentsWithRawResponse(client.documents)
         self.corpora = resources.AsyncCorporaWithRawResponse(client.corpora)
         self.agents = resources.AsyncAgentsWithRawResponse(client.agents)
         self.action_sets = resources.AsyncActionSetsWithRawResponse(client.action_sets)
@@ -465,6 +471,7 @@ class SamWithStreamedResponse:
         self.organizations = resources.OrganizationsWithStreamingResponse(client.organizations)
         self.members = resources.MembersWithStreamingResponse(client.members)
         self.feedbacks = resources.FeedbacksWithStreamingResponse(client.feedbacks)
+        self.documents = resources.DocumentsWithStreamingResponse(client.documents)
         self.corpora = resources.CorporaWithStreamingResponse(client.corpora)
         self.agents = resources.AgentsWithStreamingResponse(client.agents)
         self.action_sets = resources.ActionSetsWithStreamingResponse(client.action_sets)
@@ -478,6 +485,7 @@ class AsyncSamWithStreamedResponse:
         self.organizations = resources.AsyncOrganizationsWithStreamingResponse(client.organizations)
         self.members = resources.AsyncMembersWithStreamingResponse(client.members)
         self.feedbacks = resources.AsyncFeedbacksWithStreamingResponse(client.feedbacks)
+        self.documents = resources.AsyncDocumentsWithStreamingResponse(client.documents)
         self.corpora = resources.AsyncCorporaWithStreamingResponse(client.corpora)
         self.agents = resources.AsyncAgentsWithStreamingResponse(client.agents)
         self.action_sets = resources.AsyncActionSetsWithStreamingResponse(client.action_sets)
