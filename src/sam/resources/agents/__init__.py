@@ -16,8 +16,22 @@ from .configs import (
     ConfigsWithStreamingResponse,
     AsyncConfigsWithStreamingResponse,
 )
+from .hidden_tags import (
+    HiddenTags,
+    AsyncHiddenTags,
+    HiddenTagsWithRawResponse,
+    AsyncHiddenTagsWithRawResponse,
+    HiddenTagsWithStreamingResponse,
+    AsyncHiddenTagsWithStreamingResponse,
+)
 
 __all__ = [
+    "HiddenTags",
+    "AsyncHiddenTags",
+    "HiddenTagsWithRawResponse",
+    "AsyncHiddenTagsWithRawResponse",
+    "HiddenTagsWithStreamingResponse",
+    "AsyncHiddenTagsWithStreamingResponse",
     "Configs",
     "AsyncConfigs",
     "ConfigsWithRawResponse",
