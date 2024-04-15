@@ -99,7 +99,7 @@ class TestActionSets:
                 "id": "string",
                 "name": "string",
             },
-            open_api_url="string",
+            openapi_url="string",
             server_url="string",
             type="OPEN_API",
             updated_by={
@@ -272,7 +272,7 @@ class TestAsyncActionSets:
                 "id": "string",
                 "name": "string",
             },
-            open_api_url="string",
+            openapi_url="string",
             server_url="string",
             type="OPEN_API",
             updated_by={
