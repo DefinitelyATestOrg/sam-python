@@ -20,7 +20,7 @@ class ActionSetUpdateParams(TypedDict, total=False):
 
     created_by: Annotated[CreatedBy, PropertyInfo(alias="createdBy")]
 
-    open_api_url: Annotated[str, PropertyInfo(alias="openApiUrl")]
+    openapi_url: Annotated[str, PropertyInfo(alias="openApiUrl")]
 
     server_url: Annotated[str, PropertyInfo(alias="serverUrl")]
 
