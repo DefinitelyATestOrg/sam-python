@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.12.0 (2024-04-15)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#43](https://github.com/DefinitelyATestOrg/sam-python/issues/43)) ([946a504](https://github.com/DefinitelyATestOrg/sam-python/commit/946a5046ff6307b5e665cbc5ab845e77c2fb9bff))
+* **api:** update via SDK Studio ([#45](https://github.com/DefinitelyATestOrg/sam-python/issues/45)) ([a17dc8d](https://github.com/DefinitelyATestOrg/sam-python/commit/a17dc8d1e83e0b8ce88e054277f1765586eab9b9))
+
+
+### Chores
+
+* go live ([#46](https://github.com/DefinitelyATestOrg/sam-python/issues/46)) ([1107b85](https://github.com/DefinitelyATestOrg/sam-python/commit/1107b8592a612a26b84d94d3cd2f8be685bdee2a))
+
+## 0.11.0 (2024-04-05)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.10.0...v0.11.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#40](https://github.com/DefinitelyATestOrg/sam-python/issues/40)) ([0d69689](https://github.com/DefinitelyATestOrg/sam-python/commit/0d6968965ff8f5ada245de9d266022d2d9c65cb0))
+* **api:** update via SDK Studio ([#42](https://github.com/DefinitelyATestOrg/sam-python/issues/42)) ([802561f](https://github.com/DefinitelyATestOrg/sam-python/commit/802561fd5c1beccb5a44193978f45491377af4db))
+
 ## 0.10.0 (2024-03-29)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.9.0...v0.10.0)
