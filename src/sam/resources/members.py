@@ -32,17 +32,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["Members", "AsyncMembers"]
+__all__ = ["MembersResource", "AsyncMembersResource"]
 
 
-class Members(SyncAPIResource):
+class MembersResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> MembersWithRawResponse:
-        return MembersWithRawResponse(self)
+    def with_raw_response(self) -> MembersResourceWithRawResponse:
+        return MembersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> MembersWithStreamingResponse:
-        return MembersWithStreamingResponse(self)
+    def with_streaming_response(self) -> MembersResourceWithStreamingResponse:
+        return MembersResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -126,14 +126,14 @@ class Members(SyncAPIResource):
         )
 
 
-class AsyncMembers(AsyncAPIResource):
+class AsyncMembersResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncMembersWithRawResponse:
-        return AsyncMembersWithRawResponse(self)
+    def with_raw_response(self) -> AsyncMembersResourceWithRawResponse:
+        return AsyncMembersResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncMembersWithStreamingResponse:
-        return AsyncMembersWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncMembersResourceWithStreamingResponse:
+        return AsyncMembersResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -217,8 +217,8 @@ class AsyncMembers(AsyncAPIResource):
         )
 
 
-class MembersWithRawResponse:
-    def __init__(self, members: Members) -> None:
+class MembersResourceWithRawResponse:
+    def __init__(self, members: MembersResource) -> None:
         self._members = members
 
         self.update = to_custom_raw_response_wrapper(
@@ -230,8 +230,8 @@ class MembersWithRawResponse:
         )
 
 
-class AsyncMembersWithRawResponse:
-    def __init__(self, members: AsyncMembers) -> None:
+class AsyncMembersResourceWithRawResponse:
+    def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
         self.update = async_to_custom_raw_response_wrapper(
@@ -243,8 +243,8 @@ class AsyncMembersWithRawResponse:
         )
 
 
-class MembersWithStreamingResponse:
-    def __init__(self, members: Members) -> None:
+class MembersResourceWithStreamingResponse:
+    def __init__(self, members: MembersResource) -> None:
         self._members = members
 
         self.update = to_custom_streamed_response_wrapper(
@@ -256,8 +256,8 @@ class MembersWithStreamingResponse:
         )
 
 
-class AsyncMembersWithStreamingResponse:
-    def __init__(self, members: AsyncMembers) -> None:
+class AsyncMembersResourceWithStreamingResponse:
+    def __init__(self, members: AsyncMembersResource) -> None:
         self._members = members
 
         self.update = async_to_custom_streamed_response_wrapper(

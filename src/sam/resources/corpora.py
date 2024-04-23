@@ -34,17 +34,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["Corpora", "AsyncCorpora"]
+__all__ = ["CorporaResource", "AsyncCorporaResource"]
 
 
-class Corpora(SyncAPIResource):
+class CorporaResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CorporaWithRawResponse:
-        return CorporaWithRawResponse(self)
+    def with_raw_response(self) -> CorporaResourceWithRawResponse:
+        return CorporaResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CorporaWithStreamingResponse:
-        return CorporaWithStreamingResponse(self)
+    def with_streaming_response(self) -> CorporaResourceWithStreamingResponse:
+        return CorporaResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -184,14 +184,14 @@ class Corpora(SyncAPIResource):
         )
 
 
-class AsyncCorpora(AsyncAPIResource):
+class AsyncCorporaResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCorporaWithRawResponse:
-        return AsyncCorporaWithRawResponse(self)
+    def with_raw_response(self) -> AsyncCorporaResourceWithRawResponse:
+        return AsyncCorporaResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCorporaWithStreamingResponse:
-        return AsyncCorporaWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncCorporaResourceWithStreamingResponse:
+        return AsyncCorporaResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -331,8 +331,8 @@ class AsyncCorpora(AsyncAPIResource):
         )
 
 
-class CorporaWithRawResponse:
-    def __init__(self, corpora: Corpora) -> None:
+class CorporaResourceWithRawResponse:
+    def __init__(self, corpora: CorporaResource) -> None:
         self._corpora = corpora
 
         self.retrieve = to_custom_raw_response_wrapper(
@@ -348,8 +348,8 @@ class CorporaWithRawResponse:
         )
 
 
-class AsyncCorporaWithRawResponse:
-    def __init__(self, corpora: AsyncCorpora) -> None:
+class AsyncCorporaResourceWithRawResponse:
+    def __init__(self, corpora: AsyncCorporaResource) -> None:
         self._corpora = corpora
 
         self.retrieve = async_to_custom_raw_response_wrapper(
@@ -365,8 +365,8 @@ class AsyncCorporaWithRawResponse:
         )
 
 
-class CorporaWithStreamingResponse:
-    def __init__(self, corpora: Corpora) -> None:
+class CorporaResourceWithStreamingResponse:
+    def __init__(self, corpora: CorporaResource) -> None:
         self._corpora = corpora
 
         self.retrieve = to_custom_streamed_response_wrapper(
@@ -382,8 +382,8 @@ class CorporaWithStreamingResponse:
         )
 
 
-class AsyncCorporaWithStreamingResponse:
-    def __init__(self, corpora: AsyncCorpora) -> None:
+class AsyncCorporaResourceWithStreamingResponse:
+    def __init__(self, corpora: AsyncCorporaResource) -> None:
         self._corpora = corpora
 
         self.retrieve = async_to_custom_streamed_response_wrapper(
