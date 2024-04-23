@@ -26,17 +26,17 @@ from ...._base_client import (
 )
 from ....types.agents.configs import chat_update_params
 
-__all__ = ["Chat", "AsyncChat"]
+__all__ = ["ChatResource", "AsyncChatResource"]
 
 
-class Chat(SyncAPIResource):
+class ChatResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ChatWithRawResponse:
-        return ChatWithRawResponse(self)
+    def with_raw_response(self) -> ChatResourceWithRawResponse:
+        return ChatResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ChatWithStreamingResponse:
-        return ChatWithStreamingResponse(self)
+    def with_streaming_response(self) -> ChatResourceWithStreamingResponse:
+        return ChatResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -112,14 +112,14 @@ class Chat(SyncAPIResource):
         )
 
 
-class AsyncChat(AsyncAPIResource):
+class AsyncChatResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncChatWithRawResponse:
-        return AsyncChatWithRawResponse(self)
+    def with_raw_response(self) -> AsyncChatResourceWithRawResponse:
+        return AsyncChatResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncChatWithStreamingResponse:
-        return AsyncChatWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncChatResourceWithStreamingResponse:
+        return AsyncChatResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -195,8 +195,8 @@ class AsyncChat(AsyncAPIResource):
         )
 
 
-class ChatWithRawResponse:
-    def __init__(self, chat: Chat) -> None:
+class ChatResourceWithRawResponse:
+    def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
         self.retrieve = to_custom_raw_response_wrapper(
@@ -209,8 +209,8 @@ class ChatWithRawResponse:
         )
 
 
-class AsyncChatWithRawResponse:
-    def __init__(self, chat: AsyncChat) -> None:
+class AsyncChatResourceWithRawResponse:
+    def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
         self.retrieve = async_to_custom_raw_response_wrapper(
@@ -223,8 +223,8 @@ class AsyncChatWithRawResponse:
         )
 
 
-class ChatWithStreamingResponse:
-    def __init__(self, chat: Chat) -> None:
+class ChatResourceWithStreamingResponse:
+    def __init__(self, chat: ChatResource) -> None:
         self._chat = chat
 
         self.retrieve = to_custom_streamed_response_wrapper(
@@ -237,8 +237,8 @@ class ChatWithStreamingResponse:
         )
 
 
-class AsyncChatWithStreamingResponse:
-    def __init__(self, chat: AsyncChat) -> None:
+class AsyncChatResourceWithStreamingResponse:
+    def __init__(self, chat: AsyncChatResource) -> None:
         self._chat = chat
 
         self.retrieve = async_to_custom_streamed_response_wrapper(
