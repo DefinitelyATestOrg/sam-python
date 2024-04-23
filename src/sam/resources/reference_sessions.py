@@ -32,17 +32,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["ReferenceSessions", "AsyncReferenceSessions"]
+__all__ = ["ReferenceSessionsResource", "AsyncReferenceSessionsResource"]
 
 
-class ReferenceSessions(SyncAPIResource):
+class ReferenceSessionsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ReferenceSessionsWithRawResponse:
-        return ReferenceSessionsWithRawResponse(self)
+    def with_raw_response(self) -> ReferenceSessionsResourceWithRawResponse:
+        return ReferenceSessionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ReferenceSessionsWithStreamingResponse:
-        return ReferenceSessionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ReferenceSessionsResourceWithStreamingResponse:
+        return ReferenceSessionsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -156,14 +156,14 @@ class ReferenceSessions(SyncAPIResource):
         )
 
 
-class AsyncReferenceSessions(AsyncAPIResource):
+class AsyncReferenceSessionsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncReferenceSessionsWithRawResponse:
-        return AsyncReferenceSessionsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncReferenceSessionsResourceWithRawResponse:
+        return AsyncReferenceSessionsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncReferenceSessionsWithStreamingResponse:
-        return AsyncReferenceSessionsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncReferenceSessionsResourceWithStreamingResponse:
+        return AsyncReferenceSessionsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -277,8 +277,8 @@ class AsyncReferenceSessions(AsyncAPIResource):
         )
 
 
-class ReferenceSessionsWithRawResponse:
-    def __init__(self, reference_sessions: ReferenceSessions) -> None:
+class ReferenceSessionsResourceWithRawResponse:
+    def __init__(self, reference_sessions: ReferenceSessionsResource) -> None:
         self._reference_sessions = reference_sessions
 
         self.retrieve = to_custom_raw_response_wrapper(
@@ -294,8 +294,8 @@ class ReferenceSessionsWithRawResponse:
         )
 
 
-class AsyncReferenceSessionsWithRawResponse:
-    def __init__(self, reference_sessions: AsyncReferenceSessions) -> None:
+class AsyncReferenceSessionsResourceWithRawResponse:
+    def __init__(self, reference_sessions: AsyncReferenceSessionsResource) -> None:
         self._reference_sessions = reference_sessions
 
         self.retrieve = async_to_custom_raw_response_wrapper(
@@ -311,8 +311,8 @@ class AsyncReferenceSessionsWithRawResponse:
         )
 
 
-class ReferenceSessionsWithStreamingResponse:
-    def __init__(self, reference_sessions: ReferenceSessions) -> None:
+class ReferenceSessionsResourceWithStreamingResponse:
+    def __init__(self, reference_sessions: ReferenceSessionsResource) -> None:
         self._reference_sessions = reference_sessions
 
         self.retrieve = to_custom_streamed_response_wrapper(
@@ -328,8 +328,8 @@ class ReferenceSessionsWithStreamingResponse:
         )
 
 
-class AsyncReferenceSessionsWithStreamingResponse:
-    def __init__(self, reference_sessions: AsyncReferenceSessions) -> None:
+class AsyncReferenceSessionsResourceWithStreamingResponse:
+    def __init__(self, reference_sessions: AsyncReferenceSessionsResource) -> None:
         self._reference_sessions = reference_sessions
 
         self.retrieve = async_to_custom_streamed_response_wrapper(

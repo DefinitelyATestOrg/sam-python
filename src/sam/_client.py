@@ -47,16 +47,16 @@ __all__ = [
 
 
 class Sam(SyncAPIClient):
-    reference_sets: resources.ReferenceSets
-    reference_sessions: resources.ReferenceSessions
-    organizations: resources.Organizations
-    members: resources.Members
-    feedbacks: resources.Feedbacks
-    documents: resources.Documents
-    corpora: resources.Corpora
-    agents: resources.Agents
-    action_sets: resources.ActionSets
-    actions: resources.Actions
+    reference_sets: resources.ReferenceSetsResource
+    reference_sessions: resources.ReferenceSessionsResource
+    organizations: resources.OrganizationsResource
+    members: resources.MembersResource
+    feedbacks: resources.FeedbacksResource
+    documents: resources.DocumentsResource
+    corpora: resources.CorporaResource
+    agents: resources.AgentsResource
+    action_sets: resources.ActionSetsResource
+    actions: resources.ActionsResource
     with_raw_response: SamWithRawResponse
     with_streaming_response: SamWithStreamedResponse
 
@@ -110,16 +110,16 @@ class Sam(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.reference_sets = resources.ReferenceSets(self)
-        self.reference_sessions = resources.ReferenceSessions(self)
-        self.organizations = resources.Organizations(self)
-        self.members = resources.Members(self)
-        self.feedbacks = resources.Feedbacks(self)
-        self.documents = resources.Documents(self)
-        self.corpora = resources.Corpora(self)
-        self.agents = resources.Agents(self)
-        self.action_sets = resources.ActionSets(self)
-        self.actions = resources.Actions(self)
+        self.reference_sets = resources.ReferenceSetsResource(self)
+        self.reference_sessions = resources.ReferenceSessionsResource(self)
+        self.organizations = resources.OrganizationsResource(self)
+        self.members = resources.MembersResource(self)
+        self.feedbacks = resources.FeedbacksResource(self)
+        self.documents = resources.DocumentsResource(self)
+        self.corpora = resources.CorporaResource(self)
+        self.agents = resources.AgentsResource(self)
+        self.action_sets = resources.ActionSetsResource(self)
+        self.actions = resources.ActionsResource(self)
         self.with_raw_response = SamWithRawResponse(self)
         self.with_streaming_response = SamWithStreamedResponse(self)
 
@@ -242,16 +242,16 @@ class Sam(SyncAPIClient):
 
 
 class AsyncSam(AsyncAPIClient):
-    reference_sets: resources.AsyncReferenceSets
-    reference_sessions: resources.AsyncReferenceSessions
-    organizations: resources.AsyncOrganizations
-    members: resources.AsyncMembers
-    feedbacks: resources.AsyncFeedbacks
-    documents: resources.AsyncDocuments
-    corpora: resources.AsyncCorpora
-    agents: resources.AsyncAgents
-    action_sets: resources.AsyncActionSets
-    actions: resources.AsyncActions
+    reference_sets: resources.AsyncReferenceSetsResource
+    reference_sessions: resources.AsyncReferenceSessionsResource
+    organizations: resources.AsyncOrganizationsResource
+    members: resources.AsyncMembersResource
+    feedbacks: resources.AsyncFeedbacksResource
+    documents: resources.AsyncDocumentsResource
+    corpora: resources.AsyncCorporaResource
+    agents: resources.AsyncAgentsResource
+    action_sets: resources.AsyncActionSetsResource
+    actions: resources.AsyncActionsResource
     with_raw_response: AsyncSamWithRawResponse
     with_streaming_response: AsyncSamWithStreamedResponse
 
@@ -305,16 +305,16 @@ class AsyncSam(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.reference_sets = resources.AsyncReferenceSets(self)
-        self.reference_sessions = resources.AsyncReferenceSessions(self)
-        self.organizations = resources.AsyncOrganizations(self)
-        self.members = resources.AsyncMembers(self)
-        self.feedbacks = resources.AsyncFeedbacks(self)
-        self.documents = resources.AsyncDocuments(self)
-        self.corpora = resources.AsyncCorpora(self)
-        self.agents = resources.AsyncAgents(self)
-        self.action_sets = resources.AsyncActionSets(self)
-        self.actions = resources.AsyncActions(self)
+        self.reference_sets = resources.AsyncReferenceSetsResource(self)
+        self.reference_sessions = resources.AsyncReferenceSessionsResource(self)
+        self.organizations = resources.AsyncOrganizationsResource(self)
+        self.members = resources.AsyncMembersResource(self)
+        self.feedbacks = resources.AsyncFeedbacksResource(self)
+        self.documents = resources.AsyncDocumentsResource(self)
+        self.corpora = resources.AsyncCorporaResource(self)
+        self.agents = resources.AsyncAgentsResource(self)
+        self.action_sets = resources.AsyncActionSetsResource(self)
+        self.actions = resources.AsyncActionsResource(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
         self.with_streaming_response = AsyncSamWithStreamedResponse(self)
 
@@ -438,58 +438,60 @@ class AsyncSam(AsyncAPIClient):
 
 class SamWithRawResponse:
     def __init__(self, client: Sam) -> None:
-        self.reference_sets = resources.ReferenceSetsWithRawResponse(client.reference_sets)
-        self.reference_sessions = resources.ReferenceSessionsWithRawResponse(client.reference_sessions)
-        self.organizations = resources.OrganizationsWithRawResponse(client.organizations)
-        self.members = resources.MembersWithRawResponse(client.members)
-        self.feedbacks = resources.FeedbacksWithRawResponse(client.feedbacks)
-        self.documents = resources.DocumentsWithRawResponse(client.documents)
-        self.corpora = resources.CorporaWithRawResponse(client.corpora)
-        self.agents = resources.AgentsWithRawResponse(client.agents)
-        self.action_sets = resources.ActionSetsWithRawResponse(client.action_sets)
-        self.actions = resources.ActionsWithRawResponse(client.actions)
+        self.reference_sets = resources.ReferenceSetsResourceWithRawResponse(client.reference_sets)
+        self.reference_sessions = resources.ReferenceSessionsResourceWithRawResponse(client.reference_sessions)
+        self.organizations = resources.OrganizationsResourceWithRawResponse(client.organizations)
+        self.members = resources.MembersResourceWithRawResponse(client.members)
+        self.feedbacks = resources.FeedbacksResourceWithRawResponse(client.feedbacks)
+        self.documents = resources.DocumentsResourceWithRawResponse(client.documents)
+        self.corpora = resources.CorporaResourceWithRawResponse(client.corpora)
+        self.agents = resources.AgentsResourceWithRawResponse(client.agents)
+        self.action_sets = resources.ActionSetsResourceWithRawResponse(client.action_sets)
+        self.actions = resources.ActionsResourceWithRawResponse(client.actions)
 
 
 class AsyncSamWithRawResponse:
     def __init__(self, client: AsyncSam) -> None:
-        self.reference_sets = resources.AsyncReferenceSetsWithRawResponse(client.reference_sets)
-        self.reference_sessions = resources.AsyncReferenceSessionsWithRawResponse(client.reference_sessions)
-        self.organizations = resources.AsyncOrganizationsWithRawResponse(client.organizations)
-        self.members = resources.AsyncMembersWithRawResponse(client.members)
-        self.feedbacks = resources.AsyncFeedbacksWithRawResponse(client.feedbacks)
-        self.documents = resources.AsyncDocumentsWithRawResponse(client.documents)
-        self.corpora = resources.AsyncCorporaWithRawResponse(client.corpora)
-        self.agents = resources.AsyncAgentsWithRawResponse(client.agents)
-        self.action_sets = resources.AsyncActionSetsWithRawResponse(client.action_sets)
-        self.actions = resources.AsyncActionsWithRawResponse(client.actions)
+        self.reference_sets = resources.AsyncReferenceSetsResourceWithRawResponse(client.reference_sets)
+        self.reference_sessions = resources.AsyncReferenceSessionsResourceWithRawResponse(client.reference_sessions)
+        self.organizations = resources.AsyncOrganizationsResourceWithRawResponse(client.organizations)
+        self.members = resources.AsyncMembersResourceWithRawResponse(client.members)
+        self.feedbacks = resources.AsyncFeedbacksResourceWithRawResponse(client.feedbacks)
+        self.documents = resources.AsyncDocumentsResourceWithRawResponse(client.documents)
+        self.corpora = resources.AsyncCorporaResourceWithRawResponse(client.corpora)
+        self.agents = resources.AsyncAgentsResourceWithRawResponse(client.agents)
+        self.action_sets = resources.AsyncActionSetsResourceWithRawResponse(client.action_sets)
+        self.actions = resources.AsyncActionsResourceWithRawResponse(client.actions)
 
 
 class SamWithStreamedResponse:
     def __init__(self, client: Sam) -> None:
-        self.reference_sets = resources.ReferenceSetsWithStreamingResponse(client.reference_sets)
-        self.reference_sessions = resources.ReferenceSessionsWithStreamingResponse(client.reference_sessions)
-        self.organizations = resources.OrganizationsWithStreamingResponse(client.organizations)
-        self.members = resources.MembersWithStreamingResponse(client.members)
-        self.feedbacks = resources.FeedbacksWithStreamingResponse(client.feedbacks)
-        self.documents = resources.DocumentsWithStreamingResponse(client.documents)
-        self.corpora = resources.CorporaWithStreamingResponse(client.corpora)
-        self.agents = resources.AgentsWithStreamingResponse(client.agents)
-        self.action_sets = resources.ActionSetsWithStreamingResponse(client.action_sets)
-        self.actions = resources.ActionsWithStreamingResponse(client.actions)
+        self.reference_sets = resources.ReferenceSetsResourceWithStreamingResponse(client.reference_sets)
+        self.reference_sessions = resources.ReferenceSessionsResourceWithStreamingResponse(client.reference_sessions)
+        self.organizations = resources.OrganizationsResourceWithStreamingResponse(client.organizations)
+        self.members = resources.MembersResourceWithStreamingResponse(client.members)
+        self.feedbacks = resources.FeedbacksResourceWithStreamingResponse(client.feedbacks)
+        self.documents = resources.DocumentsResourceWithStreamingResponse(client.documents)
+        self.corpora = resources.CorporaResourceWithStreamingResponse(client.corpora)
+        self.agents = resources.AgentsResourceWithStreamingResponse(client.agents)
+        self.action_sets = resources.ActionSetsResourceWithStreamingResponse(client.action_sets)
+        self.actions = resources.ActionsResourceWithStreamingResponse(client.actions)
 
 
 class AsyncSamWithStreamedResponse:
     def __init__(self, client: AsyncSam) -> None:
-        self.reference_sets = resources.AsyncReferenceSetsWithStreamingResponse(client.reference_sets)
-        self.reference_sessions = resources.AsyncReferenceSessionsWithStreamingResponse(client.reference_sessions)
-        self.organizations = resources.AsyncOrganizationsWithStreamingResponse(client.organizations)
-        self.members = resources.AsyncMembersWithStreamingResponse(client.members)
-        self.feedbacks = resources.AsyncFeedbacksWithStreamingResponse(client.feedbacks)
-        self.documents = resources.AsyncDocumentsWithStreamingResponse(client.documents)
-        self.corpora = resources.AsyncCorporaWithStreamingResponse(client.corpora)
-        self.agents = resources.AsyncAgentsWithStreamingResponse(client.agents)
-        self.action_sets = resources.AsyncActionSetsWithStreamingResponse(client.action_sets)
-        self.actions = resources.AsyncActionsWithStreamingResponse(client.actions)
+        self.reference_sets = resources.AsyncReferenceSetsResourceWithStreamingResponse(client.reference_sets)
+        self.reference_sessions = resources.AsyncReferenceSessionsResourceWithStreamingResponse(
+            client.reference_sessions
+        )
+        self.organizations = resources.AsyncOrganizationsResourceWithStreamingResponse(client.organizations)
+        self.members = resources.AsyncMembersResourceWithStreamingResponse(client.members)
+        self.feedbacks = resources.AsyncFeedbacksResourceWithStreamingResponse(client.feedbacks)
+        self.documents = resources.AsyncDocumentsResourceWithStreamingResponse(client.documents)
+        self.corpora = resources.AsyncCorporaResourceWithStreamingResponse(client.corpora)
+        self.agents = resources.AsyncAgentsResourceWithStreamingResponse(client.agents)
+        self.action_sets = resources.AsyncActionSetsResourceWithStreamingResponse(client.action_sets)
+        self.actions = resources.AsyncActionsResourceWithStreamingResponse(client.actions)
 
 
 Client = Sam
