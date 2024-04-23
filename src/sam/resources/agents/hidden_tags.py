@@ -28,17 +28,17 @@ from ..._base_client import (
 )
 from ...types.agents import hidden_tag_update_params
 
-__all__ = ["HiddenTags", "AsyncHiddenTags"]
+__all__ = ["HiddenTagsResource", "AsyncHiddenTagsResource"]
 
 
-class HiddenTags(SyncAPIResource):
+class HiddenTagsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> HiddenTagsWithRawResponse:
-        return HiddenTagsWithRawResponse(self)
+    def with_raw_response(self) -> HiddenTagsResourceWithRawResponse:
+        return HiddenTagsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> HiddenTagsWithStreamingResponse:
-        return HiddenTagsWithStreamingResponse(self)
+    def with_streaming_response(self) -> HiddenTagsResourceWithStreamingResponse:
+        return HiddenTagsResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -75,14 +75,14 @@ class HiddenTags(SyncAPIResource):
         )
 
 
-class AsyncHiddenTags(AsyncAPIResource):
+class AsyncHiddenTagsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncHiddenTagsWithRawResponse:
-        return AsyncHiddenTagsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncHiddenTagsResourceWithRawResponse:
+        return AsyncHiddenTagsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncHiddenTagsWithStreamingResponse:
-        return AsyncHiddenTagsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncHiddenTagsResourceWithStreamingResponse:
+        return AsyncHiddenTagsResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -119,8 +119,8 @@ class AsyncHiddenTags(AsyncAPIResource):
         )
 
 
-class HiddenTagsWithRawResponse:
-    def __init__(self, hidden_tags: HiddenTags) -> None:
+class HiddenTagsResourceWithRawResponse:
+    def __init__(self, hidden_tags: HiddenTagsResource) -> None:
         self._hidden_tags = hidden_tags
 
         self.update = to_custom_raw_response_wrapper(
@@ -129,8 +129,8 @@ class HiddenTagsWithRawResponse:
         )
 
 
-class AsyncHiddenTagsWithRawResponse:
-    def __init__(self, hidden_tags: AsyncHiddenTags) -> None:
+class AsyncHiddenTagsResourceWithRawResponse:
+    def __init__(self, hidden_tags: AsyncHiddenTagsResource) -> None:
         self._hidden_tags = hidden_tags
 
         self.update = async_to_custom_raw_response_wrapper(
@@ -139,8 +139,8 @@ class AsyncHiddenTagsWithRawResponse:
         )
 
 
-class HiddenTagsWithStreamingResponse:
-    def __init__(self, hidden_tags: HiddenTags) -> None:
+class HiddenTagsResourceWithStreamingResponse:
+    def __init__(self, hidden_tags: HiddenTagsResource) -> None:
         self._hidden_tags = hidden_tags
 
         self.update = to_custom_streamed_response_wrapper(
@@ -149,8 +149,8 @@ class HiddenTagsWithStreamingResponse:
         )
 
 
-class AsyncHiddenTagsWithStreamingResponse:
-    def __init__(self, hidden_tags: AsyncHiddenTags) -> None:
+class AsyncHiddenTagsResourceWithStreamingResponse:
+    def __init__(self, hidden_tags: AsyncHiddenTagsResource) -> None:
         self._hidden_tags = hidden_tags
 
         self.update = async_to_custom_streamed_response_wrapper(

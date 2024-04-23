@@ -6,12 +6,12 @@ import httpx
 
 from ...types import agent_update_params
 from .configs import (
-    Configs,
-    AsyncConfigs,
-    ConfigsWithRawResponse,
-    AsyncConfigsWithRawResponse,
-    ConfigsWithStreamingResponse,
-    AsyncConfigsWithStreamingResponse,
+    ConfigsResource,
+    AsyncConfigsResource,
+    ConfigsResourceWithRawResponse,
+    AsyncConfigsResourceWithRawResponse,
+    ConfigsResourceWithStreamingResponse,
+    AsyncConfigsResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, FileTypes
 from ..._utils import (
@@ -35,37 +35,37 @@ from ..._response import (
     async_to_custom_streamed_response_wrapper,
 )
 from .hidden_tags import (
-    HiddenTags,
-    AsyncHiddenTags,
-    HiddenTagsWithRawResponse,
-    AsyncHiddenTagsWithRawResponse,
-    HiddenTagsWithStreamingResponse,
-    AsyncHiddenTagsWithStreamingResponse,
+    HiddenTagsResource,
+    AsyncHiddenTagsResource,
+    HiddenTagsResourceWithRawResponse,
+    AsyncHiddenTagsResourceWithRawResponse,
+    HiddenTagsResourceWithStreamingResponse,
+    AsyncHiddenTagsResourceWithStreamingResponse,
 )
 from ..._base_client import (
     make_request_options,
 )
-from .configs.configs import Configs, AsyncConfigs
+from .configs.configs import ConfigsResource, AsyncConfigsResource
 
-__all__ = ["Agents", "AsyncAgents"]
+__all__ = ["AgentsResource", "AsyncAgentsResource"]
 
 
-class Agents(SyncAPIResource):
+class AgentsResource(SyncAPIResource):
     @cached_property
-    def hidden_tags(self) -> HiddenTags:
-        return HiddenTags(self._client)
-
-    @cached_property
-    def configs(self) -> Configs:
-        return Configs(self._client)
+    def hidden_tags(self) -> HiddenTagsResource:
+        return HiddenTagsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AgentsWithRawResponse:
-        return AgentsWithRawResponse(self)
+    def configs(self) -> ConfigsResource:
+        return ConfigsResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> AgentsWithStreamingResponse:
-        return AgentsWithStreamingResponse(self)
+    def with_raw_response(self) -> AgentsResourceWithRawResponse:
+        return AgentsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AgentsResourceWithStreamingResponse:
+        return AgentsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -179,22 +179,22 @@ class Agents(SyncAPIResource):
         )
 
 
-class AsyncAgents(AsyncAPIResource):
+class AsyncAgentsResource(AsyncAPIResource):
     @cached_property
-    def hidden_tags(self) -> AsyncHiddenTags:
-        return AsyncHiddenTags(self._client)
+    def hidden_tags(self) -> AsyncHiddenTagsResource:
+        return AsyncHiddenTagsResource(self._client)
 
     @cached_property
-    def configs(self) -> AsyncConfigs:
-        return AsyncConfigs(self._client)
+    def configs(self) -> AsyncConfigsResource:
+        return AsyncConfigsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncAgentsWithRawResponse:
-        return AsyncAgentsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncAgentsResourceWithRawResponse:
+        return AsyncAgentsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncAgentsWithStreamingResponse:
-        return AsyncAgentsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncAgentsResourceWithStreamingResponse:
+        return AsyncAgentsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -308,8 +308,8 @@ class AsyncAgents(AsyncAPIResource):
         )
 
 
-class AgentsWithRawResponse:
-    def __init__(self, agents: Agents) -> None:
+class AgentsResourceWithRawResponse:
+    def __init__(self, agents: AgentsResource) -> None:
         self._agents = agents
 
         self.retrieve = to_custom_raw_response_wrapper(
@@ -325,16 +325,16 @@ class AgentsWithRawResponse:
         )
 
     @cached_property
-    def hidden_tags(self) -> HiddenTagsWithRawResponse:
-        return HiddenTagsWithRawResponse(self._agents.hidden_tags)
+    def hidden_tags(self) -> HiddenTagsResourceWithRawResponse:
+        return HiddenTagsResourceWithRawResponse(self._agents.hidden_tags)
 
     @cached_property
-    def configs(self) -> ConfigsWithRawResponse:
-        return ConfigsWithRawResponse(self._agents.configs)
+    def configs(self) -> ConfigsResourceWithRawResponse:
+        return ConfigsResourceWithRawResponse(self._agents.configs)
 
 
-class AsyncAgentsWithRawResponse:
-    def __init__(self, agents: AsyncAgents) -> None:
+class AsyncAgentsResourceWithRawResponse:
+    def __init__(self, agents: AsyncAgentsResource) -> None:
         self._agents = agents
 
         self.retrieve = async_to_custom_raw_response_wrapper(
@@ -350,16 +350,16 @@ class AsyncAgentsWithRawResponse:
         )
 
     @cached_property
-    def hidden_tags(self) -> AsyncHiddenTagsWithRawResponse:
-        return AsyncHiddenTagsWithRawResponse(self._agents.hidden_tags)
+    def hidden_tags(self) -> AsyncHiddenTagsResourceWithRawResponse:
+        return AsyncHiddenTagsResourceWithRawResponse(self._agents.hidden_tags)
 
     @cached_property
-    def configs(self) -> AsyncConfigsWithRawResponse:
-        return AsyncConfigsWithRawResponse(self._agents.configs)
+    def configs(self) -> AsyncConfigsResourceWithRawResponse:
+        return AsyncConfigsResourceWithRawResponse(self._agents.configs)
 
 
-class AgentsWithStreamingResponse:
-    def __init__(self, agents: Agents) -> None:
+class AgentsResourceWithStreamingResponse:
+    def __init__(self, agents: AgentsResource) -> None:
         self._agents = agents
 
         self.retrieve = to_custom_streamed_response_wrapper(
@@ -375,16 +375,16 @@ class AgentsWithStreamingResponse:
         )
 
     @cached_property
-    def hidden_tags(self) -> HiddenTagsWithStreamingResponse:
-        return HiddenTagsWithStreamingResponse(self._agents.hidden_tags)
+    def hidden_tags(self) -> HiddenTagsResourceWithStreamingResponse:
+        return HiddenTagsResourceWithStreamingResponse(self._agents.hidden_tags)
 
     @cached_property
-    def configs(self) -> ConfigsWithStreamingResponse:
-        return ConfigsWithStreamingResponse(self._agents.configs)
+    def configs(self) -> ConfigsResourceWithStreamingResponse:
+        return ConfigsResourceWithStreamingResponse(self._agents.configs)
 
 
-class AsyncAgentsWithStreamingResponse:
-    def __init__(self, agents: AsyncAgents) -> None:
+class AsyncAgentsResourceWithStreamingResponse:
+    def __init__(self, agents: AsyncAgentsResource) -> None:
         self._agents = agents
 
         self.retrieve = async_to_custom_streamed_response_wrapper(
@@ -400,9 +400,9 @@ class AsyncAgentsWithStreamingResponse:
         )
 
     @cached_property
-    def hidden_tags(self) -> AsyncHiddenTagsWithStreamingResponse:
-        return AsyncHiddenTagsWithStreamingResponse(self._agents.hidden_tags)
+    def hidden_tags(self) -> AsyncHiddenTagsResourceWithStreamingResponse:
+        return AsyncHiddenTagsResourceWithStreamingResponse(self._agents.hidden_tags)
 
     @cached_property
-    def configs(self) -> AsyncConfigsWithStreamingResponse:
-        return AsyncConfigsWithStreamingResponse(self._agents.configs)
+    def configs(self) -> AsyncConfigsResourceWithStreamingResponse:
+        return AsyncConfigsResourceWithStreamingResponse(self._agents.configs)

@@ -32,17 +32,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["ReferenceSets", "AsyncReferenceSets"]
+__all__ = ["ReferenceSetsResource", "AsyncReferenceSetsResource"]
 
 
-class ReferenceSets(SyncAPIResource):
+class ReferenceSetsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ReferenceSetsWithRawResponse:
-        return ReferenceSetsWithRawResponse(self)
+    def with_raw_response(self) -> ReferenceSetsResourceWithRawResponse:
+        return ReferenceSetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ReferenceSetsWithStreamingResponse:
-        return ReferenceSetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ReferenceSetsResourceWithStreamingResponse:
+        return ReferenceSetsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -158,14 +158,14 @@ class ReferenceSets(SyncAPIResource):
         )
 
 
-class AsyncReferenceSets(AsyncAPIResource):
+class AsyncReferenceSetsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncReferenceSetsWithRawResponse:
-        return AsyncReferenceSetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncReferenceSetsResourceWithRawResponse:
+        return AsyncReferenceSetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncReferenceSetsWithStreamingResponse:
-        return AsyncReferenceSetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncReferenceSetsResourceWithStreamingResponse:
+        return AsyncReferenceSetsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -281,8 +281,8 @@ class AsyncReferenceSets(AsyncAPIResource):
         )
 
 
-class ReferenceSetsWithRawResponse:
-    def __init__(self, reference_sets: ReferenceSets) -> None:
+class ReferenceSetsResourceWithRawResponse:
+    def __init__(self, reference_sets: ReferenceSetsResource) -> None:
         self._reference_sets = reference_sets
 
         self.retrieve = to_custom_raw_response_wrapper(
@@ -298,8 +298,8 @@ class ReferenceSetsWithRawResponse:
         )
 
 
-class AsyncReferenceSetsWithRawResponse:
-    def __init__(self, reference_sets: AsyncReferenceSets) -> None:
+class AsyncReferenceSetsResourceWithRawResponse:
+    def __init__(self, reference_sets: AsyncReferenceSetsResource) -> None:
         self._reference_sets = reference_sets
 
         self.retrieve = async_to_custom_raw_response_wrapper(
@@ -315,8 +315,8 @@ class AsyncReferenceSetsWithRawResponse:
         )
 
 
-class ReferenceSetsWithStreamingResponse:
-    def __init__(self, reference_sets: ReferenceSets) -> None:
+class ReferenceSetsResourceWithStreamingResponse:
+    def __init__(self, reference_sets: ReferenceSetsResource) -> None:
         self._reference_sets = reference_sets
 
         self.retrieve = to_custom_streamed_response_wrapper(
@@ -332,8 +332,8 @@ class ReferenceSetsWithStreamingResponse:
         )
 
 
-class AsyncReferenceSetsWithStreamingResponse:
-    def __init__(self, reference_sets: AsyncReferenceSets) -> None:
+class AsyncReferenceSetsResourceWithStreamingResponse:
+    def __init__(self, reference_sets: AsyncReferenceSetsResource) -> None:
         self._reference_sets = reference_sets
 
         self.retrieve = async_to_custom_streamed_response_wrapper(
