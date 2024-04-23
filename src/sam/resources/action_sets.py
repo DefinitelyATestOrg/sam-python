@@ -32,17 +32,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["ActionSets", "AsyncActionSets"]
+__all__ = ["ActionSetsResource", "AsyncActionSetsResource"]
 
 
-class ActionSets(SyncAPIResource):
+class ActionSetsResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> ActionSetsWithRawResponse:
-        return ActionSetsWithRawResponse(self)
+    def with_raw_response(self) -> ActionSetsResourceWithRawResponse:
+        return ActionSetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> ActionSetsWithStreamingResponse:
-        return ActionSetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> ActionSetsResourceWithStreamingResponse:
+        return ActionSetsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -162,14 +162,14 @@ class ActionSets(SyncAPIResource):
         )
 
 
-class AsyncActionSets(AsyncAPIResource):
+class AsyncActionSetsResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncActionSetsWithRawResponse:
-        return AsyncActionSetsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncActionSetsResourceWithRawResponse:
+        return AsyncActionSetsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncActionSetsWithStreamingResponse:
-        return AsyncActionSetsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncActionSetsResourceWithStreamingResponse:
+        return AsyncActionSetsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -289,8 +289,8 @@ class AsyncActionSets(AsyncAPIResource):
         )
 
 
-class ActionSetsWithRawResponse:
-    def __init__(self, action_sets: ActionSets) -> None:
+class ActionSetsResourceWithRawResponse:
+    def __init__(self, action_sets: ActionSetsResource) -> None:
         self._action_sets = action_sets
 
         self.retrieve = to_custom_raw_response_wrapper(
@@ -306,8 +306,8 @@ class ActionSetsWithRawResponse:
         )
 
 
-class AsyncActionSetsWithRawResponse:
-    def __init__(self, action_sets: AsyncActionSets) -> None:
+class AsyncActionSetsResourceWithRawResponse:
+    def __init__(self, action_sets: AsyncActionSetsResource) -> None:
         self._action_sets = action_sets
 
         self.retrieve = async_to_custom_raw_response_wrapper(
@@ -323,8 +323,8 @@ class AsyncActionSetsWithRawResponse:
         )
 
 
-class ActionSetsWithStreamingResponse:
-    def __init__(self, action_sets: ActionSets) -> None:
+class ActionSetsResourceWithStreamingResponse:
+    def __init__(self, action_sets: ActionSetsResource) -> None:
         self._action_sets = action_sets
 
         self.retrieve = to_custom_streamed_response_wrapper(
@@ -340,8 +340,8 @@ class ActionSetsWithStreamingResponse:
         )
 
 
-class AsyncActionSetsWithStreamingResponse:
-    def __init__(self, action_sets: AsyncActionSets) -> None:
+class AsyncActionSetsResourceWithStreamingResponse:
+    def __init__(self, action_sets: AsyncActionSetsResource) -> None:
         self._action_sets = action_sets
 
         self.retrieve = async_to_custom_streamed_response_wrapper(

@@ -7,12 +7,12 @@ from typing_extensions import Literal
 import httpx
 
 from .chat import (
-    Chat,
-    AsyncChat,
-    ChatWithRawResponse,
-    AsyncChatWithRawResponse,
-    ChatWithStreamingResponse,
-    AsyncChatWithStreamingResponse,
+    ChatResource,
+    AsyncChatResource,
+    ChatResourceWithRawResponse,
+    AsyncChatResourceWithRawResponse,
+    ChatResourceWithStreamingResponse,
+    AsyncChatResourceWithStreamingResponse,
 )
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
@@ -36,21 +36,21 @@ from ...._base_client import (
 )
 from ....types.agents import config_update_params
 
-__all__ = ["Configs", "AsyncConfigs"]
+__all__ = ["ConfigsResource", "AsyncConfigsResource"]
 
 
-class Configs(SyncAPIResource):
+class ConfigsResource(SyncAPIResource):
     @cached_property
-    def chat(self) -> Chat:
-        return Chat(self._client)
-
-    @cached_property
-    def with_raw_response(self) -> ConfigsWithRawResponse:
-        return ConfigsWithRawResponse(self)
+    def chat(self) -> ChatResource:
+        return ChatResource(self._client)
 
     @cached_property
-    def with_streaming_response(self) -> ConfigsWithStreamingResponse:
-        return ConfigsWithStreamingResponse(self)
+    def with_raw_response(self) -> ConfigsResourceWithRawResponse:
+        return ConfigsResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> ConfigsResourceWithStreamingResponse:
+        return ConfigsResourceWithStreamingResponse(self)
 
     def retrieve(
         self,
@@ -125,18 +125,18 @@ class Configs(SyncAPIResource):
         )
 
 
-class AsyncConfigs(AsyncAPIResource):
+class AsyncConfigsResource(AsyncAPIResource):
     @cached_property
-    def chat(self) -> AsyncChat:
-        return AsyncChat(self._client)
+    def chat(self) -> AsyncChatResource:
+        return AsyncChatResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncConfigsWithRawResponse:
-        return AsyncConfigsWithRawResponse(self)
+    def with_raw_response(self) -> AsyncConfigsResourceWithRawResponse:
+        return AsyncConfigsResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncConfigsWithStreamingResponse:
-        return AsyncConfigsWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncConfigsResourceWithStreamingResponse:
+        return AsyncConfigsResourceWithStreamingResponse(self)
 
     async def retrieve(
         self,
@@ -211,8 +211,8 @@ class AsyncConfigs(AsyncAPIResource):
         )
 
 
-class ConfigsWithRawResponse:
-    def __init__(self, configs: Configs) -> None:
+class ConfigsResourceWithRawResponse:
+    def __init__(self, configs: ConfigsResource) -> None:
         self._configs = configs
 
         self.retrieve = to_custom_raw_response_wrapper(
@@ -225,12 +225,12 @@ class ConfigsWithRawResponse:
         )
 
     @cached_property
-    def chat(self) -> ChatWithRawResponse:
-        return ChatWithRawResponse(self._configs.chat)
+    def chat(self) -> ChatResourceWithRawResponse:
+        return ChatResourceWithRawResponse(self._configs.chat)
 
 
-class AsyncConfigsWithRawResponse:
-    def __init__(self, configs: AsyncConfigs) -> None:
+class AsyncConfigsResourceWithRawResponse:
+    def __init__(self, configs: AsyncConfigsResource) -> None:
         self._configs = configs
 
         self.retrieve = async_to_custom_raw_response_wrapper(
@@ -243,12 +243,12 @@ class AsyncConfigsWithRawResponse:
         )
 
     @cached_property
-    def chat(self) -> AsyncChatWithRawResponse:
-        return AsyncChatWithRawResponse(self._configs.chat)
+    def chat(self) -> AsyncChatResourceWithRawResponse:
+        return AsyncChatResourceWithRawResponse(self._configs.chat)
 
 
-class ConfigsWithStreamingResponse:
-    def __init__(self, configs: Configs) -> None:
+class ConfigsResourceWithStreamingResponse:
+    def __init__(self, configs: ConfigsResource) -> None:
         self._configs = configs
 
         self.retrieve = to_custom_streamed_response_wrapper(
@@ -261,12 +261,12 @@ class ConfigsWithStreamingResponse:
         )
 
     @cached_property
-    def chat(self) -> ChatWithStreamingResponse:
-        return ChatWithStreamingResponse(self._configs.chat)
+    def chat(self) -> ChatResourceWithStreamingResponse:
+        return ChatResourceWithStreamingResponse(self._configs.chat)
 
 
-class AsyncConfigsWithStreamingResponse:
-    def __init__(self, configs: AsyncConfigs) -> None:
+class AsyncConfigsResourceWithStreamingResponse:
+    def __init__(self, configs: AsyncConfigsResource) -> None:
         self._configs = configs
 
         self.retrieve = async_to_custom_streamed_response_wrapper(
@@ -279,5 +279,5 @@ class AsyncConfigsWithStreamingResponse:
         )
 
     @cached_property
-    def chat(self) -> AsyncChatWithStreamingResponse:
-        return AsyncChatWithStreamingResponse(self._configs.chat)
+    def chat(self) -> AsyncChatResourceWithStreamingResponse:
+        return AsyncChatResourceWithStreamingResponse(self._configs.chat)

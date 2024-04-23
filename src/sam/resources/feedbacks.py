@@ -28,17 +28,17 @@ from .._base_client import (
     make_request_options,
 )
 
-__all__ = ["Feedbacks", "AsyncFeedbacks"]
+__all__ = ["FeedbacksResource", "AsyncFeedbacksResource"]
 
 
-class Feedbacks(SyncAPIResource):
+class FeedbacksResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FeedbacksWithRawResponse:
-        return FeedbacksWithRawResponse(self)
+    def with_raw_response(self) -> FeedbacksResourceWithRawResponse:
+        return FeedbacksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FeedbacksWithStreamingResponse:
-        return FeedbacksWithStreamingResponse(self)
+    def with_streaming_response(self) -> FeedbacksResourceWithStreamingResponse:
+        return FeedbacksResourceWithStreamingResponse(self)
 
     def update(
         self,
@@ -92,14 +92,14 @@ class Feedbacks(SyncAPIResource):
         )
 
 
-class AsyncFeedbacks(AsyncAPIResource):
+class AsyncFeedbacksResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFeedbacksWithRawResponse:
-        return AsyncFeedbacksWithRawResponse(self)
+    def with_raw_response(self) -> AsyncFeedbacksResourceWithRawResponse:
+        return AsyncFeedbacksResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFeedbacksWithStreamingResponse:
-        return AsyncFeedbacksWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncFeedbacksResourceWithStreamingResponse:
+        return AsyncFeedbacksResourceWithStreamingResponse(self)
 
     async def update(
         self,
@@ -153,8 +153,8 @@ class AsyncFeedbacks(AsyncAPIResource):
         )
 
 
-class FeedbacksWithRawResponse:
-    def __init__(self, feedbacks: Feedbacks) -> None:
+class FeedbacksResourceWithRawResponse:
+    def __init__(self, feedbacks: FeedbacksResource) -> None:
         self._feedbacks = feedbacks
 
         self.update = to_custom_raw_response_wrapper(
@@ -163,8 +163,8 @@ class FeedbacksWithRawResponse:
         )
 
 
-class AsyncFeedbacksWithRawResponse:
-    def __init__(self, feedbacks: AsyncFeedbacks) -> None:
+class AsyncFeedbacksResourceWithRawResponse:
+    def __init__(self, feedbacks: AsyncFeedbacksResource) -> None:
         self._feedbacks = feedbacks
 
         self.update = async_to_custom_raw_response_wrapper(
@@ -173,8 +173,8 @@ class AsyncFeedbacksWithRawResponse:
         )
 
 
-class FeedbacksWithStreamingResponse:
-    def __init__(self, feedbacks: Feedbacks) -> None:
+class FeedbacksResourceWithStreamingResponse:
+    def __init__(self, feedbacks: FeedbacksResource) -> None:
         self._feedbacks = feedbacks
 
         self.update = to_custom_streamed_response_wrapper(
@@ -183,8 +183,8 @@ class FeedbacksWithStreamingResponse:
         )
 
 
-class AsyncFeedbacksWithStreamingResponse:
-    def __init__(self, feedbacks: AsyncFeedbacks) -> None:
+class AsyncFeedbacksResourceWithStreamingResponse:
+    def __init__(self, feedbacks: AsyncFeedbacksResource) -> None:
         self._feedbacks = feedbacks
 
         self.update = async_to_custom_streamed_response_wrapper(
