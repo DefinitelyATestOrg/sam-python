@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.12.1 (2024-04-24)
+
+Full Changelog: [v0.12.0...v0.12.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.0...v0.12.1)
+
+### Bug Fixes
+
+* **docs:** doc improvements ([#57](https://github.com/DefinitelyATestOrg/sam-python/issues/57)) ([100f363](https://github.com/DefinitelyATestOrg/sam-python/commit/100f36374ed11d8c847609c1fd26b38b93f0886e))
+
+
+### Chores
+
+* **internal:** add lru_cache helper function ([#48](https://github.com/DefinitelyATestOrg/sam-python/issues/48)) ([083ef52](https://github.com/DefinitelyATestOrg/sam-python/commit/083ef52474beb14ed7e1bcd28c7160940b748ec9))
+* **internal:** ban usage of lru_cache ([#50](https://github.com/DefinitelyATestOrg/sam-python/issues/50)) ([fa629e5](https://github.com/DefinitelyATestOrg/sam-python/commit/fa629e5de56111a468a6d9d9e514af20d2b6e519))
+* **internal:** bump pyright to 1.1.359 ([#55](https://github.com/DefinitelyATestOrg/sam-python/issues/55)) ([a11b72b](https://github.com/DefinitelyATestOrg/sam-python/commit/a11b72bbed119f84a2a4eb4e202bb780189f737e))
+* rebuild project due to codegen change ([#51](https://github.com/DefinitelyATestOrg/sam-python/issues/51)) ([3840a85](https://github.com/DefinitelyATestOrg/sam-python/commit/3840a856c3acad0c4d3f8a2e5d019f052371bb0c))
+* rename resource types ([#56](https://github.com/DefinitelyATestOrg/sam-python/issues/56)) ([db1e801](https://github.com/DefinitelyATestOrg/sam-python/commit/db1e801cbc2ad0b2fd6d9a35a0f1100bb20cb187))
+
 ## 0.12.0 (2024-04-15)
 
 Full Changelog: [v0.11.0...v0.12.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.11.0...v0.12.0)
