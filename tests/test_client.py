@@ -18,7 +18,6 @@ from pydantic import ValidationError
 
 from sam import Sam, AsyncSam, APIResponseValidationError
 from sam._types import Omit
-from sam._client import Sam, AsyncSam
 from sam._models import BaseModel, FinalRequestOptions
 from sam._constants import RAW_RESPONSE_HEADER
 from sam._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
