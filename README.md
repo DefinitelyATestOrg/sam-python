@@ -163,7 +163,7 @@ client = Sam(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).agents.retrieve(
+client.with_options(timeout=5.0).agents.retrieve(
     "abc123",
 )
 ```
