@@ -16,7 +16,7 @@ The REST API documentation can be found [on docs.elborai.software](https://docs.
 
 ```sh
 # install from PyPI
-pip install --pre sam
+pip install sam
 ```
 
 ## Usage
