@@ -330,6 +330,7 @@ class TestSam:
         assert request.headers.get("Authorization") == f"Bearer {auth_token}"
 
         client2 = Sam(base_url=base_url, auth_token=None, _strict_response_validation=True)
+
         with pytest.raises(
             TypeError,
             match="Could not resolve authentication method. Expected the auth_token to be set. Or for the `Authorization` headers to be explicitly omitted",
@@ -1018,6 +1019,7 @@ class TestAsyncSam:
         assert request.headers.get("Authorization") == f"Bearer {auth_token}"
 
         client2 = AsyncSam(base_url=base_url, auth_token=None, _strict_response_validation=True)
+
         with pytest.raises(
             TypeError,
             match="Could not resolve authentication method. Expected the auth_token to be set. Or for the `Authorization` headers to be explicitly omitted",
