@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.3 (2024-06-25)
+
+Full Changelog: [v0.12.2...v0.12.3](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.2...v0.12.3)
+
+### Bug Fixes
+
+* **docs:** fix link to advanced python httpx docs ([#81](https://github.com/DefinitelyATestOrg/sam-python/issues/81)) ([b71c291](https://github.com/DefinitelyATestOrg/sam-python/commit/b71c2910fb6955f22d0d2f4583d3b5cf083b2b0a))
+
 ## 0.12.2 (2024-06-19)
 
 Full Changelog: [v0.12.1...v0.12.2](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.1...v0.12.2)
