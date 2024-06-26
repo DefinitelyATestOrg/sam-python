@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.4 (2024-06-26)
+
+Full Changelog: [v0.12.3...v0.12.4](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.3...v0.12.4)
+
+### Bug Fixes
+
+* temporarily patch upstream version to fix broken release flow ([#84](https://github.com/DefinitelyATestOrg/sam-python/issues/84)) ([61d9381](https://github.com/DefinitelyATestOrg/sam-python/commit/61d93814ae9b746cce274456bc547bb5bd7d942a))
+
 ## 0.12.3 (2024-06-25)
 
 Full Changelog: [v0.12.2...v0.12.3](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.2...v0.12.3)
