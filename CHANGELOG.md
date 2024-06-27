@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.5 (2024-06-27)
+
+Full Changelog: [v0.12.4...v0.12.5](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.4...v0.12.5)
+
+### Bug Fixes
+
+* **build:** include more files in sdist builds ([#87](https://github.com/DefinitelyATestOrg/sam-python/issues/87)) ([d9141be](https://github.com/DefinitelyATestOrg/sam-python/commit/d9141be425d1414d026695bbc2e240739ad5520d))
+
 ## 0.12.4 (2024-06-26)
 
 Full Changelog: [v0.12.3...v0.12.4](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.3...v0.12.4)
