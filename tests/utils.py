@@ -8,8 +8,8 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from sam._types import NoneType
-from sam._utils import (
+from sam_minus_python._types import NoneType
+from sam_minus_python._utils import (
     is_dict,
     is_list,
     is_list_type,
@@ -17,8 +17,8 @@ from sam._utils import (
     extract_type_arg,
     is_annotated_type,
 )
-from sam._compat import PYDANTIC_V2, field_outer_type, get_model_fields
-from sam._models import BaseModel
+from sam_minus_python._compat import PYDANTIC_V2, field_outer_type, get_model_fields
+from sam_minus_python._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 
