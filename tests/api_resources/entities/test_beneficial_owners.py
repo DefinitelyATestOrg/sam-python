@@ -7,10 +7,10 @@ from typing import Any, cast
 
 import pytest
 
+from sam_python import Increase, AsyncIncrease
 from tests.utils import assert_matches_type
-from sam_minus_python import Increase, AsyncIncrease
-from sam_minus_python.types import Entity
-from sam_minus_python._utils import parse_date
+from sam_python.types import Entity
+from sam_python._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -6,10 +6,10 @@ import httpx
 import pytest
 import pydantic
 
-from sam_minus_python import Increase, BaseModel
-from sam_minus_python._streaming import Stream
-from sam_minus_python._base_client import FinalRequestOptions
-from sam_minus_python._legacy_response import LegacyAPIResponse
+from sam_python import Increase, BaseModel
+from sam_python._streaming import Stream
+from sam_python._base_client import FinalRequestOptions
+from sam_python._legacy_response import LegacyAPIResponse
 
 
 class PydanticModel(pydantic.BaseModel):
@@ -28,7 +28,7 @@ def test_response_parse_mismatched_basemodel(client: Increase) -> None:
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from sam_minus_python import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from sam_python import BaseModel`",
     ):
         response.parse(to=PydanticModel)
 

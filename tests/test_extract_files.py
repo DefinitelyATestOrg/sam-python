@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from sam_minus_python._types import FileTypes
-from sam_minus_python._utils import extract_files
+from sam_python._types import FileTypes
+from sam_python._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

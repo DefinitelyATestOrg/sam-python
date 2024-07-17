@@ -7,14 +7,14 @@ from typing import TYPE_CHECKING, Iterator, AsyncIterator
 
 import pytest
 
-from sam_minus_python import Increase, AsyncIncrease
+from sam_python import Increase, AsyncIncrease
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("sam_minus_python").setLevel(logging.DEBUG)
+logging.getLogger("sam_python").setLevel(logging.DEBUG)
 
 
 @pytest.fixture(scope="session")

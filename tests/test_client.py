@@ -16,11 +16,11 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from sam_minus_python import Increase, AsyncIncrease, APIResponseValidationError
-from sam_minus_python._models import BaseModel, FinalRequestOptions
-from sam_minus_python._constants import RAW_RESPONSE_HEADER
-from sam_minus_python._exceptions import IncreaseError, APIStatusError, APITimeoutError, APIResponseValidationError
-from sam_minus_python._base_client import (
+from sam_python import Increase, AsyncIncrease, APIResponseValidationError
+from sam_python._models import BaseModel, FinalRequestOptions
+from sam_python._constants import RAW_RESPONSE_HEADER
+from sam_python._exceptions import IncreaseError, APIStatusError, APITimeoutError, APIResponseValidationError
+from sam_python._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
     BaseClient,
@@ -224,10 +224,10 @@ class TestIncrease:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "sam_minus_python/_legacy_response.py",
-                        "sam_minus_python/_response.py",
+                        "sam_python/_legacy_response.py",
+                        "sam_python/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "sam_minus_python/_compat.py",
+                        "sam_python/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -833,7 +833,7 @@ class TestIncrease:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("sam_minus_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -848,7 +848,7 @@ class TestIncrease:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("sam_minus_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/accounts").mock(return_value=httpx.Response(500))
@@ -1039,10 +1039,10 @@ class TestAsyncIncrease:
                         # to_raw_response_wrapper leaks through the @functools.wraps() decorator.
                         #
                         # removing the decorator fixes the leak for reasons we don't understand.
-                        "sam_minus_python/_legacy_response.py",
-                        "sam_minus_python/_response.py",
+                        "sam_python/_legacy_response.py",
+                        "sam_python/_response.py",
                         # pydantic.BaseModel.model_dump || pydantic.BaseModel.dict leak memory for some reason.
-                        "sam_minus_python/_compat.py",
+                        "sam_python/_compat.py",
                         # Standard library leaks we don't care about.
                         "/logging/__init__.py",
                     ]
@@ -1666,7 +1666,7 @@ class TestAsyncIncrease:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
-    @mock.patch("sam_minus_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
@@ -1681,7 +1681,7 @@ class TestAsyncIncrease:
 
         assert _get_open_connections(self.client) == 0
 
-    @mock.patch("sam_minus_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
         respx_mock.post("/accounts").mock(return_value=httpx.Response(500))
