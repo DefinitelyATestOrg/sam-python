@@ -23,7 +23,7 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from sam_minus_python import Increase
+from sam_python import Increase
 
 client = Increase(
     # This is the default and can be omitted
@@ -50,7 +50,7 @@ Simply import `AsyncIncrease` instead of `Increase` and use `await` with each AP
 ```python
 import os
 import asyncio
-from sam_minus_python import AsyncIncrease
+from sam_python import AsyncIncrease
 
 client = AsyncIncrease(
     # This is the default and can be omitted
@@ -88,7 +88,7 @@ List methods in the Increase API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```python
-import sam_minus_python
+import sam_python
 
 client = Increase()
 
@@ -104,7 +104,7 @@ Or, asynchronously:
 
 ```python
 import asyncio
-import sam_minus_python
+import sam_python
 
 client = AsyncIncrease()
 
@@ -149,7 +149,7 @@ for account in first_page.data:
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
 
 ```python
-from sam_minus_python import Increase
+from sam_python import Increase
 
 client = Increase()
 
@@ -165,7 +165,7 @@ Request parameters that correspond to file uploads can be passed as `bytes`, a [
 
 ```python
 from pathlib import Path
-from sam_minus_python import Increase
+from sam_python import Increase
 
 client = Increase()
 
@@ -179,16 +179,16 @@ The async client uses the exact same interface. If you pass a [`PathLike`](https
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `sam_minus_python.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `sam_python.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `sam_minus_python.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `sam_python.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `sam_minus_python.APIError`.
+All errors inherit from `sam_python.APIError`.
 
 ```python
-import sam_minus_python
-from sam_minus_python import Increase
+import sam_python
+from sam_python import Increase
 
 client = Increase()
 
@@ -196,12 +196,12 @@ try:
     client.accounts.create(
         name="New Account!",
     )
-except sam_minus_python.APIConnectionError as e:
+except sam_python.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except sam_minus_python.RateLimitError as e:
+except sam_python.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except sam_minus_python.APIStatusError as e:
+except sam_python.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -229,7 +229,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from sam_minus_python import Increase
+from sam_python import Increase
 
 # Configure the default for all requests:
 client = Increase(
@@ -249,7 +249,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from sam_minus_python import Increase
+from sam_python import Increase
 
 # Configure the default for all requests:
 client = Increase(
@@ -301,7 +301,7 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from sam_minus_python import Increase
+from sam_python import Increase
 
 client = Increase()
 response = client.accounts.with_raw_response.create(
@@ -313,7 +313,7 @@ account = response.parse()  # get the object that `accounts.create()` would have
 print(account.id)
 ```
 
-These methods return an [`LegacyAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_minus_python/_legacy_response.py) object. This is a legacy class as we're changing it slightly in the next major version.
+These methods return an [`LegacyAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_legacy_response.py) object. This is a legacy class as we're changing it slightly in the next major version.
 
 For the sync client this will mostly be the same with the exception
 of `content` & `text` will be methods instead of properties. In the
@@ -328,7 +328,7 @@ The above interface eagerly reads the full response body when you make the reque
 
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
-As such, `.with_streaming_response` methods return a different [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_minus_python/_response.py) object, and the async client returns an [`AsyncAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_minus_python/_response.py) object.
+As such, `.with_streaming_response` methods return a different [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) object, and the async client returns an [`AsyncAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) object.
 
 ```python
 with client.accounts.with_streaming_response.create(
@@ -386,7 +386,7 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
 
 ```python
-from sam_minus_python import Increase, DefaultHttpxClient
+from sam_python import Increase, DefaultHttpxClient
 
 client = Increase(
     # Or use the `INCREASE_BASE_URL` env var

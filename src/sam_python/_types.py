@@ -82,7 +82,7 @@ HttpxRequestFiles = Union[Mapping[str, HttpxFileTypes], Sequence[Tuple[str, Http
 # This unfortunately means that you will either have
 # to import this type and pass it explicitly:
 #
-# from sam_minus_python import NoneType
+# from sam_python import NoneType
 # client.get('/foo', cast_to=NoneType)
 #
 # or build it yourself:

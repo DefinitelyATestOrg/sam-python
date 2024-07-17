@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from sam_python import Increase, AsyncIncrease
 from tests.utils import assert_matches_type
-from sam_minus_python import Increase, AsyncIncrease
-from sam_minus_python.types import CardDispute
+from sam_python.types import CardDispute
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

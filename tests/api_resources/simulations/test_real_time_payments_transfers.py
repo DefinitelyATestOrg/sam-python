@@ -7,10 +7,10 @@ from typing import Any, cast
 
 import pytest
 
+from sam_python import Increase, AsyncIncrease
 from tests.utils import assert_matches_type
-from sam_minus_python import Increase, AsyncIncrease
-from sam_minus_python.types import RealTimePaymentsTransfer
-from sam_minus_python.types.simulations import (
+from sam_python.types import RealTimePaymentsTransfer
+from sam_python.types.simulations import (
     InboundRealTimePaymentsTransferSimulationResult,
 )
 

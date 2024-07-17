@@ -106,12 +106,12 @@ _setup_logging()
 # Update the __module__ attribute for exported symbols so that
 # error messages point to this module instead of the module
 # it was originally defined in, e.g.
-# sam_minus_python._exceptions.NotFoundError -> sam_minus_python.NotFoundError
+# sam_python._exceptions.NotFoundError -> sam_python.NotFoundError
 __locals = locals()
 for __name in __all__:
     if not __name.startswith("__"):
         try:
-            __locals[__name].__module__ = "sam_minus_python"
+            __locals[__name].__module__ = "sam_python"
         except (TypeError, AttributeError):
             # Some of our exported symbols are builtins which we can't set attributes for.
             pass
