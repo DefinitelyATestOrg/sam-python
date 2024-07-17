@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.13.0 (2024-07-17)
+
+Full Changelog: [v0.12.5...v0.13.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.5...v0.13.0)
+
+### Features
+
+* **api:** manual updates ([#95](https://github.com/DefinitelyATestOrg/sam-python/issues/95)) ([8a1153f](https://github.com/DefinitelyATestOrg/sam-python/commit/8a1153f98c09b2e1578bff1aa6409448ab325dce))
+
+
+### Chores
+
+* **deps:** bump anyio to v4.4.0 ([#90](https://github.com/DefinitelyATestOrg/sam-python/issues/90)) ([533021c](https://github.com/DefinitelyATestOrg/sam-python/commit/533021cb723869b7ac8dc24791a2f27b0738521e))
+* gitignore test server logs ([#93](https://github.com/DefinitelyATestOrg/sam-python/issues/93)) ([2e9cfbe](https://github.com/DefinitelyATestOrg/sam-python/commit/2e9cfbedf6004fffbaadb82497cd81cac51dd3a6))
+* **internal:** add reflection helper function ([#92](https://github.com/DefinitelyATestOrg/sam-python/issues/92)) ([c8a563d](https://github.com/DefinitelyATestOrg/sam-python/commit/c8a563df367c1631547a3e52e7150a2dc89f7051))
+* **internal:** add rich as a dev dependency ([#94](https://github.com/DefinitelyATestOrg/sam-python/issues/94)) ([6c24620](https://github.com/DefinitelyATestOrg/sam-python/commit/6c24620706cdb60a11f4a5918e0a9108cca07df2))
+
 ## 0.12.5 (2024-06-27)
 
 Full Changelog: [v0.12.4...v0.12.5](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.4...v0.12.5)
