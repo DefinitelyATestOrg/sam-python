@@ -1,11 +1,11 @@
 [project]
-name = "sam"
+name = "sam-python"
 version = "0.12.5"
-description = "The official Python library for the sam API"
+description = "The official Python library for the increase API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Sam", email = "hello@elborai.software" },
+{ name = "Increase", email = "dev-feedback@increase.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
@@ -85,7 +85,7 @@ typecheck = { chain = [
   "typecheck:mypy"
 ]}
 "typecheck:pyright" = "pyright"
-"typecheck:verify-types" = "pyright --verifytypes sam --ignoreexternal"
+"typecheck:verify-types" = "pyright --verifytypes sam_minus_python --ignoreexternal"
 "typecheck:mypy" = "mypy ."
 
 [build-system]
@@ -98,7 +98,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/sam"]
+packages = ["src/sam_minus_python"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
@@ -124,7 +124,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/DefinitelyATestOrg/sam-python/tree/stainless/\g<2>)'
+replacement = '[\1](https://github.com/DefinitelyATestOrg/sam-python/tree/main/\g<2>)'
 
 [tool.black]
 line-length = 120
@@ -203,7 +203,7 @@ length-sort = true
 length-sort-straight = true
 combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
-known-first-party = ["sam", "tests"]
+known-first-party = ["sam_minus_python", "tests"]
 
 [tool.ruff.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]

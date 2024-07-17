@@ -6,13 +6,14 @@
 #   features: []
 #   all-features: true
 #   with-sources: false
+#   generate-hashes: false
 
 -e file:.
 annotated-types==0.6.0
     # via pydantic
 anyio==4.4.0
     # via httpx
-    # via sam
+    # via sam-python
 argcomplete==3.1.2
     # via nox
 attrs==23.1.0
@@ -26,7 +27,7 @@ dirty-equals==0.6.0
 distlib==0.3.7
     # via virtualenv
 distro==1.8.0
-    # via sam
+    # via sam-python
 exceptiongroup==1.1.3
     # via anyio
 filelock==3.12.4
@@ -37,7 +38,7 @@ httpcore==1.0.2
     # via httpx
 httpx==0.25.2
     # via respx
-    # via sam
+    # via sam-python
 idna==3.4
     # via anyio
     # via httpx
@@ -64,7 +65,7 @@ pluggy==1.3.0
 py==1.11.0
     # via pytest
 pydantic==2.7.1
-    # via sam
+    # via sam-python
 pydantic-core==2.18.2
     # via pydantic
 pygments==2.18.0
@@ -87,7 +88,7 @@ six==1.16.0
 sniffio==1.3.0
     # via anyio
     # via httpx
-    # via sam
+    # via sam-python
 time-machine==2.9.0
 tomli==2.0.1
     # via mypy
@@ -97,7 +98,7 @@ typing-extensions==4.8.0
     # via mypy
     # via pydantic
     # via pydantic-core
-    # via sam
+    # via sam-python
 virtualenv==20.24.5
     # via nox
 zipp==3.17.0
