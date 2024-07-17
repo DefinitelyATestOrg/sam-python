@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from sam_minus_python import Increase, AsyncIncrease
-from sam_minus_python._streaming import Stream, AsyncStream, ServerSentEvent
+from sam_python import Increase, AsyncIncrease
+from sam_python._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio

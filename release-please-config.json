@@ -61,6 +61,6 @@
   ],
   "release-type": "python",
   "extra-files": [
-    "src/sam_minus_python/_version.py"
+    "src/sam_python/_version.py"
   ]
 }
