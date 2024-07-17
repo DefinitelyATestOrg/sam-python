@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from sam_minus_python._utils import required_args
+from sam_python._utils import required_args
 
 
 def test_too_many_positional_params() -> None:
