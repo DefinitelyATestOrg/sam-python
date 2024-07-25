@@ -32,17 +32,10 @@ from sam_python.types import StoreInventoryResponse
 
 Methods:
 
+- <code title="get /store/order/{orderId}">client.stores.<a href="./src/sam_python/resources/stores/stores.py">retrieve</a>(order_id) -> <a href="./src/sam_python/types/shared/order.py">Order</a></code>
+- <code title="delete /store/order/{orderId}">client.stores.<a href="./src/sam_python/resources/stores/stores.py">delete</a>(order_id) -> None</code>
 - <code title="post /store/order">client.stores.<a href="./src/sam_python/resources/stores/stores.py">create_order</a>(\*\*<a href="src/sam_python/types/store_create_order_params.py">params</a>) -> <a href="./src/sam_python/types/shared/order.py">Order</a></code>
 - <code title="get /store/inventory">client.stores.<a href="./src/sam_python/resources/stores/stores.py">inventory</a>() -> <a href="./src/sam_python/types/store_inventory_response.py">StoreInventoryResponse</a></code>
-
-# Store
-
-## Orders
-
-Methods:
-
-- <code title="get /store/order/{orderId}">client.store.orders.<a href="./src/sam_python/resources/store/orders.py">retrieve</a>(order_id) -> <a href="./src/sam_python/types/shared/order.py">Order</a></code>
-- <code title="delete /store/order/{orderId}">client.store.orders.<a href="./src/sam_python/resources/store/orders.py">delete</a>(order_id) -> None</code>
 
 # Users
 
