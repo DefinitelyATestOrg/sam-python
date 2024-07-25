@@ -20,6 +20,68 @@ class TestStores:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    def test_method_retrieve(self, client: Sam) -> None:
+        store = client.stores.retrieve(
+            0,
+        )
+        assert_matches_type(Order, store, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: Sam) -> None:
+        response = client.stores.with_raw_response.retrieve(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        store = response.parse()
+        assert_matches_type(Order, store, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: Sam) -> None:
+        with client.stores.with_streaming_response.retrieve(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            store = response.parse()
+            assert_matches_type(Order, store, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_delete(self, client: Sam) -> None:
+        store = client.stores.delete(
+            0,
+        )
+        assert store is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Sam) -> None:
+        response = client.stores.with_raw_response.delete(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        store = response.parse()
+        assert store is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Sam) -> None:
+        with client.stores.with_streaming_response.delete(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            store = response.parse()
+            assert store is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_create_order(self, client: Sam) -> None:
         store = client.stores.create_order()
         assert_matches_type(Order, store, path=["response"])
@@ -84,6 +146,68 @@ class TestStores:
 
 class TestAsyncStores:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    async def test_method_retrieve(self, async_client: AsyncSam) -> None:
+        store = await async_client.stores.retrieve(
+            0,
+        )
+        assert_matches_type(Order, store, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, async_client: AsyncSam) -> None:
+        response = await async_client.stores.with_raw_response.retrieve(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        store = await response.parse()
+        assert_matches_type(Order, store, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, async_client: AsyncSam) -> None:
+        async with async_client.stores.with_streaming_response.retrieve(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            store = await response.parse()
+            assert_matches_type(Order, store, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncSam) -> None:
+        store = await async_client.stores.delete(
+            0,
+        )
+        assert store is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncSam) -> None:
+        response = await async_client.stores.with_raw_response.delete(
+            0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        store = await response.parse()
+        assert store is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncSam) -> None:
+        async with async_client.stores.with_streaming_response.delete(
+            0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            store = await response.parse()
+            assert store is None
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_create_order(self, async_client: AsyncSam) -> None:

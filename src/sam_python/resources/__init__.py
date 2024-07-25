@@ -8,14 +8,6 @@ from .pets import (
     PetsResourceWithStreamingResponse,
     AsyncPetsResourceWithStreamingResponse,
 )
-from .store import (
-    StoreResource,
-    AsyncStoreResource,
-    StoreResourceWithRawResponse,
-    AsyncStoreResourceWithRawResponse,
-    StoreResourceWithStreamingResponse,
-    AsyncStoreResourceWithStreamingResponse,
-)
 from .users import (
     UsersResource,
     AsyncUsersResource,
@@ -46,12 +38,6 @@ __all__ = [
     "AsyncStoresResourceWithRawResponse",
     "StoresResourceWithStreamingResponse",
     "AsyncStoresResourceWithStreamingResponse",
-    "StoreResource",
-    "AsyncStoreResource",
-    "StoreResourceWithRawResponse",
-    "AsyncStoreResourceWithRawResponse",
-    "StoreResourceWithStreamingResponse",
-    "AsyncStoreResourceWithStreamingResponse",
     "UsersResource",
     "AsyncUsersResource",
     "UsersResourceWithRawResponse",
