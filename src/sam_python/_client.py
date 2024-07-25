@@ -48,7 +48,6 @@ __all__ = [
 class Sam(SyncAPIClient):
     pets: resources.PetsResource
     stores: resources.StoresResource
-    store: resources.StoreResource
     users: resources.UsersResource
     with_raw_response: SamWithRawResponse
     with_streaming_response: SamWithStreamedResponse
@@ -96,7 +95,6 @@ class Sam(SyncAPIClient):
 
         self.pets = resources.PetsResource(self)
         self.stores = resources.StoresResource(self)
-        self.store = resources.StoreResource(self)
         self.users = resources.UsersResource(self)
         self.with_raw_response = SamWithRawResponse(self)
         self.with_streaming_response = SamWithStreamedResponse(self)
@@ -201,7 +199,6 @@ class Sam(SyncAPIClient):
 class AsyncSam(AsyncAPIClient):
     pets: resources.AsyncPetsResource
     stores: resources.AsyncStoresResource
-    store: resources.AsyncStoreResource
     users: resources.AsyncUsersResource
     with_raw_response: AsyncSamWithRawResponse
     with_streaming_response: AsyncSamWithStreamedResponse
@@ -249,7 +246,6 @@ class AsyncSam(AsyncAPIClient):
 
         self.pets = resources.AsyncPetsResource(self)
         self.stores = resources.AsyncStoresResource(self)
-        self.store = resources.AsyncStoreResource(self)
         self.users = resources.AsyncUsersResource(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
         self.with_streaming_response = AsyncSamWithStreamedResponse(self)
@@ -355,7 +351,6 @@ class SamWithRawResponse:
     def __init__(self, client: Sam) -> None:
         self.pets = resources.PetsResourceWithRawResponse(client.pets)
         self.stores = resources.StoresResourceWithRawResponse(client.stores)
-        self.store = resources.StoreResourceWithRawResponse(client.store)
         self.users = resources.UsersResourceWithRawResponse(client.users)
 
 
@@ -363,7 +358,6 @@ class AsyncSamWithRawResponse:
     def __init__(self, client: AsyncSam) -> None:
         self.pets = resources.AsyncPetsResourceWithRawResponse(client.pets)
         self.stores = resources.AsyncStoresResourceWithRawResponse(client.stores)
-        self.store = resources.AsyncStoreResourceWithRawResponse(client.store)
         self.users = resources.AsyncUsersResourceWithRawResponse(client.users)
 
 
@@ -371,7 +365,6 @@ class SamWithStreamedResponse:
     def __init__(self, client: Sam) -> None:
         self.pets = resources.PetsResourceWithStreamingResponse(client.pets)
         self.stores = resources.StoresResourceWithStreamingResponse(client.stores)
-        self.store = resources.StoreResourceWithStreamingResponse(client.store)
         self.users = resources.UsersResourceWithStreamingResponse(client.users)
 
 
@@ -379,7 +372,6 @@ class AsyncSamWithStreamedResponse:
     def __init__(self, client: AsyncSam) -> None:
         self.pets = resources.AsyncPetsResourceWithStreamingResponse(client.pets)
         self.stores = resources.AsyncStoresResourceWithStreamingResponse(client.stores)
-        self.store = resources.AsyncStoreResourceWithStreamingResponse(client.store)
         self.users = resources.AsyncUsersResourceWithStreamingResponse(client.users)
 
 
