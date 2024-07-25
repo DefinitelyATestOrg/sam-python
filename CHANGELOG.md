@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0-alpha.1 (2024-07-25)
+
+Full Changelog: [v0.14.1-alpha.2...v0.15.0-alpha.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.1-alpha.2...v0.15.0-alpha.1)
+
+### Features
+
+* **api:** manual updates ([#126](https://github.com/DefinitelyATestOrg/sam-python/issues/126)) ([a7c2880](https://github.com/DefinitelyATestOrg/sam-python/commit/a7c2880df6b56cd41cb7e28ed295e36f368855c1))
+
 ## 0.14.1-alpha.2 (2024-07-25)
 
 Full Changelog: [v0.14.1-alpha.1...v0.14.1-alpha.2](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.1-alpha.1...v0.14.1-alpha.2)
