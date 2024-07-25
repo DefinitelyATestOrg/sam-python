@@ -3,48 +3,26 @@
 from . import types
 from ._types import NOT_GIVEN, NoneType, NotGiven, Transport, ProxiesTypes
 from ._utils import file_from_path
-from ._client import (
-    ENVIRONMENTS,
-    Client,
-    Stream,
-    Timeout,
-    Increase,
-    Transport,
-    AsyncClient,
-    AsyncStream,
-    AsyncIncrease,
-    RequestOptions,
-)
+from ._client import Sam, Client, Stream, Timeout, AsyncSam, Transport, AsyncClient, AsyncStream, RequestOptions
 from ._models import BaseModel
 from ._version import __title__, __version__
 from ._response import APIResponse as APIResponse, AsyncAPIResponse as AsyncAPIResponse
 from ._constants import DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES, DEFAULT_CONNECTION_LIMITS
 from ._exceptions import (
     APIError,
+    SamError,
     ConflictError,
-    IncreaseError,
     NotFoundError,
     APIStatusError,
     RateLimitError,
     APITimeoutError,
     BadRequestError,
-    RateLimitedError,
     APIConnectionError,
-    InvalidAPIKeyError,
     AuthenticationError,
     InternalServerError,
-    ObjectNotFoundError,
-    PrivateFeatureError,
-    InvalidOperationError,
-    MalformedRequestError,
     PermissionDeniedError,
-    APIMethodNotFoundError,
-    InvalidParametersError,
-    EnvironmentMismatchError,
     UnprocessableEntityError,
     APIResponseValidationError,
-    InsufficientPermissionsError,
-    IdempotencyKeyAlreadyUsedError,
 )
 from ._base_client import DefaultHttpxClient, DefaultAsyncHttpxClient
 from ._utils._logs import setup_logging as _setup_logging
@@ -58,7 +36,7 @@ __all__ = [
     "ProxiesTypes",
     "NotGiven",
     "NOT_GIVEN",
-    "IncreaseError",
+    "SamError",
     "APIError",
     "APIStatusError",
     "APITimeoutError",
@@ -72,26 +50,14 @@ __all__ = [
     "UnprocessableEntityError",
     "RateLimitError",
     "InternalServerError",
-    "APIMethodNotFoundError",
-    "EnvironmentMismatchError",
-    "IdempotencyKeyAlreadyUsedError",
-    "InsufficientPermissionsError",
-    "InvalidAPIKeyError",
-    "InvalidOperationError",
-    "InvalidParametersError",
-    "MalformedRequestError",
-    "ObjectNotFoundError",
-    "PrivateFeatureError",
-    "RateLimitedError",
     "Timeout",
     "RequestOptions",
     "Client",
     "AsyncClient",
     "Stream",
     "AsyncStream",
-    "Increase",
-    "AsyncIncrease",
-    "ENVIRONMENTS",
+    "Sam",
+    "AsyncSam",
     "file_from_path",
     "BaseModel",
     "DEFAULT_TIMEOUT",

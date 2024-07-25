@@ -1,70 +1,54 @@
-# Increase Python API library
+# Sam Python API library
 
 [![PyPI version](https://img.shields.io/pypi/v/sam-python.svg)](https://pypi.org/project/sam-python/)
 
-The Increase Python library provides convenient access to the Increase REST API from any Python 3.7+
+The Sam Python library provides convenient access to the Sam REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
+It is generated with [Stainless](https://www.stainlessapi.com/).
+
 ## Documentation
 
-The REST API documentation can be found on [increase.com](https://increase.com). The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [docs.sam.com](https://docs.sam.com). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
 ```sh
-# install from PyPI
-pip install sam-python
+# install from the production repo
+pip install git+ssh://git@github.com/DefinitelyATestOrg/sam-python.git
 ```
+
+> [!NOTE]
+> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install sam-python`
 
 ## Usage
 
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-import os
-from sam_python import Increase
+from sam_python import Sam
 
-client = Increase(
-    # This is the default and can be omitted
-    api_key=os.environ.get("INCREASE_API_KEY"),
-    # defaults to "production".
-    environment="sandbox",
-)
+client = Sam()
 
-account = client.accounts.create(
-    name="My First Increase Account",
-)
-print(account.id)
+order = client.stores.create_order()
+print(order.id)
 ```
-
-While you can provide an `api_key` keyword argument,
-we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `INCREASE_API_KEY="My API Key"` to your `.env` file
-so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncIncrease` instead of `Increase` and use `await` with each API call:
+Simply import `AsyncSam` instead of `Sam` and use `await` with each API call:
 
 ```python
-import os
 import asyncio
-from sam_python import AsyncIncrease
+from sam_python import AsyncSam
 
-client = AsyncIncrease(
-    # This is the default and can be omitted
-    api_key=os.environ.get("INCREASE_API_KEY"),
-    # defaults to "production".
-    environment="sandbox",
-)
+client = AsyncSam()
 
 
 async def main() -> None:
-    account = await client.accounts.create(
-        name="My First Increase Account",
-    )
-    print(account.id)
+    order = await client.stores.create_order()
+    print(order.id)
 
 
 asyncio.run(main())
@@ -81,102 +65,6 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
-## Pagination
-
-List methods in the Increase API are paginated.
-
-This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
-
-```python
-from sam_python import Increase
-
-client = Increase()
-
-all_accounts = []
-# Automatically fetches more pages as needed.
-for account in client.accounts.list():
-    # Do something with account here
-    all_accounts.append(account)
-print(all_accounts)
-```
-
-Or, asynchronously:
-
-```python
-import asyncio
-from sam_python import AsyncIncrease
-
-client = AsyncIncrease()
-
-
-async def main() -> None:
-    all_accounts = []
-    # Iterate through items across all pages, issuing requests as needed.
-    async for account in client.accounts.list():
-        all_accounts.append(account)
-    print(all_accounts)
-
-
-asyncio.run(main())
-```
-
-Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
-
-```python
-first_page = await client.accounts.list()
-if first_page.has_next_page():
-    print(f"will fetch next page using these details: {first_page.next_page_info()}")
-    next_page = await first_page.get_next_page()
-    print(f"number of items we just fetched: {len(next_page.data)}")
-
-# Remove `await` for non-async usage.
-```
-
-Or just work directly with the returned data:
-
-```python
-first_page = await client.accounts.list()
-
-print(f"next page cursor: {first_page.next_cursor}")  # => "next page cursor: ..."
-for account in first_page.data:
-    print(account.id)
-
-# Remove `await` for non-async usage.
-```
-
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from sam_python import Increase
-
-client = Increase()
-
-account = client.accounts.create(
-    name="New Account!",
-)
-print(account.id)
-```
-
-## File uploads
-
-Request parameters that correspond to file uploads can be passed as `bytes`, a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
-
-```python
-from pathlib import Path
-from sam_python import Increase
-
-client = Increase()
-
-client.files.create(
-    file=Path("my/file.txt"),
-    purpose="other",
-)
-```
-
-The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
-
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `sam_python.APIConnectionError` is raised.
@@ -188,14 +76,12 @@ All errors inherit from `sam_python.APIError`.
 
 ```python
 import sam_python
-from sam_python import Increase
+from sam_python import Sam
 
-client = Increase()
+client = Sam()
 
 try:
-    client.accounts.create(
-        name="New Account!",
-    )
+    client.stores.create_order()
 except sam_python.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -229,18 +115,16 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from sam_python import Increase
+from sam_python import Sam
 
 # Configure the default for all requests:
-client = Increase(
+client = Sam(
     # default is 2
     max_retries=0,
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).accounts.create(
-    name="Jack",
-)
+client.with_options(max_retries=5).stores.create_order()
 ```
 
 ### Timeouts
@@ -249,23 +133,21 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from sam_python import Increase
+from sam_python import Sam
 
 # Configure the default for all requests:
-client = Increase(
+client = Sam(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = Increase(
+client = Sam(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).accounts.list(
-    status="open",
-)
+client.with_options(timeout=5.0).stores.create_order()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -278,10 +160,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `INCREASE_LOG` to `debug`.
+You can enable logging by setting the environment variable `SAM_LOG` to `debug`.
 
 ```shell
-$ export INCREASE_LOG=debug
+$ export SAM_LOG=debug
 ```
 
 ### How to tell whether `None` means `null` or missing
@@ -301,26 +183,19 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from sam_python import Increase
+from sam_python import Sam
 
-client = Increase()
-response = client.accounts.with_raw_response.create(
-    name="My First Increase Account",
-)
+client = Sam()
+response = client.stores.with_raw_response.create_order()
 print(response.headers.get('X-My-Header'))
 
-account = response.parse()  # get the object that `accounts.create()` would have returned
-print(account.id)
+store = response.parse()  # get the object that `stores.create_order()` would have returned
+print(store.id)
 ```
 
-These methods return an [`LegacyAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_legacy_response.py) object. This is a legacy class as we're changing it slightly in the next major version.
+These methods return an [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) object.
 
-For the sync client this will mostly be the same with the exception
-of `content` & `text` will be methods instead of properties. In the
-async client, all methods will be async.
-
-A migration script will be provided & the migration in general should
-be smooth.
+The async client returns an [`AsyncAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -328,12 +203,8 @@ The above interface eagerly reads the full response body when you make the reque
 
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
-As such, `.with_streaming_response` methods return a different [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) object, and the async client returns an [`AsyncAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) object.
-
 ```python
-with client.accounts.with_streaming_response.create(
-    name="My First Increase Account",
-) as response:
+with client.stores.with_streaming_response.create_order() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
@@ -386,10 +257,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 - Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
 
 ```python
-from sam_python import Increase, DefaultHttpxClient
+from sam_python import Sam, DefaultHttpxClient
 
-client = Increase(
-    # Or use the `INCREASE_BASE_URL` env var
+client = Sam(
+    # Or use the `SAM_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxies="http://my.test.proxy.example.com",

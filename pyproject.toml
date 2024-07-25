@@ -1,11 +1,11 @@
 [project]
 name = "sam-python"
 version = "0.14.0"
-description = "The official Python library for the increase API"
+description = "The official Python library for the sam API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Increase", email = "dev-feedback@increase.com" },
+{ name = "Sam", email = "apiteam@swagger.io" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
