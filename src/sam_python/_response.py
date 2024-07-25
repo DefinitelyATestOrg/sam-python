@@ -29,7 +29,7 @@ from ._utils import is_given, extract_type_arg, is_annotated_type, extract_type_
 from ._models import BaseModel, is_basemodel
 from ._constants import RAW_RESPONSE_HEADER, OVERRIDE_CAST_TO_HEADER
 from ._streaming import Stream, AsyncStream, is_stream_class_type, extract_stream_chunk_type
-from ._exceptions import IncreaseError, APIResponseValidationError
+from ._exceptions import SamError, APIResponseValidationError
 
 if TYPE_CHECKING:
     from ._models import FinalRequestOptions
@@ -188,10 +188,6 @@ class BaseAPIResponse(Generic[R]):
             return cast(R, float(response.text))
 
         origin = get_origin(cast_to) or cast_to
-
-        # handle the legacy binary response case
-        if inspect.isclass(cast_to) and cast_to.__name__ == "HttpxBinaryResponseContent":
-            return cast(R, cast_to(response))  # type: ignore
 
         if origin == APIResponse:
             raise RuntimeError("Unexpected state - cast_to is `APIResponse`")
@@ -556,7 +552,7 @@ class MissingStreamClassError(TypeError):
         )
 
 
-class StreamAlreadyConsumed(IncreaseError):
+class StreamAlreadyConsumed(SamError):
     """
     Attempted to read or stream content, but the content has already
     been streamed.
