@@ -25,7 +25,6 @@ from httpx import URL, Proxy, Timeout, Response, BaseTransport, AsyncBaseTranspo
 if TYPE_CHECKING:
     from ._models import BaseModel
     from ._response import APIResponse, AsyncAPIResponse
-    from ._legacy_response import HttpxBinaryResponseContent
 
 Transport = BaseTransport
 AsyncTransport = AsyncBaseTransport
@@ -190,7 +189,6 @@ ResponseT = TypeVar(
         ModelBuilderProtocol,
         "APIResponse[Any]",
         "AsyncAPIResponse[Any]",
-        "HttpxBinaryResponseContent",
     ],
 )
 
