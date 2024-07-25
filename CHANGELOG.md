@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.14.1-alpha.1 (2024-07-25)
+
+Full Changelog: [v0.14.0...v0.14.1-alpha.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.0...v0.14.1-alpha.1)
+
+### Features
+
+* **api:** manual updates ([#123](https://github.com/DefinitelyATestOrg/sam-python/issues/123)) ([2283208](https://github.com/DefinitelyATestOrg/sam-python/commit/22832081556d28213a4c2a66375814fe0b81ba75))
+
+
+### Chores
+
+* **ci:** limit release doctor target branches ([#118](https://github.com/DefinitelyATestOrg/sam-python/issues/118)) ([06c51ef](https://github.com/DefinitelyATestOrg/sam-python/commit/06c51ef797368e40430f7d8b21af57c13c6ac24b))
+* **docs:** document how to do per-request http client customization ([#117](https://github.com/DefinitelyATestOrg/sam-python/issues/117)) ([1e030ba](https://github.com/DefinitelyATestOrg/sam-python/commit/1e030ba19b00f2f8cd783329d5b5a12fea18b8a8))
+* **docs:** updating link ([#122](https://github.com/DefinitelyATestOrg/sam-python/issues/122)) ([3beba59](https://github.com/DefinitelyATestOrg/sam-python/commit/3beba591a5c0e3b9f78272503db36766314bb976))
+* fix error message import example ([#121](https://github.com/DefinitelyATestOrg/sam-python/issues/121)) ([dcd0912](https://github.com/DefinitelyATestOrg/sam-python/commit/dcd09124139d46ae9a110077c4a0160e402dbebd))
+* **tests:** update prism version ([#120](https://github.com/DefinitelyATestOrg/sam-python/issues/120)) ([016c994](https://github.com/DefinitelyATestOrg/sam-python/commit/016c9945b5a2726b6e91a770a969906143afe48a))
+* update SDK settings ([#115](https://github.com/DefinitelyATestOrg/sam-python/issues/115)) ([f2c3573](https://github.com/DefinitelyATestOrg/sam-python/commit/f2c3573e2b027ea81190e2e0be875ecb20a7f013))
+
+
+### Documentation
+
+* **readme:** fix example snippet imports ([#119](https://github.com/DefinitelyATestOrg/sam-python/issues/119)) ([ea306ee](https://github.com/DefinitelyATestOrg/sam-python/commit/ea306eee19653ba56ffa68de9cf21a48f5b8266c))
+
 ## 0.14.0 (2024-07-17)
 
 Full Changelog: [v0.13.0...v0.14.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.13.0...v0.14.0)
