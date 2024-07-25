@@ -86,7 +86,6 @@ from ._exceptions import (
     APIConnectionError,
     APIResponseValidationError,
 )
-from ._legacy_response import LegacyAPIResponse
 
 log: logging.Logger = logging.getLogger(__name__)
 
@@ -1092,19 +1091,6 @@ class SyncAPIClient(BaseClient[httpx.Client, Stream[Any]]):
         stream: bool,
         stream_cls: type[Stream[Any]] | type[AsyncStream[Any]] | None,
     ) -> ResponseT:
-        if response.request.headers.get(RAW_RESPONSE_HEADER) == "true":
-            return cast(
-                ResponseT,
-                LegacyAPIResponse(
-                    raw=response,
-                    client=self,
-                    cast_to=cast_to,
-                    stream=stream,
-                    stream_cls=stream_cls,
-                    options=options,
-                ),
-            )
-
         origin = get_origin(cast_to) or cast_to
 
         if inspect.isclass(origin) and issubclass(origin, BaseAPIResponse):
@@ -1664,19 +1650,6 @@ class AsyncAPIClient(BaseClient[httpx.AsyncClient, AsyncStream[Any]]):
         stream: bool,
         stream_cls: type[Stream[Any]] | type[AsyncStream[Any]] | None,
     ) -> ResponseT:
-        if response.request.headers.get(RAW_RESPONSE_HEADER) == "true":
-            return cast(
-                ResponseT,
-                LegacyAPIResponse(
-                    raw=response,
-                    client=self,
-                    cast_to=cast_to,
-                    stream=stream,
-                    stream_cls=stream_cls,
-                    options=options,
-                ),
-            )
-
         origin = get_origin(cast_to) or cast_to
 
         if inspect.isclass(origin) and issubclass(origin, BaseAPIResponse):

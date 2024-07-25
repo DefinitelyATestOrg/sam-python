@@ -16,10 +16,10 @@ import pytest
 from respx import MockRouter
 from pydantic import ValidationError
 
-from sam_python import Increase, AsyncIncrease, APIResponseValidationError
+from sam_python import Sam, AsyncSam, APIResponseValidationError
 from sam_python._models import BaseModel, FinalRequestOptions
 from sam_python._constants import RAW_RESPONSE_HEADER
-from sam_python._exceptions import IncreaseError, APIStatusError, APITimeoutError, APIResponseValidationError
+from sam_python._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from sam_python._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -30,7 +30,6 @@ from sam_python._base_client import (
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-api_key = "My API Key"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -43,7 +42,7 @@ def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
 
 
-def _get_open_connections(client: Increase | AsyncIncrease) -> int:
+def _get_open_connections(client: Sam | AsyncSam) -> int:
     transport = client._client._transport
     assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
 
@@ -51,8 +50,8 @@ def _get_open_connections(client: Increase | AsyncIncrease) -> int:
     return len(pool._requests)
 
 
-class TestIncrease:
-    client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestSam:
+    client = Sam(base_url=base_url, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response(self, respx_mock: MockRouter) -> None:
@@ -78,10 +77,6 @@ class TestIncrease:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(api_key="another My API Key")
-        assert copied.api_key == "another My API Key"
-        assert self.client.api_key == "My API Key"
-
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -99,9 +94,7 @@ class TestIncrease:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = Increase(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
-        )
+        client = Sam(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
         assert client.default_headers["X-Foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -133,9 +126,7 @@ class TestIncrease:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = Increase(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
-        )
+        client = Sam(base_url=base_url, _strict_response_validation=True, default_query={"foo": "bar"})
         assert _get_params(client)["foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -258,9 +249,7 @@ class TestIncrease:
         assert timeout == httpx.Timeout(100.0)
 
     def test_client_timeout_option(self) -> None:
-        client = Increase(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
-        )
+        client = Sam(base_url=base_url, _strict_response_validation=True, timeout=httpx.Timeout(0))
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -269,9 +258,7 @@ class TestIncrease:
     def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         with httpx.Client(timeout=None) as http_client:
-            client = Increase(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
-            )
+            client = Sam(base_url=base_url, _strict_response_validation=True, http_client=http_client)
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -279,9 +266,7 @@ class TestIncrease:
 
         # no timeout given to the httpx client should not use the httpx default
         with httpx.Client() as http_client:
-            client = Increase(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
-            )
+            client = Sam(base_url=base_url, _strict_response_validation=True, http_client=http_client)
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -289,9 +274,7 @@ class TestIncrease:
 
         # explicitly passing the default timeout currently results in it being ignored
         with httpx.Client(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = Increase(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
-            )
+            client = Sam(base_url=base_url, _strict_response_validation=True, http_client=http_client)
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -300,24 +283,16 @@ class TestIncrease:
     async def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             async with httpx.AsyncClient() as http_client:
-                Increase(
-                    base_url=base_url,
-                    api_key=api_key,
-                    _strict_response_validation=True,
-                    http_client=cast(Any, http_client),
-                )
+                Sam(base_url=base_url, _strict_response_validation=True, http_client=cast(Any, http_client))
 
     def test_default_headers_option(self) -> None:
-        client = Increase(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
-        )
+        client = Sam(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = Increase(
+        client2 = Sam(
             base_url=base_url,
-            api_key=api_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -328,19 +303,8 @@ class TestIncrease:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
-    def test_validate_headers(self) -> None:
-        client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
-
-        with pytest.raises(IncreaseError):
-            client2 = Increase(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
-
     def test_default_query_option(self) -> None:
-        client = Increase(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
-        )
+        client = Sam(base_url=base_url, _strict_response_validation=True, default_query={"query_param": "bar"})
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
@@ -452,7 +416,7 @@ class TestIncrease:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, client: Increase) -> None:
+    def test_multipart_repeating_array(self, client: Sam) -> None:
         request = client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -538,39 +502,8 @@ class TestIncrease:
         assert isinstance(response, Model)
         assert response.foo == 2
 
-    @pytest.mark.respx(base_url=base_url)
-    def test_idempotency_header_options(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
-
-        response = self.client.post("/foo", cast_to=httpx.Response)
-
-        header = response.request.headers.get("Idempotency-Key")
-        assert header is not None
-        assert header.startswith("stainless-python-retry")
-
-        # explicit header
-        response = self.client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
-        )
-        assert response.request.headers.get("Idempotency-Key") == "custom-key"
-
-        response = self.client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
-        )
-        assert response.request.headers.get("Idempotency-Key") == "custom-key"
-
-        # custom argument
-        response = self.client.post(
-            "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
-        )
-        assert response.request.headers.get("Idempotency-Key") == "custom-key"
-
     def test_base_url_setter(self) -> None:
-        client = Increase(base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True)
+        client = Sam(base_url="https://example.com/from_init", _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -578,34 +511,23 @@ class TestIncrease:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(INCREASE_BASE_URL="http://localhost:5000/from/env"):
-            client = Increase(api_key=api_key, _strict_response_validation=True)
+        with update_env(SAM_BASE_URL="http://localhost:5000/from/env"):
+            client = Sam(_strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
-        # explicit environment arg requires explicitness
-        with update_env(INCREASE_BASE_URL="http://localhost:5000/from/env"):
-            with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                Increase(api_key=api_key, _strict_response_validation=True, environment="production")
-
-            client = Increase(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="production"
-            )
-            assert str(client.base_url).startswith("https://api.increase.com")
-
     @pytest.mark.parametrize(
         "client",
         [
-            Increase(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            Increase(
+            Sam(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            Sam(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: Increase) -> None:
+    def test_base_url_trailing_slash(self, client: Sam) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -618,17 +540,16 @@ class TestIncrease:
     @pytest.mark.parametrize(
         "client",
         [
-            Increase(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            Increase(
+            Sam(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            Sam(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: Increase) -> None:
+    def test_base_url_no_trailing_slash(self, client: Sam) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -641,17 +562,16 @@ class TestIncrease:
     @pytest.mark.parametrize(
         "client",
         [
-            Increase(base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True),
-            Increase(
+            Sam(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            Sam(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.Client(),
             ),
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: Increase) -> None:
+    def test_absolute_request_url(self, client: Sam) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -661,99 +581,8 @@ class TestIncrease:
         )
         assert request.url == "https://myapi.com/foo"
 
-    def test_transport_option_is_deprecated(self) -> None:
-        with pytest.warns(
-            DeprecationWarning,
-            match="The `transport` argument is deprecated. The `http_client` argument should be passed instead",
-        ):
-            transport = httpx.MockTransport(
-                lambda: None,  # type: ignore
-            )
-
-            client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True, transport=transport)
-
-            assert client._client._transport is transport
-
-    def test_transport_option_mutually_exclusive_with_http_client(self) -> None:
-        with httpx.Client() as http_client:
-            with pytest.raises(ValueError, match="The `http_client` argument is mutually exclusive with `transport`"):
-                with pytest.warns(DeprecationWarning):
-                    Increase(
-                        base_url=base_url,
-                        api_key=api_key,
-                        _strict_response_validation=True,
-                        transport=httpx.MockTransport(
-                            lambda: None,  # type: ignore
-                        ),
-                        http_client=http_client,
-                    )
-
-    def test_connection_pool_limits_option_is_deprecated(self) -> None:
-        with pytest.warns(
-            DeprecationWarning,
-            match="The `connection_pool_limits` argument is deprecated. The `http_client` argument should be passed instead",
-        ):
-            connection_pool_limits = httpx.Limits(
-                max_connections=101, max_keepalive_connections=76, keepalive_expiry=23
-            )
-
-            client = Increase(
-                base_url=base_url,
-                api_key=api_key,
-                _strict_response_validation=True,
-                connection_pool_limits=connection_pool_limits,
-            )
-
-            assert isinstance(client._client._transport, httpx.HTTPTransport)
-            assert client._client._transport._pool._max_connections == 101
-            assert client._client._transport._pool._max_keepalive_connections == 76
-            assert client._client._transport._pool._keepalive_expiry == 23
-
-    def test_connection_pool_limits_option_mutually_exclusive_with_http_client(self) -> None:
-        with httpx.Client() as http_client:
-            with pytest.raises(
-                ValueError, match="The `http_client` argument is mutually exclusive with `connection_pool_limits`"
-            ):
-                with pytest.warns(DeprecationWarning):
-                    Increase(
-                        base_url=base_url,
-                        api_key=api_key,
-                        _strict_response_validation=True,
-                        connection_pool_limits=httpx.Limits(
-                            max_connections=101, max_keepalive_connections=76, keepalive_expiry=23
-                        ),
-                        http_client=http_client,
-                    )
-
-    def test_proxies_option_is_deprecated(self) -> None:
-        with pytest.warns(
-            DeprecationWarning,
-            match="The `proxies` argument is deprecated. The `http_client` argument should be passed instead",
-        ):
-            proxies = "https://www.example.com/proxy"
-
-            client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True, proxies=proxies)
-
-            mounts = list(client._client._mounts.keys())
-            assert len(mounts) == 1
-
-            pattern = mounts[0].pattern
-            assert pattern == "all://"
-
-    def test_proxies_option_mutually_exclusive_with_http_client(self) -> None:
-        with httpx.Client() as http_client:
-            with pytest.raises(ValueError, match="The `http_client` argument is mutually exclusive with `proxies`"):
-                with pytest.warns(DeprecationWarning):
-                    Increase(
-                        base_url=base_url,
-                        api_key=api_key,
-                        _strict_response_validation=True,
-                        proxies="https://www.example.com/proxy",
-                        http_client=http_client,
-                    )
-
     def test_copied_client_does_not_close_http(self) -> None:
-        client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Sam(base_url=base_url, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -764,7 +593,7 @@ class TestIncrease:
         assert not client.is_closed()
 
     def test_client_context_manager(self) -> None:
-        client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Sam(base_url=base_url, _strict_response_validation=True)
         with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -785,7 +614,7 @@ class TestIncrease:
 
     def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None))
+            Sam(base_url=base_url, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     def test_received_text_for_expected_json(self, respx_mock: MockRouter) -> None:
@@ -794,12 +623,12 @@ class TestIncrease:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = Sam(base_url=base_url, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             strict_client.get("/foo", cast_to=Model)
 
-        client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = Sam(base_url=base_url, _strict_response_validation=False)
 
         response = client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -826,7 +655,7 @@ class TestIncrease:
     )
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = Increase(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = Sam(base_url=base_url, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -836,12 +665,12 @@ class TestIncrease:
     @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/store/order").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             self.client.post(
-                "/accounts",
-                body=cast(object, dict(name="My First Increase Account")),
+                "/store/order",
+                body=cast(object, dict()),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -851,12 +680,12 @@ class TestIncrease:
     @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts").mock(return_value=httpx.Response(500))
+        respx_mock.post("/store/order").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             self.client.post(
-                "/accounts",
-                body=cast(object, dict(name="My First Increase Account")),
+                "/store/order",
+                body=cast(object, dict()),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -864,8 +693,8 @@ class TestIncrease:
         assert _get_open_connections(self.client) == 0
 
 
-class TestAsyncIncrease:
-    client = AsyncIncrease(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+class TestAsyncSam:
+    client = AsyncSam(base_url=base_url, _strict_response_validation=True)
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -893,10 +722,6 @@ class TestAsyncIncrease:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(api_key="another My API Key")
-        assert copied.api_key == "another My API Key"
-        assert self.client.api_key == "My API Key"
-
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
         copied = self.client.copy(max_retries=7)
@@ -914,9 +739,7 @@ class TestAsyncIncrease:
         assert isinstance(self.client.timeout, httpx.Timeout)
 
     def test_copy_default_headers(self) -> None:
-        client = AsyncIncrease(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
-        )
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
         assert client.default_headers["X-Foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -948,9 +771,7 @@ class TestAsyncIncrease:
             client.copy(set_default_headers={}, default_headers={"X-Foo": "Bar"})
 
     def test_copy_default_query(self) -> None:
-        client = AsyncIncrease(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"foo": "bar"}
-        )
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True, default_query={"foo": "bar"})
         assert _get_params(client)["foo"] == "bar"
 
         # does not override the already given value when not specified
@@ -1073,9 +894,7 @@ class TestAsyncIncrease:
         assert timeout == httpx.Timeout(100.0)
 
     async def test_client_timeout_option(self) -> None:
-        client = AsyncIncrease(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, timeout=httpx.Timeout(0)
-        )
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True, timeout=httpx.Timeout(0))
 
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -1084,9 +903,7 @@ class TestAsyncIncrease:
     async def test_http_client_timeout_option(self) -> None:
         # custom timeout given to the httpx client should be used
         async with httpx.AsyncClient(timeout=None) as http_client:
-            client = AsyncIncrease(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
-            )
+            client = AsyncSam(base_url=base_url, _strict_response_validation=True, http_client=http_client)
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -1094,9 +911,7 @@ class TestAsyncIncrease:
 
         # no timeout given to the httpx client should not use the httpx default
         async with httpx.AsyncClient() as http_client:
-            client = AsyncIncrease(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
-            )
+            client = AsyncSam(base_url=base_url, _strict_response_validation=True, http_client=http_client)
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -1104,9 +919,7 @@ class TestAsyncIncrease:
 
         # explicitly passing the default timeout currently results in it being ignored
         async with httpx.AsyncClient(timeout=HTTPX_DEFAULT_TIMEOUT) as http_client:
-            client = AsyncIncrease(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, http_client=http_client
-            )
+            client = AsyncSam(base_url=base_url, _strict_response_validation=True, http_client=http_client)
 
             request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
             timeout = httpx.Timeout(**request.extensions["timeout"])  # type: ignore
@@ -1115,24 +928,16 @@ class TestAsyncIncrease:
     def test_invalid_http_client(self) -> None:
         with pytest.raises(TypeError, match="Invalid `http_client` arg"):
             with httpx.Client() as http_client:
-                AsyncIncrease(
-                    base_url=base_url,
-                    api_key=api_key,
-                    _strict_response_validation=True,
-                    http_client=cast(Any, http_client),
-                )
+                AsyncSam(base_url=base_url, _strict_response_validation=True, http_client=cast(Any, http_client))
 
     def test_default_headers_option(self) -> None:
-        client = AsyncIncrease(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_headers={"X-Foo": "bar"}
-        )
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True, default_headers={"X-Foo": "bar"})
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         assert request.headers.get("x-foo") == "bar"
         assert request.headers.get("x-stainless-lang") == "python"
 
-        client2 = AsyncIncrease(
+        client2 = AsyncSam(
             base_url=base_url,
-            api_key=api_key,
             _strict_response_validation=True,
             default_headers={
                 "X-Foo": "stainless",
@@ -1143,19 +948,8 @@ class TestAsyncIncrease:
         assert request.headers.get("x-foo") == "stainless"
         assert request.headers.get("x-stainless-lang") == "my-overriding-header"
 
-    def test_validate_headers(self) -> None:
-        client = AsyncIncrease(base_url=base_url, api_key=api_key, _strict_response_validation=True)
-        request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
-        assert request.headers.get("Authorization") == f"Bearer {api_key}"
-
-        with pytest.raises(IncreaseError):
-            client2 = AsyncIncrease(base_url=base_url, api_key=None, _strict_response_validation=True)
-            _ = client2
-
     def test_default_query_option(self) -> None:
-        client = AsyncIncrease(
-            base_url=base_url, api_key=api_key, _strict_response_validation=True, default_query={"query_param": "bar"}
-        )
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True, default_query={"query_param": "bar"})
         request = client._build_request(FinalRequestOptions(method="get", url="/foo"))
         url = httpx.URL(request.url)
         assert dict(url.params) == {"query_param": "bar"}
@@ -1267,7 +1061,7 @@ class TestAsyncIncrease:
         params = dict(request.url.params)
         assert params == {"foo": "2"}
 
-    def test_multipart_repeating_array(self, async_client: AsyncIncrease) -> None:
+    def test_multipart_repeating_array(self, async_client: AsyncSam) -> None:
         request = async_client._build_request(
             FinalRequestOptions.construct(
                 method="get",
@@ -1353,41 +1147,8 @@ class TestAsyncIncrease:
         assert isinstance(response, Model)
         assert response.foo == 2
 
-    @pytest.mark.respx(base_url=base_url)
-    async def test_idempotency_header_options(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/foo").mock(return_value=httpx.Response(200, json={}))
-
-        response = await self.client.post("/foo", cast_to=httpx.Response)
-
-        header = response.request.headers.get("Idempotency-Key")
-        assert header is not None
-        assert header.startswith("stainless-python-retry")
-
-        # explicit header
-        response = await self.client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"Idempotency-Key": "custom-key"}),
-        )
-        assert response.request.headers.get("Idempotency-Key") == "custom-key"
-
-        response = await self.client.post(
-            "/foo",
-            cast_to=httpx.Response,
-            options=make_request_options(extra_headers={"idempotency-key": "custom-key"}),
-        )
-        assert response.request.headers.get("Idempotency-Key") == "custom-key"
-
-        # custom argument
-        response = await self.client.post(
-            "/foo", cast_to=httpx.Response, options=make_request_options(idempotency_key="custom-key")
-        )
-        assert response.request.headers.get("Idempotency-Key") == "custom-key"
-
     def test_base_url_setter(self) -> None:
-        client = AsyncIncrease(
-            base_url="https://example.com/from_init", api_key=api_key, _strict_response_validation=True
-        )
+        client = AsyncSam(base_url="https://example.com/from_init", _strict_response_validation=True)
         assert client.base_url == "https://example.com/from_init/"
 
         client.base_url = "https://example.com/from_setter"  # type: ignore[assignment]
@@ -1395,36 +1156,23 @@ class TestAsyncIncrease:
         assert client.base_url == "https://example.com/from_setter/"
 
     def test_base_url_env(self) -> None:
-        with update_env(INCREASE_BASE_URL="http://localhost:5000/from/env"):
-            client = AsyncIncrease(api_key=api_key, _strict_response_validation=True)
+        with update_env(SAM_BASE_URL="http://localhost:5000/from/env"):
+            client = AsyncSam(_strict_response_validation=True)
             assert client.base_url == "http://localhost:5000/from/env/"
 
-        # explicit environment arg requires explicitness
-        with update_env(INCREASE_BASE_URL="http://localhost:5000/from/env"):
-            with pytest.raises(ValueError, match=r"you must pass base_url=None"):
-                AsyncIncrease(api_key=api_key, _strict_response_validation=True, environment="production")
-
-            client = AsyncIncrease(
-                base_url=None, api_key=api_key, _strict_response_validation=True, environment="production"
-            )
-            assert str(client.base_url).startswith("https://api.increase.com")
-
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncIncrease(
-                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
-            ),
-            AsyncIncrease(
+            AsyncSam(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            AsyncSam(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_trailing_slash(self, client: AsyncIncrease) -> None:
+    def test_base_url_trailing_slash(self, client: AsyncSam) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1437,19 +1185,16 @@ class TestAsyncIncrease:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncIncrease(
-                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
-            ),
-            AsyncIncrease(
+            AsyncSam(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            AsyncSam(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
         ],
         ids=["standard", "custom http client"],
     )
-    def test_base_url_no_trailing_slash(self, client: AsyncIncrease) -> None:
+    def test_base_url_no_trailing_slash(self, client: AsyncSam) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1462,19 +1207,16 @@ class TestAsyncIncrease:
     @pytest.mark.parametrize(
         "client",
         [
-            AsyncIncrease(
-                base_url="http://localhost:5000/custom/path/", api_key=api_key, _strict_response_validation=True
-            ),
-            AsyncIncrease(
+            AsyncSam(base_url="http://localhost:5000/custom/path/", _strict_response_validation=True),
+            AsyncSam(
                 base_url="http://localhost:5000/custom/path/",
-                api_key=api_key,
                 _strict_response_validation=True,
                 http_client=httpx.AsyncClient(),
             ),
         ],
         ids=["standard", "custom http client"],
     )
-    def test_absolute_request_url(self, client: AsyncIncrease) -> None:
+    def test_absolute_request_url(self, client: AsyncSam) -> None:
         request = client._build_request(
             FinalRequestOptions(
                 method="post",
@@ -1484,103 +1226,8 @@ class TestAsyncIncrease:
         )
         assert request.url == "https://myapi.com/foo"
 
-    def test_transport_option_is_deprecated(self) -> None:
-        with pytest.warns(
-            DeprecationWarning,
-            match="The `transport` argument is deprecated. The `http_client` argument should be passed instead",
-        ):
-            transport = httpx.MockTransport(
-                lambda: None,  # type: ignore
-            )
-
-            client = AsyncIncrease(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, transport=transport
-            )
-
-            assert client._client._transport is transport
-
-    async def test_transport_option_mutually_exclusive_with_http_client(self) -> None:
-        async with httpx.AsyncClient() as http_client:
-            with pytest.raises(ValueError, match="The `http_client` argument is mutually exclusive with `transport`"):
-                with pytest.warns(DeprecationWarning):
-                    AsyncIncrease(
-                        base_url=base_url,
-                        api_key=api_key,
-                        _strict_response_validation=True,
-                        transport=httpx.MockTransport(
-                            lambda: None,  # type: ignore
-                        ),
-                        http_client=http_client,
-                    )
-
-    def test_connection_pool_limits_option_is_deprecated(self) -> None:
-        with pytest.warns(
-            DeprecationWarning,
-            match="The `connection_pool_limits` argument is deprecated. The `http_client` argument should be passed instead",
-        ):
-            connection_pool_limits = httpx.Limits(
-                max_connections=101, max_keepalive_connections=76, keepalive_expiry=23
-            )
-
-            client = AsyncIncrease(
-                base_url=base_url,
-                api_key=api_key,
-                _strict_response_validation=True,
-                connection_pool_limits=connection_pool_limits,
-            )
-
-            assert isinstance(client._client._transport, httpx.AsyncHTTPTransport)
-            assert client._client._transport._pool._max_connections == 101
-            assert client._client._transport._pool._max_keepalive_connections == 76
-            assert client._client._transport._pool._keepalive_expiry == 23
-
-    async def test_connection_pool_limits_option_mutually_exclusive_with_http_client(self) -> None:
-        async with httpx.AsyncClient() as http_client:
-            with pytest.raises(
-                ValueError, match="The `http_client` argument is mutually exclusive with `connection_pool_limits`"
-            ):
-                with pytest.warns(DeprecationWarning):
-                    AsyncIncrease(
-                        base_url=base_url,
-                        api_key=api_key,
-                        _strict_response_validation=True,
-                        connection_pool_limits=httpx.Limits(
-                            max_connections=101, max_keepalive_connections=76, keepalive_expiry=23
-                        ),
-                        http_client=http_client,
-                    )
-
-    def test_proxies_option_is_deprecated(self) -> None:
-        with pytest.warns(
-            DeprecationWarning,
-            match="The `proxies` argument is deprecated. The `http_client` argument should be passed instead",
-        ):
-            proxies = "https://www.example.com/proxy"
-
-            client = AsyncIncrease(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, proxies=proxies
-            )
-
-            mounts = list(client._client._mounts.keys())
-            assert len(mounts) == 1
-
-            pattern = mounts[0].pattern
-            assert pattern == "all://"
-
-    async def test_proxies_option_mutually_exclusive_with_http_client(self) -> None:
-        async with httpx.AsyncClient() as http_client:
-            with pytest.raises(ValueError, match="The `http_client` argument is mutually exclusive with `proxies`"):
-                with pytest.warns(DeprecationWarning):
-                    AsyncIncrease(
-                        base_url=base_url,
-                        api_key=api_key,
-                        _strict_response_validation=True,
-                        proxies="https://www.example.com/proxy",
-                        http_client=http_client,
-                    )
-
     async def test_copied_client_does_not_close_http(self) -> None:
-        client = AsyncIncrease(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True)
         assert not client.is_closed()
 
         copied = client.copy()
@@ -1592,7 +1239,7 @@ class TestAsyncIncrease:
         assert not client.is_closed()
 
     async def test_client_context_manager(self) -> None:
-        client = AsyncIncrease(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True)
         async with client as c2:
             assert c2 is client
             assert not c2.is_closed()
@@ -1614,9 +1261,7 @@ class TestAsyncIncrease:
 
     async def test_client_max_retries_validation(self) -> None:
         with pytest.raises(TypeError, match=r"max_retries cannot be None"):
-            AsyncIncrease(
-                base_url=base_url, api_key=api_key, _strict_response_validation=True, max_retries=cast(Any, None)
-            )
+            AsyncSam(base_url=base_url, _strict_response_validation=True, max_retries=cast(Any, None))
 
     @pytest.mark.respx(base_url=base_url)
     @pytest.mark.asyncio
@@ -1626,12 +1271,12 @@ class TestAsyncIncrease:
 
         respx_mock.get("/foo").mock(return_value=httpx.Response(200, text="my-custom-format"))
 
-        strict_client = AsyncIncrease(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        strict_client = AsyncSam(base_url=base_url, _strict_response_validation=True)
 
         with pytest.raises(APIResponseValidationError):
             await strict_client.get("/foo", cast_to=Model)
 
-        client = AsyncIncrease(base_url=base_url, api_key=api_key, _strict_response_validation=False)
+        client = AsyncSam(base_url=base_url, _strict_response_validation=False)
 
         response = await client.get("/foo", cast_to=Model)
         assert isinstance(response, str)  # type: ignore[unreachable]
@@ -1659,7 +1304,7 @@ class TestAsyncIncrease:
     @mock.patch("time.time", mock.MagicMock(return_value=1696004797))
     @pytest.mark.asyncio
     async def test_parse_retry_after_header(self, remaining_retries: int, retry_after: str, timeout: float) -> None:
-        client = AsyncIncrease(base_url=base_url, api_key=api_key, _strict_response_validation=True)
+        client = AsyncSam(base_url=base_url, _strict_response_validation=True)
 
         headers = httpx.Headers({"retry-after": retry_after})
         options = FinalRequestOptions(method="get", url="/foo", max_retries=3)
@@ -1669,12 +1314,12 @@ class TestAsyncIncrease:
     @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/store/order").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.post(
-                "/accounts",
-                body=cast(object, dict(name="My First Increase Account")),
+                "/store/order",
+                body=cast(object, dict()),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1684,12 +1329,12 @@ class TestAsyncIncrease:
     @mock.patch("sam_python._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/accounts").mock(return_value=httpx.Response(500))
+        respx_mock.post("/store/order").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.post(
-                "/accounts",
-                body=cast(object, dict(name="My First Increase Account")),
+                "/store/order",
+                body=cast(object, dict()),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
