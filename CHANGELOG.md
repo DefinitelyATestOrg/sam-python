@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.1-alpha.2 (2024-07-25)
+
+Full Changelog: [v0.14.1-alpha.1...v0.14.1-alpha.2](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.1-alpha.1...v0.14.1-alpha.2)
+
+### Chores
+
+* **internal:** version bump ([#124](https://github.com/DefinitelyATestOrg/sam-python/issues/124)) ([1ef2a28](https://github.com/DefinitelyATestOrg/sam-python/commit/1ef2a28c8478ef625551eabdea1d3c80e1ef758b))
+
 ## 0.14.1-alpha.1 (2024-07-25)
 
 Full Changelog: [v0.14.0...v0.14.1-alpha.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.0...v0.14.1-alpha.1)
