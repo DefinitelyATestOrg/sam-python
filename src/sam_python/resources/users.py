@@ -10,7 +10,6 @@ from ..types import (
     user_login_params,
     user_create_params,
     user_update_params,
-    user_create_with_list_params,
 )
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import (
@@ -244,7 +243,7 @@ class UsersResource(SyncAPIResource):
         """
         return self._post(
             "/user/createWithList",
-            body=maybe_transform(body, user_create_with_list_params.UserCreateWithListParams),
+            body=maybe_transform(body, Iterable[UserParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -530,7 +529,7 @@ class AsyncUsersResource(AsyncAPIResource):
         """
         return await self._post(
             "/user/createWithList",
-            body=await async_maybe_transform(body, user_create_with_list_params.UserCreateWithListParams),
+            body=await async_maybe_transform(body, Iterable[UserParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
