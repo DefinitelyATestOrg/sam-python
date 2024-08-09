@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.15.0-alpha.3 (2024-08-09)
+
+Full Changelog: [v0.15.0-alpha.1...v0.15.0-alpha.3](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.1...v0.15.0-alpha.3)
+
+### Features
+
+* **client:** add `retry_count` to raw response class ([#135](https://github.com/DefinitelyATestOrg/sam-python/issues/135)) ([1a03948](https://github.com/DefinitelyATestOrg/sam-python/commit/1a03948350ac1aacb58f14982c308df5bdf48f91))
+
+
+### Bug Fixes
+
+* **client:** correctly serialise array body params ([#139](https://github.com/DefinitelyATestOrg/sam-python/issues/139)) ([f4402cc](https://github.com/DefinitelyATestOrg/sam-python/commit/f4402cc0757bae15608a451342bb387c52b67875))
+
+
+### Chores
+
+* **ci:** bump prism mock server version ([#141](https://github.com/DefinitelyATestOrg/sam-python/issues/141)) ([a8f3edd](https://github.com/DefinitelyATestOrg/sam-python/commit/a8f3edde6cc3d5c3d6a10dfba042bf33a8b23875))
+* **internal:** add type construction helper ([#131](https://github.com/DefinitelyATestOrg/sam-python/issues/131)) ([b73dbea](https://github.com/DefinitelyATestOrg/sam-python/commit/b73dbea19c0828e67b47cb36a2ddf381dee2e7cf))
+* **internal:** bump pyright ([#134](https://github.com/DefinitelyATestOrg/sam-python/issues/134)) ([fad61f5](https://github.com/DefinitelyATestOrg/sam-python/commit/fad61f5fe6464d387bedb05fd5f7f1343fd136ac))
+* **internal:** bump ruff version ([#137](https://github.com/DefinitelyATestOrg/sam-python/issues/137)) ([309929b](https://github.com/DefinitelyATestOrg/sam-python/commit/309929b0ed02df5c864bae1b27f33e72e52fe5cb))
+* **internal:** remove deprecated ruff config ([#140](https://github.com/DefinitelyATestOrg/sam-python/issues/140)) ([f2dd950](https://github.com/DefinitelyATestOrg/sam-python/commit/f2dd950e0df1134f1c5a02e6b0dfc068351c9fd0))
+* **internal:** test updates ([#136](https://github.com/DefinitelyATestOrg/sam-python/issues/136)) ([9b96d28](https://github.com/DefinitelyATestOrg/sam-python/commit/9b96d286ea989f5ae004d62b19e6e9831a593bbb))
+* **internal:** update pydantic compat helper function ([#138](https://github.com/DefinitelyATestOrg/sam-python/issues/138)) ([18ad71a](https://github.com/DefinitelyATestOrg/sam-python/commit/18ad71a96b7f361e73c34c9c0b834021d6fca162))
+* **internal:** use `TypeAlias` marker for type assignments ([#133](https://github.com/DefinitelyATestOrg/sam-python/issues/133)) ([9fc575b](https://github.com/DefinitelyATestOrg/sam-python/commit/9fc575b5c19836d185e5f49ecacdf609eb5202ca))
+
 ## 0.15.0-alpha.1 (2024-07-25)
 
 Full Changelog: [v0.14.1-alpha.2...v0.15.0-alpha.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.1-alpha.2...v0.15.0-alpha.1)
