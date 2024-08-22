@@ -2,11 +2,16 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import TypedDict
 
-__all__ = ["PetFindByTagsParams"]
+from typing import List
 
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
+
+__all__ = ["PetFindByTagsParams"]
 
 class PetFindByTagsParams(TypedDict, total=False):
     tags: List[str]
