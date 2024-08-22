@@ -45,9 +45,11 @@ from sam_python import AsyncSam
 
 client = AsyncSam()
 
+
 async def main() -> None:
-  order = await client.stores.create_order()
-  print(order.id)
+    order = await client.stores.create_order()
+    print(order.id)
+
 
 asyncio.run(main())
 ```
@@ -82,7 +84,7 @@ try:
     client.stores.create_order()
 except sam_python.APIConnectionError as e:
     print("The server could not be reached")
-    print(e.__cause__) # an underlying Exception, likely raised within httpx.
+    print(e.__cause__)  # an underlying Exception, likely raised within httpx.
 except sam_python.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
 except sam_python.APIStatusError as e:
@@ -122,7 +124,7 @@ client = Sam(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries = 5).stores.create_order()
+client.with_options(max_retries=5).stores.create_order()
 ```
 
 ### Timeouts
@@ -145,7 +147,7 @@ client = Sam(
 )
 
 # Override per-request:
-client.with_options(timeout = 5.0).stores.create_order()
+client.with_options(timeout=5.0).stores.create_order()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -202,11 +204,11 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.stores.with_streaming_response.create_order() as response :
-    print(response.headers.get('X-My-Header'))
+with client.stores.with_streaming_response.create_order() as response:
+    print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
-      print(line)
+        print(line)
 ```
 
 The context manager is required so that the response will reliably be closed.
@@ -260,7 +262,10 @@ from sam_python import Sam, DefaultHttpxClient
 client = Sam(
     # Or use the `SAM_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
-    http_client=DefaultHttpxClient(proxies="http://my.test.proxy.example.com", transport=httpx.HTTPTransport(local_address="0.0.0.0")),
+    http_client=DefaultHttpxClient(
+        proxies="http://my.test.proxy.example.com",
+        transport=httpx.HTTPTransport(local_address="0.0.0.0"),
+    ),
 )
 ```
 
