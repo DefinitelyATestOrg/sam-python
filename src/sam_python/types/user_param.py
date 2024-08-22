@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
 __all__ = ["UserParam"]
+
 
 class UserParam(TypedDict, total=False):
     id: int
