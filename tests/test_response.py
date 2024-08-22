@@ -6,7 +6,7 @@ import httpx
 import pytest
 import pydantic
 
-from sam_python import BaseModel, Sam, AsyncSam
+from sam_python import Sam, AsyncSam, BaseModel
 from sam_python._response import (
     APIResponse,
     BaseAPIResponse,
