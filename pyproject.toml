@@ -5,7 +5,7 @@ description = "The official Python library for the sam API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Sam", email = "apiteam@swagger.io" },
+{ name = "Sam", email = "apiteam@swagger.io." },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",
