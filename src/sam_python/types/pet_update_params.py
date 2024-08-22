@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypedDict, Required, Annotated, Literal
+
 from typing import List, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["PetUpdateParams", "Category", "Tag"]
+from typing import List, Union, Dict, Optional
+from typing_extensions import Literal, TypedDict, Required, Annotated
+from .._types import FileTypes
+from .._utils import PropertyInfo
 
+__all__ = ["PetUpdateParams", "Category", "Tag"]
 
 class PetUpdateParams(TypedDict, total=False):
     name: Required[str]
@@ -24,12 +29,10 @@ class PetUpdateParams(TypedDict, total=False):
 
     tags: Iterable[Tag]
 
-
 class Category(TypedDict, total=False):
     id: int
 
     name: str
-
 
 class Tag(TypedDict, total=False):
     id: int
