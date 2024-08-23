@@ -62,6 +62,8 @@ class PetsResource(SyncAPIResource):
         """
         Updates a pet in the store with form data
 
+        This is a change.
+
         Args:
           name: Name of pet that needs to be updated
 
