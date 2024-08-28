@@ -1,5 +1,190 @@
 # Changelog
 
+## 0.15.0-alpha.1 (2024-07-25)
+
+Full Changelog: [v0.14.1-alpha.2...v0.15.0-alpha.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.1-alpha.2...v0.15.0-alpha.1)
+
+### Features
+
+* **api:** manual updates ([#126](https://github.com/DefinitelyATestOrg/sam-python/issues/126)) ([a7c2880](https://github.com/DefinitelyATestOrg/sam-python/commit/a7c2880df6b56cd41cb7e28ed295e36f368855c1))
+
+## 0.14.1-alpha.2 (2024-07-25)
+
+Full Changelog: [v0.14.1-alpha.1...v0.14.1-alpha.2](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.1-alpha.1...v0.14.1-alpha.2)
+
+### Chores
+
+* **internal:** version bump ([#124](https://github.com/DefinitelyATestOrg/sam-python/issues/124)) ([1ef2a28](https://github.com/DefinitelyATestOrg/sam-python/commit/1ef2a28c8478ef625551eabdea1d3c80e1ef758b))
+
+## 0.14.1-alpha.1 (2024-07-25)
+
+Full Changelog: [v0.14.0...v0.14.1-alpha.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.14.0...v0.14.1-alpha.1)
+
+### Features
+
+* **api:** manual updates ([#123](https://github.com/DefinitelyATestOrg/sam-python/issues/123)) ([2283208](https://github.com/DefinitelyATestOrg/sam-python/commit/22832081556d28213a4c2a66375814fe0b81ba75))
+
+
+### Chores
+
+* **ci:** limit release doctor target branches ([#118](https://github.com/DefinitelyATestOrg/sam-python/issues/118)) ([06c51ef](https://github.com/DefinitelyATestOrg/sam-python/commit/06c51ef797368e40430f7d8b21af57c13c6ac24b))
+* **docs:** document how to do per-request http client customization ([#117](https://github.com/DefinitelyATestOrg/sam-python/issues/117)) ([1e030ba](https://github.com/DefinitelyATestOrg/sam-python/commit/1e030ba19b00f2f8cd783329d5b5a12fea18b8a8))
+* **docs:** updating link ([#122](https://github.com/DefinitelyATestOrg/sam-python/issues/122)) ([3beba59](https://github.com/DefinitelyATestOrg/sam-python/commit/3beba591a5c0e3b9f78272503db36766314bb976))
+* fix error message import example ([#121](https://github.com/DefinitelyATestOrg/sam-python/issues/121)) ([dcd0912](https://github.com/DefinitelyATestOrg/sam-python/commit/dcd09124139d46ae9a110077c4a0160e402dbebd))
+* **tests:** update prism version ([#120](https://github.com/DefinitelyATestOrg/sam-python/issues/120)) ([016c994](https://github.com/DefinitelyATestOrg/sam-python/commit/016c9945b5a2726b6e91a770a969906143afe48a))
+* update SDK settings ([#115](https://github.com/DefinitelyATestOrg/sam-python/issues/115)) ([f2c3573](https://github.com/DefinitelyATestOrg/sam-python/commit/f2c3573e2b027ea81190e2e0be875ecb20a7f013))
+
+
+### Documentation
+
+* **readme:** fix example snippet imports ([#119](https://github.com/DefinitelyATestOrg/sam-python/issues/119)) ([ea306ee](https://github.com/DefinitelyATestOrg/sam-python/commit/ea306eee19653ba56ffa68de9cf21a48f5b8266c))
+
+## 0.14.0 (2024-07-17)
+
+Full Changelog: [v0.13.0...v0.14.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.13.0...v0.14.0)
+
+### Features
+
+* **api:** manual updates ([#114](https://github.com/DefinitelyATestOrg/sam-python/issues/114)) ([0e8d1e1](https://github.com/DefinitelyATestOrg/sam-python/commit/0e8d1e1255b91434eb0ff17be0201406723556e0))
+
+
+### Chores
+
+* **ci:** also run workflows for PRs targeting `next` ([#106](https://github.com/DefinitelyATestOrg/sam-python/issues/106)) ([8d3d52a](https://github.com/DefinitelyATestOrg/sam-python/commit/8d3d52a4607c7a8adb09b0ea426ec4e7552846f0))
+* **docs:** minor update to formatting of API link in README ([#112](https://github.com/DefinitelyATestOrg/sam-python/issues/112)) ([e13009f](https://github.com/DefinitelyATestOrg/sam-python/commit/e13009f91c8d302a99bba8fc623913257af29e6a))
+* **internal:** add helper function ([#102](https://github.com/DefinitelyATestOrg/sam-python/issues/102)) ([09eb3d3](https://github.com/DefinitelyATestOrg/sam-python/commit/09eb3d3df8f35ccf2830f58aef52162e9efe7b72))
+* **internal:** codegen related update ([#103](https://github.com/DefinitelyATestOrg/sam-python/issues/103)) ([b099a28](https://github.com/DefinitelyATestOrg/sam-python/commit/b099a281062b796dc324027f2614490dc59014a2))
+* **internal:** codegen related update ([#105](https://github.com/DefinitelyATestOrg/sam-python/issues/105)) ([fbd4b52](https://github.com/DefinitelyATestOrg/sam-python/commit/fbd4b52ce7d6662226b36443f80abd7840d8ab1f))
+* **internal:** codegen related update ([#109](https://github.com/DefinitelyATestOrg/sam-python/issues/109)) ([3cddcd4](https://github.com/DefinitelyATestOrg/sam-python/commit/3cddcd4461e47a426689088c3908bc4802367550))
+* **internal:** codegen related update ([#111](https://github.com/DefinitelyATestOrg/sam-python/issues/111)) ([66feab9](https://github.com/DefinitelyATestOrg/sam-python/commit/66feab9e07bbc38e61fac8093a47c3956327366f))
+* **internal:** codegen related update ([#99](https://github.com/DefinitelyATestOrg/sam-python/issues/99)) ([0464412](https://github.com/DefinitelyATestOrg/sam-python/commit/0464412f02feecdd0bb651bfc5593477b9774eec))
+* **internal:** minor import restructuring ([#107](https://github.com/DefinitelyATestOrg/sam-python/issues/107)) ([15a4947](https://github.com/DefinitelyATestOrg/sam-python/commit/15a49478f27f4f39906efe24055103d57784312b))
+* **internal:** minor options / compat functions updates ([#110](https://github.com/DefinitelyATestOrg/sam-python/issues/110)) ([b27e2c0](https://github.com/DefinitelyATestOrg/sam-python/commit/b27e2c0c175b2e3fb38e325670e9312a827b661c))
+* **internal:** minor request options handling changes ([#101](https://github.com/DefinitelyATestOrg/sam-python/issues/101)) ([aa575ae](https://github.com/DefinitelyATestOrg/sam-python/commit/aa575aeadaab2b786377039f3909476025297fec))
+* **internal:** update formatting ([#113](https://github.com/DefinitelyATestOrg/sam-python/issues/113)) ([b3de836](https://github.com/DefinitelyATestOrg/sam-python/commit/b3de836f35ca334891f182d2cefbba8d7ff9a466))
+* **internal:** update mypy ([#104](https://github.com/DefinitelyATestOrg/sam-python/issues/104)) ([aee21ca](https://github.com/DefinitelyATestOrg/sam-python/commit/aee21ca70f0cb6e7effbd04ac4ba2ab92922b9bc))
+
+
+### Documentation
+
+* **examples:** use named params more ([#108](https://github.com/DefinitelyATestOrg/sam-python/issues/108)) ([f3931fb](https://github.com/DefinitelyATestOrg/sam-python/commit/f3931fb5967b71f3b02de6d6034a867ba9de6640))
+
+## 0.13.0 (2024-07-17)
+
+Full Changelog: [v0.12.5...v0.13.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.5...v0.13.0)
+
+### Features
+
+* **api:** manual updates ([#95](https://github.com/DefinitelyATestOrg/sam-python/issues/95)) ([8a1153f](https://github.com/DefinitelyATestOrg/sam-python/commit/8a1153f98c09b2e1578bff1aa6409448ab325dce))
+
+
+### Chores
+
+* **deps:** bump anyio to v4.4.0 ([#90](https://github.com/DefinitelyATestOrg/sam-python/issues/90)) ([533021c](https://github.com/DefinitelyATestOrg/sam-python/commit/533021cb723869b7ac8dc24791a2f27b0738521e))
+* gitignore test server logs ([#93](https://github.com/DefinitelyATestOrg/sam-python/issues/93)) ([2e9cfbe](https://github.com/DefinitelyATestOrg/sam-python/commit/2e9cfbedf6004fffbaadb82497cd81cac51dd3a6))
+* **internal:** add reflection helper function ([#92](https://github.com/DefinitelyATestOrg/sam-python/issues/92)) ([c8a563d](https://github.com/DefinitelyATestOrg/sam-python/commit/c8a563df367c1631547a3e52e7150a2dc89f7051))
+* **internal:** add rich as a dev dependency ([#94](https://github.com/DefinitelyATestOrg/sam-python/issues/94)) ([6c24620](https://github.com/DefinitelyATestOrg/sam-python/commit/6c24620706cdb60a11f4a5918e0a9108cca07df2))
+
+## 0.12.5 (2024-06-27)
+
+Full Changelog: [v0.12.4...v0.12.5](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.4...v0.12.5)
+
+### Bug Fixes
+
+* **build:** include more files in sdist builds ([#87](https://github.com/DefinitelyATestOrg/sam-python/issues/87)) ([d9141be](https://github.com/DefinitelyATestOrg/sam-python/commit/d9141be425d1414d026695bbc2e240739ad5520d))
+
+## 0.12.4 (2024-06-26)
+
+Full Changelog: [v0.12.3...v0.12.4](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.3...v0.12.4)
+
+### Bug Fixes
+
+* temporarily patch upstream version to fix broken release flow ([#84](https://github.com/DefinitelyATestOrg/sam-python/issues/84)) ([61d9381](https://github.com/DefinitelyATestOrg/sam-python/commit/61d93814ae9b746cce274456bc547bb5bd7d942a))
+
+## 0.12.3 (2024-06-25)
+
+Full Changelog: [v0.12.2...v0.12.3](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.2...v0.12.3)
+
+### Bug Fixes
+
+* **docs:** fix link to advanced python httpx docs ([#81](https://github.com/DefinitelyATestOrg/sam-python/issues/81)) ([b71c291](https://github.com/DefinitelyATestOrg/sam-python/commit/b71c2910fb6955f22d0d2f4583d3b5cf083b2b0a))
+
+## 0.12.2 (2024-06-19)
+
+Full Changelog: [v0.12.1...v0.12.2](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.1...v0.12.2)
+
+### Bug Fixes
+
+* **client/async:** avoid blocking io call for platform headers ([#79](https://github.com/DefinitelyATestOrg/sam-python/issues/79)) ([6b763c4](https://github.com/DefinitelyATestOrg/sam-python/commit/6b763c45f492d285ec848a5f32daee4c1d903319))
+
+
+### Chores
+
+* **ci:** update rye install location ([#73](https://github.com/DefinitelyATestOrg/sam-python/issues/73)) ([15bffbe](https://github.com/DefinitelyATestOrg/sam-python/commit/15bffbe8ae5e4e5f24698f58504a5356fd94a9b3))
+* **ci:** update rye install location ([#74](https://github.com/DefinitelyATestOrg/sam-python/issues/74)) ([6bf70ed](https://github.com/DefinitelyATestOrg/sam-python/commit/6bf70ed79d797d86cb52c1eafdf325295c10acbe))
+* **client:** log response headers in debug mode ([#63](https://github.com/DefinitelyATestOrg/sam-python/issues/63)) ([2d7a79f](https://github.com/DefinitelyATestOrg/sam-python/commit/2d7a79f0922c74f44dc64f013cb3cb60f8b112c0))
+* **docs:** add SECURITY.md ([#68](https://github.com/DefinitelyATestOrg/sam-python/issues/68)) ([3940313](https://github.com/DefinitelyATestOrg/sam-python/commit/3940313783968fedb771a98f29445a191ca2e58d))
+* **internal:** add a `default_query` method ([#78](https://github.com/DefinitelyATestOrg/sam-python/issues/78)) ([893bba0](https://github.com/DefinitelyATestOrg/sam-python/commit/893bba06a77d48204d8478fe70c520382c8dc09d))
+* **internal:** add scripts/test, scripts/mock and add ci job ([#64](https://github.com/DefinitelyATestOrg/sam-python/issues/64)) ([2fa9e46](https://github.com/DefinitelyATestOrg/sam-python/commit/2fa9e465084e461959e4b7ac1499d3be56376540))
+* **internal:** add slightly better logging to scripts ([#71](https://github.com/DefinitelyATestOrg/sam-python/issues/71)) ([47d7e14](https://github.com/DefinitelyATestOrg/sam-python/commit/47d7e14633236f88c26522b011f5daafc4f2a52a))
+* **internal:** bump mock server version to ~5.8.0 ([#65](https://github.com/DefinitelyATestOrg/sam-python/issues/65)) ([b3009fe](https://github.com/DefinitelyATestOrg/sam-python/commit/b3009fe545ffbdbfe277517359a11ffa30fa05ab))
+* **internal:** bump pydantic dependency ([#69](https://github.com/DefinitelyATestOrg/sam-python/issues/69)) ([9feefd7](https://github.com/DefinitelyATestOrg/sam-python/commit/9feefd7f85fabbf694de4752b300ff93a154f69e))
+* **internal:** bump pyright ([#75](https://github.com/DefinitelyATestOrg/sam-python/issues/75)) ([c15cf79](https://github.com/DefinitelyATestOrg/sam-python/commit/c15cf7955ee00c94cd43b7176dcb65d28d5b6884))
+* **internal:** codegen related update ([#62](https://github.com/DefinitelyATestOrg/sam-python/issues/62)) ([c31fe8d](https://github.com/DefinitelyATestOrg/sam-python/commit/c31fe8df36402df3cffb745b9340bac533dba45d))
+* **internal:** codegen related update ([#67](https://github.com/DefinitelyATestOrg/sam-python/issues/67)) ([847c78c](https://github.com/DefinitelyATestOrg/sam-python/commit/847c78cf52801282299f5c58ff4e9f29fda941c0))
+* **internal:** codegen related update ([#70](https://github.com/DefinitelyATestOrg/sam-python/issues/70)) ([b83f859](https://github.com/DefinitelyATestOrg/sam-python/commit/b83f859c4e22aba1eb096e5ff07638e21e51db1f))
+* **internal:** codegen related update ([#72](https://github.com/DefinitelyATestOrg/sam-python/issues/72)) ([7defe4d](https://github.com/DefinitelyATestOrg/sam-python/commit/7defe4d5d2f9d302fb8def837e794e9a78021638))
+* **internal:** minor reformatting ([#61](https://github.com/DefinitelyATestOrg/sam-python/issues/61)) ([4256435](https://github.com/DefinitelyATestOrg/sam-python/commit/425643538c365bfceafefbda22593b68a3e03f44))
+* **internal:** update bootstrap script ([#77](https://github.com/DefinitelyATestOrg/sam-python/issues/77)) ([8d51d6c](https://github.com/DefinitelyATestOrg/sam-python/commit/8d51d6c727b2bc8d7c5aeac8dae8b4be98ab0fca))
+* **internal:** update test helper function ([#60](https://github.com/DefinitelyATestOrg/sam-python/issues/60)) ([7be0f6f](https://github.com/DefinitelyATestOrg/sam-python/commit/7be0f6fd201c3e77b868d4d05f85a988f02940d0))
+* **internal:** use actions/checkout@v4 for codeflow ([#58](https://github.com/DefinitelyATestOrg/sam-python/issues/58)) ([61c1320](https://github.com/DefinitelyATestOrg/sam-python/commit/61c13205e2683cb864b67e53153f285ed0749654))
+
+
+### Documentation
+
+* **contributing:** update references to rye-up.com ([#76](https://github.com/DefinitelyATestOrg/sam-python/issues/76)) ([10a9ef2](https://github.com/DefinitelyATestOrg/sam-python/commit/10a9ef2f876434d86c9cba22ac58265ce836643c))
+* **readme:** fix misleading timeout example value ([#66](https://github.com/DefinitelyATestOrg/sam-python/issues/66)) ([e3b37af](https://github.com/DefinitelyATestOrg/sam-python/commit/e3b37afe9f47bad5be6f3769a731d7b6ac683d59))
+
+## 0.12.1 (2024-04-24)
+
+Full Changelog: [v0.12.0...v0.12.1](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.12.0...v0.12.1)
+
+### Bug Fixes
+
+* **docs:** doc improvements ([#57](https://github.com/DefinitelyATestOrg/sam-python/issues/57)) ([100f363](https://github.com/DefinitelyATestOrg/sam-python/commit/100f36374ed11d8c847609c1fd26b38b93f0886e))
+
+
+### Chores
+
+* **internal:** add lru_cache helper function ([#48](https://github.com/DefinitelyATestOrg/sam-python/issues/48)) ([083ef52](https://github.com/DefinitelyATestOrg/sam-python/commit/083ef52474beb14ed7e1bcd28c7160940b748ec9))
+* **internal:** ban usage of lru_cache ([#50](https://github.com/DefinitelyATestOrg/sam-python/issues/50)) ([fa629e5](https://github.com/DefinitelyATestOrg/sam-python/commit/fa629e5de56111a468a6d9d9e514af20d2b6e519))
+* **internal:** bump pyright to 1.1.359 ([#55](https://github.com/DefinitelyATestOrg/sam-python/issues/55)) ([a11b72b](https://github.com/DefinitelyATestOrg/sam-python/commit/a11b72bbed119f84a2a4eb4e202bb780189f737e))
+* rebuild project due to codegen change ([#51](https://github.com/DefinitelyATestOrg/sam-python/issues/51)) ([3840a85](https://github.com/DefinitelyATestOrg/sam-python/commit/3840a856c3acad0c4d3f8a2e5d019f052371bb0c))
+* rename resource types ([#56](https://github.com/DefinitelyATestOrg/sam-python/issues/56)) ([db1e801](https://github.com/DefinitelyATestOrg/sam-python/commit/db1e801cbc2ad0b2fd6d9a35a0f1100bb20cb187))
+
+## 0.12.0 (2024-04-15)
+
+Full Changelog: [v0.11.0...v0.12.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.11.0...v0.12.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#43](https://github.com/DefinitelyATestOrg/sam-python/issues/43)) ([946a504](https://github.com/DefinitelyATestOrg/sam-python/commit/946a5046ff6307b5e665cbc5ab845e77c2fb9bff))
+* **api:** update via SDK Studio ([#45](https://github.com/DefinitelyATestOrg/sam-python/issues/45)) ([a17dc8d](https://github.com/DefinitelyATestOrg/sam-python/commit/a17dc8d1e83e0b8ce88e054277f1765586eab9b9))
+
+
+### Chores
+
+* go live ([#46](https://github.com/DefinitelyATestOrg/sam-python/issues/46)) ([1107b85](https://github.com/DefinitelyATestOrg/sam-python/commit/1107b8592a612a26b84d94d3cd2f8be685bdee2a))
+
+## 0.11.0 (2024-04-05)
+
+Full Changelog: [v0.10.0...v0.11.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.10.0...v0.11.0)
+
+### Features
+
+* **api:** update via SDK Studio ([#40](https://github.com/DefinitelyATestOrg/sam-python/issues/40)) ([0d69689](https://github.com/DefinitelyATestOrg/sam-python/commit/0d6968965ff8f5ada245de9d266022d2d9c65cb0))
+* **api:** update via SDK Studio ([#42](https://github.com/DefinitelyATestOrg/sam-python/issues/42)) ([802561f](https://github.com/DefinitelyATestOrg/sam-python/commit/802561fd5c1beccb5a44193978f45491377af4db))
+
 ## 0.10.0 (2024-03-29)
 
 Full Changelog: [v0.9.0...v0.10.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.9.0...v0.10.0)
