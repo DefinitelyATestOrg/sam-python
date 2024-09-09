@@ -40,10 +40,21 @@ __all__ = ["PetsResource", "AsyncPetsResource"]
 class PetsResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> PetsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#accessing-raw-response-data-eg-headers
+        """
         return PetsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> PetsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#with_streaming_response
+        """
         return PetsResourceWithStreamingResponse(self)
 
     def create(
@@ -330,10 +341,21 @@ class PetsResource(SyncAPIResource):
 class AsyncPetsResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncPetsResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncPetsResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncPetsResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#with_streaming_response
+        """
         return AsyncPetsResourceWithStreamingResponse(self)
 
     async def create(
