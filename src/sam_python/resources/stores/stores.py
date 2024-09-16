@@ -2,32 +2,37 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Literal
-
 import httpx
 
-from ...types import store_create_order_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
-from ..._utils import (
-    maybe_transform,
-    async_maybe_transform,
-)
 from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
-)
-from ..._base_client import make_request_options
+
 from ...types.shared.order import Order
+
+from ..._base_client import make_request_options
+
+from ..._utils import maybe_transform, async_maybe_transform
+
+from typing import Union
+
+from datetime import datetime
+
+from typing_extensions import Literal
+
 from ...types.store_inventory_response import StoreInventoryResponse
 
-__all__ = ["StoresResource", "AsyncStoresResource"]
+from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
+import warnings
+from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
+from typing_extensions import Literal
+from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
+from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ...types import shared_params
+from ...types import store_create_order_params
+from .orders import OrdersResource, AsyncOrdersResource
+
+__all__ = ["StoresResource", "AsyncStoresResource"]
 
 class StoresResource(SyncAPIResource):
     @cached_property
@@ -49,17 +54,15 @@ class StoresResource(SyncAPIResource):
         """
         return StoresResourceWithStreamingResponse(self)
 
-    def retrieve(
-        self,
-        order_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Order:
+    def retrieve(self,
+    order_id: int,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Order:
         """For valid response try integer IDs with value <= 5 or > 10.
 
         Other values will
@@ -76,23 +79,19 @@ class StoresResource(SyncAPIResource):
         """
         return self._get(
             f"/store/order/{order_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Order,
         )
 
-    def delete(
-        self,
-        order_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    def delete(self,
+    order_id: int,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """For valid response try integer IDs with value < 1000.
 
         Anything above 1000 or
@@ -110,28 +109,24 @@ class StoresResource(SyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/store/order/{order_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    def create_order(
-        self,
-        *,
-        id: int | NotGiven = NOT_GIVEN,
-        complete: bool | NotGiven = NOT_GIVEN,
-        pet_id: int | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        ship_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["placed", "approved", "delivered"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Order:
+    def create_order(self,
+    *,
+    id: int | NotGiven = NOT_GIVEN,
+    complete: bool | NotGiven = NOT_GIVEN,
+    pet_id: int | NotGiven = NOT_GIVEN,
+    quantity: int | NotGiven = NOT_GIVEN,
+    ship_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    status: Literal["placed", "approved", "delivered"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Order:
         """
         Place a new order in the store
 
@@ -148,42 +143,32 @@ class StoresResource(SyncAPIResource):
         """
         return self._post(
             "/store/order",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "complete": complete,
-                    "pet_id": pet_id,
-                    "quantity": quantity,
-                    "ship_date": ship_date,
-                    "status": status,
-                },
-                store_create_order_params.StoreCreateOrderParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            body=maybe_transform({
+                "id": id,
+                "complete": complete,
+                "pet_id": pet_id,
+                "quantity": quantity,
+                "ship_date": ship_date,
+                "status": status,
+            }, store_create_order_params.StoreCreateOrderParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Order,
         )
 
-    def inventory(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StoreInventoryResponse:
+    def inventory(self,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> StoreInventoryResponse:
         """Returns a map of status codes to quantities"""
         return self._get(
             "/store/inventory",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=StoreInventoryResponse,
         )
-
 
 class AsyncStoresResource(AsyncAPIResource):
     @cached_property
@@ -205,17 +190,15 @@ class AsyncStoresResource(AsyncAPIResource):
         """
         return AsyncStoresResourceWithStreamingResponse(self)
 
-    async def retrieve(
-        self,
-        order_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Order:
+    async def retrieve(self,
+    order_id: int,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Order:
         """For valid response try integer IDs with value <= 5 or > 10.
 
         Other values will
@@ -232,23 +215,19 @@ class AsyncStoresResource(AsyncAPIResource):
         """
         return await self._get(
             f"/store/order/{order_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Order,
         )
 
-    async def delete(
-        self,
-        order_id: int,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> None:
+    async def delete(self,
+    order_id: int,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
         """For valid response try integer IDs with value < 1000.
 
         Anything above 1000 or
@@ -266,28 +245,24 @@ class AsyncStoresResource(AsyncAPIResource):
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/store/order/{order_id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=NoneType,
         )
 
-    async def create_order(
-        self,
-        *,
-        id: int | NotGiven = NOT_GIVEN,
-        complete: bool | NotGiven = NOT_GIVEN,
-        pet_id: int | NotGiven = NOT_GIVEN,
-        quantity: int | NotGiven = NOT_GIVEN,
-        ship_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        status: Literal["placed", "approved", "delivered"] | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Order:
+    async def create_order(self,
+    *,
+    id: int | NotGiven = NOT_GIVEN,
+    complete: bool | NotGiven = NOT_GIVEN,
+    pet_id: int | NotGiven = NOT_GIVEN,
+    quantity: int | NotGiven = NOT_GIVEN,
+    ship_date: Union[str, datetime] | NotGiven = NOT_GIVEN,
+    status: Literal["placed", "approved", "delivered"] | NotGiven = NOT_GIVEN,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Order:
         """
         Place a new order in the store
 
@@ -304,42 +279,32 @@ class AsyncStoresResource(AsyncAPIResource):
         """
         return await self._post(
             "/store/order",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "complete": complete,
-                    "pet_id": pet_id,
-                    "quantity": quantity,
-                    "ship_date": ship_date,
-                    "status": status,
-                },
-                store_create_order_params.StoreCreateOrderParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            body=await async_maybe_transform({
+                "id": id,
+                "complete": complete,
+                "pet_id": pet_id,
+                "quantity": quantity,
+                "ship_date": ship_date,
+                "status": status,
+            }, store_create_order_params.StoreCreateOrderParams),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=Order,
         )
 
-    async def inventory(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> StoreInventoryResponse:
+    async def inventory(self,
+    *,
+    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+    # The extra values given here take precedence over values defined on the client or passed to this method.
+    extra_headers: Headers | None = None,
+    extra_query: Query | None = None,
+    extra_body: Body | None = None,
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> StoreInventoryResponse:
         """Returns a map of status codes to quantities"""
         return await self._get(
             "/store/inventory",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
             cast_to=StoreInventoryResponse,
         )
-
 
 class StoresResourceWithRawResponse:
     def __init__(self, stores: StoresResource) -> None:
@@ -358,7 +323,6 @@ class StoresResourceWithRawResponse:
             stores.inventory,
         )
 
-
 class AsyncStoresResourceWithRawResponse:
     def __init__(self, stores: AsyncStoresResource) -> None:
         self._stores = stores
@@ -376,7 +340,6 @@ class AsyncStoresResourceWithRawResponse:
             stores.inventory,
         )
 
-
 class StoresResourceWithStreamingResponse:
     def __init__(self, stores: StoresResource) -> None:
         self._stores = stores
@@ -393,7 +356,6 @@ class StoresResourceWithStreamingResponse:
         self.inventory = to_streamed_response_wrapper(
             stores.inventory,
         )
-
 
 class AsyncStoresResourceWithStreamingResponse:
     def __init__(self, stores: AsyncStoresResource) -> None:
