@@ -712,6 +712,7 @@ class TestSam:
         response = client.stores.with_raw_response.create_order()
 
         assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
 
 
 class TestAsyncSam:
@@ -1385,3 +1386,4 @@ class TestAsyncSam:
         response = await client.stores.with_raw_response.create_order()
 
         assert response.retries_taken == failures_before_success
+        assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
