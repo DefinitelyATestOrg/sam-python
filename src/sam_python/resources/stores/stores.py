@@ -32,10 +32,21 @@ __all__ = ["StoresResource", "AsyncStoresResource"]
 class StoresResource(SyncAPIResource):
     @cached_property
     def with_raw_response(self) -> StoresResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#accessing-raw-response-data-eg-headers
+        """
         return StoresResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> StoresResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#with_streaming_response
+        """
         return StoresResourceWithStreamingResponse(self)
 
     def retrieve(
@@ -177,10 +188,21 @@ class StoresResource(SyncAPIResource):
 class AsyncStoresResource(AsyncAPIResource):
     @cached_property
     def with_raw_response(self) -> AsyncStoresResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return the
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#accessing-raw-response-data-eg-headers
+        """
         return AsyncStoresResourceWithRawResponse(self)
 
     @cached_property
     def with_streaming_response(self) -> AsyncStoresResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#with_streaming_response
+        """
         return AsyncStoresResourceWithStreamingResponse(self)
 
     async def retrieve(

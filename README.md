@@ -1,6 +1,6 @@
 # Sam Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/sam-python.svg)](https://pypi.org/project/sam-python/)
+[![PyPI version](https://img.shields.io/pypi/v/sam_python.svg)](https://pypi.org/project/sam_python/)
 
 The Sam Python library provides convenient access to the Sam REST API from any Python 3.7+
 application. The library includes type definitions for all request params and response fields,
@@ -20,7 +20,7 @@ pip install git+ssh://git@github.com/DefinitelyATestOrg/sam-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre sam-python`
+> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre sam_python`
 
 ## Usage
 
@@ -291,6 +291,21 @@ We take backwards-compatibility seriously and work hard to ensure you can rely o
 
 We are keen for your feedback; please open an [issue](https://www.github.com/DefinitelyATestOrg/sam-python/issues) with questions, bugs, or suggestions.
 
+### Determining the installed version
+
+If you've upgraded to the latest version but aren't seeing any new features you were expecting then your python environment is likely still using an older version.
+
+You can determine the version that is being used at runtime with:
+
+```py
+import sam_python
+print(sam_python.__version__)
+```
+
 ## Requirements
 
 Python 3.7 or higher.
+
+## Contributing
+
+See [the contributing documentation](./CONTRIBUTING.md).
