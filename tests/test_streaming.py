@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from sam_python import Sam, AsyncSam
-from sam_python._streaming import Stream, AsyncStream, ServerSentEvent
+from sam import Sam, AsyncSam
+from sam._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio
