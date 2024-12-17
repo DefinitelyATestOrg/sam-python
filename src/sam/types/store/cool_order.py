@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["Order"]
+__all__ = ["CoolOrder"]
 
 
-class Order(BaseModel):
+class CoolOrder(BaseModel):
     id: Optional[int] = None
 
     complete: Optional[bool] = None
