@@ -1,8 +1,8 @@
 # Sam Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/sam_python.svg)](https://pypi.org/project/sam_python/)
+[![PyPI version](https://img.shields.io/pypi/v/sam.svg)](https://pypi.org/project/sam/)
 
-The Sam Python library provides convenient access to the Sam REST API from any Python 3.7+
+The Sam Python library provides convenient access to the Sam REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -15,25 +15,30 @@ The REST API documentation can be found on [docs.sam.com](https://docs.sam.com).
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/DefinitelyATestOrg/sam-python.git
+# install from this staging repo
+pip install git+ssh://git@github.com/stainless-sdks/sam-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre sam_python`
+> Once this package is [published to PyPI](https://app.stainlessapi.com/docs/guides/publish), this will become: `pip install --pre sam`
 
 ## Usage
 
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-from sam_python import Sam
+from sam import Sam
 
 client = Sam()
 
-order = client.stores.create_order()
-print(order.id)
+user = client.users.create()
+print(user.id)
 ```
+
+While you can provide an `api_key` keyword argument,
+we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
+to add `API_KEY="My API Key"` to your `.env` file
+so that your API Key is not stored in source control.
 
 ## Async usage
 
@@ -41,14 +46,14 @@ Simply import `AsyncSam` instead of `Sam` and use `await` with each API call:
 
 ```python
 import asyncio
-from sam_python import AsyncSam
+from sam import AsyncSam
 
 client = AsyncSam()
 
 
 async def main() -> None:
-    order = await client.stores.create_order()
-    print(order.id)
+    user = await client.users.create()
+    print(user.id)
 
 
 asyncio.run(main())
@@ -67,27 +72,27 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `sam_python.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `sam.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `sam_python.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `sam.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `sam_python.APIError`.
+All errors inherit from `sam.APIError`.
 
 ```python
-import sam_python
-from sam_python import Sam
+import sam
+from sam import Sam
 
 client = Sam()
 
 try:
-    client.stores.create_order()
-except sam_python.APIConnectionError as e:
+    client.users.create()
+except sam.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except sam_python.RateLimitError as e:
+except sam.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except sam_python.APIStatusError as e:
+except sam.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -115,7 +120,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from sam_python import Sam
+from sam import Sam
 
 # Configure the default for all requests:
 client = Sam(
@@ -124,7 +129,7 @@ client = Sam(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).stores.create_order()
+client.with_options(max_retries=5).users.create()
 ```
 
 ### Timeouts
@@ -133,7 +138,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
 
 ```python
-from sam_python import Sam
+from sam import Sam
 
 # Configure the default for all requests:
 client = Sam(
@@ -147,7 +152,7 @@ client = Sam(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).stores.create_order()
+client.with_options(timeout=5.0).users.create()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -160,11 +165,13 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `SAM_LOG` to `debug`.
+You can enable logging by setting the environment variable `SAM_LOG` to `info`.
 
 ```shell
-$ export SAM_LOG=debug
+$ export SAM_LOG=info
 ```
+
+Or to `debug` for more verbose logging.
 
 ### How to tell whether `None` means `null` or missing
 
@@ -183,19 +190,19 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from sam_python import Sam
+from sam import Sam
 
 client = Sam()
-response = client.stores.with_raw_response.create_order()
+response = client.users.with_raw_response.create()
 print(response.headers.get('X-My-Header'))
 
-store = response.parse()  # get the object that `stores.create_order()` would have returned
-print(store.id)
+user = response.parse()  # get the object that `users.create()` would have returned
+print(user.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/sam-python/tree/main/src/sam/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam_python/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/sam-python/tree/main/src/sam/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -204,7 +211,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.stores.with_streaming_response.create_order() as response:
+with client.users.with_streaming_response.create() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
@@ -252,18 +259,19 @@ can also get all the extra fields on the Pydantic model as a dict with
 
 You can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:
 
-- Support for proxies
-- Custom transports
+- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)
+- Custom [transports](https://www.python-httpx.org/advanced/transports/)
 - Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
 
 ```python
-from sam_python import Sam, DefaultHttpxClient
+import httpx
+from sam import Sam, DefaultHttpxClient
 
 client = Sam(
     # Or use the `SAM_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
-        proxies="http://my.test.proxy.example.com",
+        proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
 )
@@ -279,6 +287,16 @@ client.with_options(http_client=DefaultHttpxClient(...))
 
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
+```py
+from sam import Sam
+
+with Sam() as client:
+  # make requests here
+  ...
+
+# HTTP client is now closed
+```
+
 ## Versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
@@ -289,7 +307,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/DefinitelyATestOrg/sam-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/sam-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
@@ -298,13 +316,13 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import sam_python
-print(sam_python.__version__)
+import sam
+print(sam.__version__)
 ```
 
 ## Requirements
 
-Python 3.7 or higher.
+Python 3.8 or higher.
 
 ## Contributing
 

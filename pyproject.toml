@@ -1,5 +1,5 @@
 [project]
-name = "sam_python"
+name = "sam"
 version = "0.15.0-alpha.1"
 description = "The official Python library for the sam API"
 dynamic = ["readme"]
@@ -10,17 +10,15 @@ authors = [
 dependencies = [
     "httpx>=0.23.0, <1",
     "pydantic>=1.9.0, <3",
-    "typing-extensions>=4.7, <5",
+    "typing-extensions>=4.10, <5",
     "anyio>=3.5.0, <5",
     "distro>=1.7.0, <2",
     "sniffio",
-    "cached-property; python_version < '3.8'",
 ]
-requires-python = ">= 3.7"
+requires-python = ">= 3.8"
 classifiers = [
   "Typing :: Typed",
   "Intended Audience :: Developers",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -36,8 +34,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/DefinitelyATestOrg/sam-python"
-Repository = "https://github.com/DefinitelyATestOrg/sam-python"
+Homepage = "https://github.com/stainless-sdks/sam-python"
+Repository = "https://github.com/stainless-sdks/sam-python"
 
 
 
@@ -56,6 +54,7 @@ dev-dependencies = [
     "dirty-equals>=0.6.0",
     "importlib-metadata>=6.7.0",
     "rich>=13.7.1",
+    "nest_asyncio==1.6.0"
 ]
 
 [tool.rye.scripts]
@@ -77,14 +76,14 @@ format = { chain = [
 "check:ruff" = "ruff check ."
 "fix:ruff" = "ruff check --fix ."
 
-"check:importable" = "python -c 'import sam_python'"
+"check:importable" = "python -c 'import sam'"
 
 typecheck = { chain = [
   "typecheck:pyright",
   "typecheck:mypy"
 ]}
 "typecheck:pyright" = "pyright"
-"typecheck:verify-types" = "pyright --verifytypes sam_python --ignoreexternal"
+"typecheck:verify-types" = "pyright --verifytypes sam --ignoreexternal"
 "typecheck:mypy" = "mypy ."
 
 [build-system]
@@ -97,7 +96,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/sam_python"]
+packages = ["src/sam"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
@@ -123,7 +122,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/DefinitelyATestOrg/sam-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/stainless-sdks/sam-python/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -139,7 +138,7 @@ filterwarnings = [
 # there are a couple of flags that are still disabled by
 # default in strict mode as they are experimental and niche.
 typeCheckingMode = "strict"
-pythonVersion = "3.7"
+pythonVersion = "3.8"
 
 exclude = [
     "_dev",
@@ -199,7 +198,7 @@ length-sort = true
 length-sort-straight = true
 combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
-known-first-party = ["sam_python", "tests"]
+known-first-party = ["sam", "tests"]
 
 [tool.ruff.lint.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]

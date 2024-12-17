@@ -6,8 +6,8 @@ import httpx
 import pytest
 import pydantic
 
-from sam_python import Sam, AsyncSam, BaseModel
-from sam_python._response import (
+from sam import Sam, AsyncSam, BaseModel
+from sam._response import (
     APIResponse,
     BaseAPIResponse,
     AsyncAPIResponse,
@@ -15,8 +15,8 @@ from sam_python._response import (
     AsyncBinaryAPIResponse,
     extract_response_type,
 )
-from sam_python._streaming import Stream
-from sam_python._base_client import FinalRequestOptions
+from sam._streaming import Stream
+from sam._base_client import FinalRequestOptions
 
 
 class ConcreteBaseAPIResponse(APIResponse[bytes]): ...
@@ -37,7 +37,7 @@ def test_extract_response_type_direct_classes() -> None:
 def test_extract_response_type_direct_class_missing_type_arg() -> None:
     with pytest.raises(
         RuntimeError,
-        match="Expected type <class 'sam_python._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
+        match="Expected type <class 'sam._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
     ):
         extract_response_type(AsyncAPIResponse)
 
@@ -68,7 +68,7 @@ def test_response_parse_mismatched_basemodel(client: Sam) -> None:
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from sam_python import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from sam import BaseModel`",
     ):
         response.parse(to=PydanticModel)
 
@@ -86,7 +86,7 @@ async def test_async_response_parse_mismatched_basemodel(async_client: AsyncSam)
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from sam_python import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from sam import BaseModel`",
     ):
         await response.parse(to=PydanticModel)
 

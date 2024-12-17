@@ -8,17 +8,18 @@ from typing import Any, TypeVar, Iterator, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from sam_python._types import Omit, NoneType
-from sam_python._utils import (
+from sam._types import Omit, NoneType
+from sam._utils import (
     is_dict,
     is_list,
     is_list_type,
     is_union_type,
     extract_type_arg,
     is_annotated_type,
+    is_type_alias_type,
 )
-from sam_python._compat import PYDANTIC_V2, field_outer_type, get_model_fields
-from sam_python._models import BaseModel
+from sam._compat import PYDANTIC_V2, field_outer_type, get_model_fields
+from sam._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 
@@ -51,6 +52,9 @@ def assert_matches_type(
     path: list[str],
     allow_none: bool = False,
 ) -> None:
+    if is_type_alias_type(type_):
+        type_ = type_.__value__
+
     # unwrap `Annotated[T, ...]` -> `T`
     if is_annotated_type(type_):
         type_ = extract_type_arg(type_, 0)
