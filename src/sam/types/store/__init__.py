@@ -2,4 +2,4 @@
 
 from __future__ import annotations
 
-from .order import Order as Order
+from .cool_order import CoolOrder as CoolOrder

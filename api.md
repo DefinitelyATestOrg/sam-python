@@ -5,12 +5,12 @@
 Types:
 
 ```python
-from sam.types.store import Order
+from sam.types.store import CoolOrder
 ```
 
 Methods:
 
-- <code title="get /store/order/{orderId}">client.store.orders.<a href="./src/sam/resources/store/orders.py">retrieve</a>(order_id) -> <a href="./src/sam/types/store/order.py">Order</a></code>
+- <code title="get /store/order/{orderId}">client.store.orders.<a href="./src/sam/resources/store/orders.py">retrieve</a>(order_id) -> <a href="./src/sam/types/store/cool_order.py">CoolOrder</a></code>
 - <code title="delete /store/order/{orderId}">client.store.orders.<a href="./src/sam/resources/store/orders.py">delete</a>(order_id) -> None</code>
 
 # Users
