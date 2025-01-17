@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
@@ -10,8 +10,6 @@ __all__ = ["UserUpdateParams"]
 
 
 class UserUpdateParams(TypedDict, total=False):
-    path_username: Required[Annotated[str, PropertyInfo(alias="username")]]
-
     id: int
 
     email: str
@@ -24,7 +22,7 @@ class UserUpdateParams(TypedDict, total=False):
 
     phone: str
 
-    body_username: Annotated[str, PropertyInfo(alias="username")]
+    username_2: Annotated[str, PropertyInfo(alias="username")]
 
     user_status: Annotated[int, PropertyInfo(alias="userStatus")]
     """User Status"""

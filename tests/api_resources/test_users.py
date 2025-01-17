@@ -99,21 +99,21 @@ class TestUsers:
     @parametrize
     def test_method_update(self, client: Sam) -> None:
         user = client.users.update(
-            path_username="username",
+            username_1="username",
         )
         assert user is None
 
     @parametrize
     def test_method_update_with_all_params(self, client: Sam) -> None:
         user = client.users.update(
-            path_username="username",
+            username_1="username",
             id=10,
             email="john@email.com",
             first_name="John",
             last_name="James",
             password="12345",
             phone="12345",
-            body_username="theUser",
+            username_2="theUser",
             user_status=1,
         )
         assert user is None
@@ -121,7 +121,7 @@ class TestUsers:
     @parametrize
     def test_raw_response_update(self, client: Sam) -> None:
         response = client.users.with_raw_response.update(
-            path_username="username",
+            username_1="username",
         )
 
         assert response.is_closed is True
@@ -132,7 +132,7 @@ class TestUsers:
     @parametrize
     def test_streaming_response_update(self, client: Sam) -> None:
         with client.users.with_streaming_response.update(
-            path_username="username",
+            username_1="username",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -144,10 +144,10 @@ class TestUsers:
 
     @parametrize
     def test_path_params_update(self, client: Sam) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_username` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `username_1` but received ''"):
             client.users.with_raw_response.update(
-                path_username="",
-                body_username="",
+                username_1="",
+                username_2="",
             )
 
     @parametrize
@@ -361,21 +361,21 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_update(self, async_client: AsyncSam) -> None:
         user = await async_client.users.update(
-            path_username="username",
+            username_1="username",
         )
         assert user is None
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncSam) -> None:
         user = await async_client.users.update(
-            path_username="username",
+            username_1="username",
             id=10,
             email="john@email.com",
             first_name="John",
             last_name="James",
             password="12345",
             phone="12345",
-            body_username="theUser",
+            username_2="theUser",
             user_status=1,
         )
         assert user is None
@@ -383,7 +383,7 @@ class TestAsyncUsers:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncSam) -> None:
         response = await async_client.users.with_raw_response.update(
-            path_username="username",
+            username_1="username",
         )
 
         assert response.is_closed is True
@@ -394,7 +394,7 @@ class TestAsyncUsers:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncSam) -> None:
         async with async_client.users.with_streaming_response.update(
-            path_username="username",
+            username_1="username",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -406,10 +406,10 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_path_params_update(self, async_client: AsyncSam) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_username` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `username_1` but received ''"):
             await async_client.users.with_raw_response.update(
-                path_username="",
-                body_username="",
+                username_1="",
+                username_2="",
             )
 
     @parametrize
