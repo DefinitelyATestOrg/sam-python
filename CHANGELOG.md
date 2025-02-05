@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.15.0-alpha.4 (2025-02-05)
+
+Full Changelog: [v0.15.0-alpha.3...v0.15.0-alpha.4](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.3...v0.15.0-alpha.4)
+
+### Bug Fixes
+
+* improve names for conflicting params ([#207](https://github.com/DefinitelyATestOrg/sam-python/issues/207)) ([bc4672b](https://github.com/DefinitelyATestOrg/sam-python/commit/bc4672b3285bd9edd19b6cf5cbe0c769fc1148f2))
+
+
+### Chores
+
+* **internal:** bummp ruff dependency ([#206](https://github.com/DefinitelyATestOrg/sam-python/issues/206)) ([59d91fa](https://github.com/DefinitelyATestOrg/sam-python/commit/59d91fac838800e957c8f4bea2f0f13034c515b4))
+* **internal:** change default timeout to an int ([#204](https://github.com/DefinitelyATestOrg/sam-python/issues/204)) ([c609b25](https://github.com/DefinitelyATestOrg/sam-python/commit/c609b254e43897bb29afd4a97a6d76c733e89b9e))
+
 ## 0.15.0-alpha.3 (2025-02-05)
 
 Full Changelog: [v0.15.0-alpha.1...v0.15.0-alpha.3](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.1...v0.15.0-alpha.3)
