@@ -139,7 +139,7 @@ class UsersResource(SyncAPIResource):
 
     def update(
         self,
-        username_1: str,
+        path_username: str,
         *,
         id: int | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
@@ -147,7 +147,7 @@ class UsersResource(SyncAPIResource):
         last_name: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         phone: str | NotGiven = NOT_GIVEN,
-        username_2: str | NotGiven = NOT_GIVEN,
+        body_username: str | NotGiven = NOT_GIVEN,
         user_status: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -170,11 +170,11 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not username_1:
-            raise ValueError(f"Expected a non-empty value for `username_1` but received {username_1!r}")
+        if not path_username:
+            raise ValueError(f"Expected a non-empty value for `path_username` but received {path_username!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._put(
-            f"/user/{username_1}",
+            f"/user/{path_username}",
             body=maybe_transform(
                 {
                     "id": id,
@@ -183,7 +183,7 @@ class UsersResource(SyncAPIResource):
                     "last_name": last_name,
                     "password": password,
                     "phone": phone,
-                    "username_2": username_2,
+                    "body_username": body_username,
                     "user_status": user_status,
                 },
                 user_update_params.UserUpdateParams,
@@ -435,7 +435,7 @@ class AsyncUsersResource(AsyncAPIResource):
 
     async def update(
         self,
-        username_1: str,
+        path_username: str,
         *,
         id: int | NotGiven = NOT_GIVEN,
         email: str | NotGiven = NOT_GIVEN,
@@ -443,7 +443,7 @@ class AsyncUsersResource(AsyncAPIResource):
         last_name: str | NotGiven = NOT_GIVEN,
         password: str | NotGiven = NOT_GIVEN,
         phone: str | NotGiven = NOT_GIVEN,
-        username_2: str | NotGiven = NOT_GIVEN,
+        body_username: str | NotGiven = NOT_GIVEN,
         user_status: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -466,11 +466,11 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not username_1:
-            raise ValueError(f"Expected a non-empty value for `username_1` but received {username_1!r}")
+        if not path_username:
+            raise ValueError(f"Expected a non-empty value for `path_username` but received {path_username!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._put(
-            f"/user/{username_1}",
+            f"/user/{path_username}",
             body=await async_maybe_transform(
                 {
                     "id": id,
@@ -479,7 +479,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     "last_name": last_name,
                     "password": password,
                     "phone": phone,
-                    "username_2": username_2,
+                    "body_username": body_username,
                     "user_status": user_status,
                 },
                 user_update_params.UserUpdateParams,
