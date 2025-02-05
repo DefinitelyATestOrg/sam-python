@@ -22,7 +22,7 @@ class UserUpdateParams(TypedDict, total=False):
 
     phone: str
 
-    username_2: Annotated[str, PropertyInfo(alias="username")]
+    body_username: Annotated[str, PropertyInfo(alias="username")]
 
     user_status: Annotated[int, PropertyInfo(alias="userStatus")]
     """User Status"""
