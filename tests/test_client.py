@@ -23,10 +23,12 @@ from pydantic import ValidationError
 
 from sam import Sam, AsyncSam, APIResponseValidationError
 from sam._types import Omit
+from sam._utils import maybe_transform
 from sam._models import BaseModel, FinalRequestOptions
 from sam._constants import RAW_RESPONSE_HEADER
 from sam._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from sam._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
+from sam.types.user_create_params import UserCreateParams
 
 from .utils import update_env
 
@@ -692,7 +694,7 @@ class TestSam:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/user",
-                body=cast(object, dict()),
+                body=cast(object, maybe_transform(dict(), UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -707,7 +709,7 @@ class TestSam:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/user",
-                body=cast(object, dict()),
+                body=cast(object, maybe_transform(dict(), UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1446,7 +1448,7 @@ class TestAsyncSam:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/user",
-                body=cast(object, dict()),
+                body=cast(object, maybe_transform(dict(), UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1461,7 +1463,7 @@ class TestAsyncSam:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/user",
-                body=cast(object, dict()),
+                body=cast(object, maybe_transform(dict(), UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
