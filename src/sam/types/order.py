@@ -6,12 +6,12 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..._models import BaseModel
+from .._models import BaseModel
 
-__all__ = ["CoolOrder"]
+__all__ = ["Order"]
 
 
-class CoolOrder(BaseModel):
+class Order(BaseModel):
     id: Optional[int] = None
 
     complete: Optional[bool] = None
