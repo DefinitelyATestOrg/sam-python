@@ -694,7 +694,7 @@ class TestSam:
         with pytest.raises(APITimeoutError):
             self.client.post(
                 "/user",
-                body=cast(object, maybe_transform(dict(), UserCreateParams)),
+                body=cast(object, maybe_transform({}, UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -709,7 +709,7 @@ class TestSam:
         with pytest.raises(APIStatusError):
             self.client.post(
                 "/user",
-                body=cast(object, maybe_transform(dict(), UserCreateParams)),
+                body=cast(object, maybe_transform({}, UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1448,7 +1448,7 @@ class TestAsyncSam:
         with pytest.raises(APITimeoutError):
             await self.client.post(
                 "/user",
-                body=cast(object, maybe_transform(dict(), UserCreateParams)),
+                body=cast(object, maybe_transform({}, UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1463,7 +1463,7 @@ class TestAsyncSam:
         with pytest.raises(APIStatusError):
             await self.client.post(
                 "/user",
-                body=cast(object, maybe_transform(dict(), UserCreateParams)),
+                body=cast(object, maybe_transform({}, UserCreateParams)),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
