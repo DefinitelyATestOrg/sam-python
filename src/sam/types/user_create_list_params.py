@@ -7,8 +7,8 @@ from typing_extensions import Required, TypedDict
 
 from .user_param import UserParam
 
-__all__ = ["UserCreateWithListParams"]
+__all__ = ["UserCreateListParams"]
 
 
-class UserCreateWithListParams(TypedDict, total=False):
+class UserCreateListParams(TypedDict, total=False):
     body: Required[Iterable[UserParam]]

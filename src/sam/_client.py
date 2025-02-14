@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import users
+from .resources import user
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import SamError, APIStatusError
 from ._base_client import (
@@ -39,7 +39,7 @@ __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Sam", "Asy
 
 class Sam(SyncAPIClient):
     store: store.StoreResource
-    users: users.UsersResource
+    user: user.UserResource
     with_raw_response: SamWithRawResponse
     with_streaming_response: SamWithStreamedResponse
 
@@ -98,7 +98,7 @@ class Sam(SyncAPIClient):
         )
 
         self.store = store.StoreResource(self)
-        self.users = users.UsersResource(self)
+        self.user = user.UserResource(self)
         self.with_raw_response = SamWithRawResponse(self)
         self.with_streaming_response = SamWithStreamedResponse(self)
 
@@ -209,7 +209,7 @@ class Sam(SyncAPIClient):
 
 class AsyncSam(AsyncAPIClient):
     store: store.AsyncStoreResource
-    users: users.AsyncUsersResource
+    user: user.AsyncUserResource
     with_raw_response: AsyncSamWithRawResponse
     with_streaming_response: AsyncSamWithStreamedResponse
 
@@ -268,7 +268,7 @@ class AsyncSam(AsyncAPIClient):
         )
 
         self.store = store.AsyncStoreResource(self)
-        self.users = users.AsyncUsersResource(self)
+        self.user = user.AsyncUserResource(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
         self.with_streaming_response = AsyncSamWithStreamedResponse(self)
 
@@ -380,25 +380,25 @@ class AsyncSam(AsyncAPIClient):
 class SamWithRawResponse:
     def __init__(self, client: Sam) -> None:
         self.store = store.StoreResourceWithRawResponse(client.store)
-        self.users = users.UsersResourceWithRawResponse(client.users)
+        self.user = user.UserResourceWithRawResponse(client.user)
 
 
 class AsyncSamWithRawResponse:
     def __init__(self, client: AsyncSam) -> None:
         self.store = store.AsyncStoreResourceWithRawResponse(client.store)
-        self.users = users.AsyncUsersResourceWithRawResponse(client.users)
+        self.user = user.AsyncUserResourceWithRawResponse(client.user)
 
 
 class SamWithStreamedResponse:
     def __init__(self, client: Sam) -> None:
         self.store = store.StoreResourceWithStreamingResponse(client.store)
-        self.users = users.UsersResourceWithStreamingResponse(client.users)
+        self.user = user.UserResourceWithStreamingResponse(client.user)
 
 
 class AsyncSamWithStreamedResponse:
     def __init__(self, client: AsyncSam) -> None:
         self.store = store.AsyncStoreResourceWithStreamingResponse(client.store)
-        self.users = users.AsyncUsersResourceWithStreamingResponse(client.users)
+        self.user = user.AsyncUserResourceWithStreamingResponse(client.user)
 
 
 Client = Sam
