@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.15.0-alpha.5 (2025-02-14)
+
+Full Changelog: [v0.15.0-alpha.4...v0.15.0-alpha.5](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.4...v0.15.0-alpha.5)
+
+### Features
+
+* **api:** manual updates ([#214](https://github.com/DefinitelyATestOrg/sam-python/issues/214)) ([c8001c5](https://github.com/DefinitelyATestOrg/sam-python/commit/c8001c5460ffdf1a3b4025dab3c407ce25a0fc16))
+* **client:** send `X-Stainless-Read-Timeout` header ([#209](https://github.com/DefinitelyATestOrg/sam-python/issues/209)) ([1c4efe1](https://github.com/DefinitelyATestOrg/sam-python/commit/1c4efe1547a9dc6d00c5b2286f44179912fdb7f4))
+
+
+### Chores
+
+* **internal:** fix type traversing dictionary params ([#211](https://github.com/DefinitelyATestOrg/sam-python/issues/211)) ([c49a30e](https://github.com/DefinitelyATestOrg/sam-python/commit/c49a30e11fe6ce9e439c4b9b023e981bba891d82))
+* **internal:** minor type handling changes ([#212](https://github.com/DefinitelyATestOrg/sam-python/issues/212)) ([1229f4a](https://github.com/DefinitelyATestOrg/sam-python/commit/1229f4a07c2cfb2dee1ed5ca789eca73879451b6))
+* **internal:** update client tests ([#213](https://github.com/DefinitelyATestOrg/sam-python/issues/213)) ([93c3d71](https://github.com/DefinitelyATestOrg/sam-python/commit/93c3d711d5cd4d318c89fde38952b685bcebfe94))
+
 ## 0.15.0-alpha.4 (2025-02-05)
 
 Full Changelog: [v0.15.0-alpha.3...v0.15.0-alpha.4](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.3...v0.15.0-alpha.4)
