@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0-alpha.6 (2025-02-14)
+
+Full Changelog: [v0.15.0-alpha.5...v0.15.0-alpha.6](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.5...v0.15.0-alpha.6)
+
+### Bug Fixes
+
+* asyncify on non-asyncio runtimes ([#216](https://github.com/DefinitelyATestOrg/sam-python/issues/216)) ([104fee4](https://github.com/DefinitelyATestOrg/sam-python/commit/104fee4d627688e07e7f9badd80ab1da3cf53960))
+
 ## 0.15.0-alpha.5 (2025-02-14)
 
 Full Changelog: [v0.15.0-alpha.4...v0.15.0-alpha.5](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.4...v0.15.0-alpha.5)
