@@ -6,11 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..types import (
-    user_login_params,
-    user_create_params,
-    user_update_params,
-)
+from ..types import user_login_params, user_create_params, user_update_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from .._utils import (
     maybe_transform,
@@ -28,28 +24,28 @@ from ..types.user import User
 from .._base_client import make_request_options
 from ..types.user_param import UserParam
 
-__all__ = ["UsersResource", "AsyncUsersResource"]
+__all__ = ["UserResource", "AsyncUserResource"]
 
 
-class UsersResource(SyncAPIResource):
+class UserResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> UsersResourceWithRawResponse:
+    def with_raw_response(self) -> UserResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#accessing-raw-response-data-eg-headers
         """
-        return UsersResourceWithRawResponse(self)
+        return UserResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> UsersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> UserResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#with_streaming_response
         """
-        return UsersResourceWithStreamingResponse(self)
+        return UserResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -228,7 +224,7 @@ class UsersResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def create_with_list(
+    def create_list(
         self,
         *,
         body: Iterable[UserParam],
@@ -327,25 +323,25 @@ class UsersResource(SyncAPIResource):
         )
 
 
-class AsyncUsersResource(AsyncAPIResource):
+class AsyncUserResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncUsersResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncUserResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncUsersResourceWithRawResponse(self)
+        return AsyncUserResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncUsersResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncUserResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/DefinitelyATestOrg/sam-python#with_streaming_response
         """
-        return AsyncUsersResourceWithStreamingResponse(self)
+        return AsyncUserResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -524,7 +520,7 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def create_with_list(
+    async def create_list(
         self,
         *,
         body: Iterable[UserParam],
@@ -623,109 +619,109 @@ class AsyncUsersResource(AsyncAPIResource):
         )
 
 
-class UsersResourceWithRawResponse:
-    def __init__(self, users: UsersResource) -> None:
-        self._users = users
+class UserResourceWithRawResponse:
+    def __init__(self, user: UserResource) -> None:
+        self._user = user
 
         self.create = to_raw_response_wrapper(
-            users.create,
+            user.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            users.retrieve,
+            user.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            users.update,
+            user.update,
         )
         self.delete = to_raw_response_wrapper(
-            users.delete,
+            user.delete,
         )
-        self.create_with_list = to_raw_response_wrapper(
-            users.create_with_list,
+        self.create_list = to_raw_response_wrapper(
+            user.create_list,
         )
         self.login = to_raw_response_wrapper(
-            users.login,
+            user.login,
         )
         self.logout = to_raw_response_wrapper(
-            users.logout,
+            user.logout,
         )
 
 
-class AsyncUsersResourceWithRawResponse:
-    def __init__(self, users: AsyncUsersResource) -> None:
-        self._users = users
+class AsyncUserResourceWithRawResponse:
+    def __init__(self, user: AsyncUserResource) -> None:
+        self._user = user
 
         self.create = async_to_raw_response_wrapper(
-            users.create,
+            user.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            users.retrieve,
+            user.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            users.update,
+            user.update,
         )
         self.delete = async_to_raw_response_wrapper(
-            users.delete,
+            user.delete,
         )
-        self.create_with_list = async_to_raw_response_wrapper(
-            users.create_with_list,
+        self.create_list = async_to_raw_response_wrapper(
+            user.create_list,
         )
         self.login = async_to_raw_response_wrapper(
-            users.login,
+            user.login,
         )
         self.logout = async_to_raw_response_wrapper(
-            users.logout,
+            user.logout,
         )
 
 
-class UsersResourceWithStreamingResponse:
-    def __init__(self, users: UsersResource) -> None:
-        self._users = users
+class UserResourceWithStreamingResponse:
+    def __init__(self, user: UserResource) -> None:
+        self._user = user
 
         self.create = to_streamed_response_wrapper(
-            users.create,
+            user.create,
         )
         self.retrieve = to_streamed_response_wrapper(
-            users.retrieve,
+            user.retrieve,
         )
         self.update = to_streamed_response_wrapper(
-            users.update,
+            user.update,
         )
         self.delete = to_streamed_response_wrapper(
-            users.delete,
+            user.delete,
         )
-        self.create_with_list = to_streamed_response_wrapper(
-            users.create_with_list,
+        self.create_list = to_streamed_response_wrapper(
+            user.create_list,
         )
         self.login = to_streamed_response_wrapper(
-            users.login,
+            user.login,
         )
         self.logout = to_streamed_response_wrapper(
-            users.logout,
+            user.logout,
         )
 
 
-class AsyncUsersResourceWithStreamingResponse:
-    def __init__(self, users: AsyncUsersResource) -> None:
-        self._users = users
+class AsyncUserResourceWithStreamingResponse:
+    def __init__(self, user: AsyncUserResource) -> None:
+        self._user = user
 
         self.create = async_to_streamed_response_wrapper(
-            users.create,
+            user.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
-            users.retrieve,
+            user.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
-            users.update,
+            user.update,
         )
         self.delete = async_to_streamed_response_wrapper(
-            users.delete,
+            user.delete,
         )
-        self.create_with_list = async_to_streamed_response_wrapper(
-            users.create_with_list,
+        self.create_list = async_to_streamed_response_wrapper(
+            user.create_list,
         )
         self.login = async_to_streamed_response_wrapper(
-            users.login,
+            user.login,
         )
         self.logout = async_to_streamed_response_wrapper(
-            users.logout,
+            user.logout,
         )

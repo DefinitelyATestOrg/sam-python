@@ -16,17 +16,17 @@ from tests.utils import assert_matches_type
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestUsers:
+class TestUser:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_create(self, client: Sam) -> None:
-        user = client.users.create()
+        user = client.user.create()
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Sam) -> None:
-        user = client.users.create(
+        user = client.user.create(
             id=10,
             email="john@email.com",
             first_name="John",
@@ -40,7 +40,7 @@ class TestUsers:
 
     @parametrize
     def test_raw_response_create(self, client: Sam) -> None:
-        response = client.users.with_raw_response.create()
+        response = client.user.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -49,7 +49,7 @@ class TestUsers:
 
     @parametrize
     def test_streaming_response_create(self, client: Sam) -> None:
-        with client.users.with_streaming_response.create() as response:
+        with client.user.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -60,14 +60,14 @@ class TestUsers:
 
     @parametrize
     def test_method_retrieve(self, client: Sam) -> None:
-        user = client.users.retrieve(
+        user = client.user.retrieve(
             "username",
         )
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Sam) -> None:
-        response = client.users.with_raw_response.retrieve(
+        response = client.user.with_raw_response.retrieve(
             "username",
         )
 
@@ -78,7 +78,7 @@ class TestUsers:
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Sam) -> None:
-        with client.users.with_streaming_response.retrieve(
+        with client.user.with_streaming_response.retrieve(
             "username",
         ) as response:
             assert not response.is_closed
@@ -92,20 +92,20 @@ class TestUsers:
     @parametrize
     def test_path_params_retrieve(self, client: Sam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `username` but received ''"):
-            client.users.with_raw_response.retrieve(
+            client.user.with_raw_response.retrieve(
                 "",
             )
 
     @parametrize
     def test_method_update(self, client: Sam) -> None:
-        user = client.users.update(
+        user = client.user.update(
             path_username="username",
         )
         assert user is None
 
     @parametrize
     def test_method_update_with_all_params(self, client: Sam) -> None:
-        user = client.users.update(
+        user = client.user.update(
             path_username="username",
             id=10,
             email="john@email.com",
@@ -120,7 +120,7 @@ class TestUsers:
 
     @parametrize
     def test_raw_response_update(self, client: Sam) -> None:
-        response = client.users.with_raw_response.update(
+        response = client.user.with_raw_response.update(
             path_username="username",
         )
 
@@ -131,7 +131,7 @@ class TestUsers:
 
     @parametrize
     def test_streaming_response_update(self, client: Sam) -> None:
-        with client.users.with_streaming_response.update(
+        with client.user.with_streaming_response.update(
             path_username="username",
         ) as response:
             assert not response.is_closed
@@ -145,21 +145,21 @@ class TestUsers:
     @parametrize
     def test_path_params_update(self, client: Sam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_username` but received ''"):
-            client.users.with_raw_response.update(
+            client.user.with_raw_response.update(
                 path_username="",
                 body_username="",
             )
 
     @parametrize
     def test_method_delete(self, client: Sam) -> None:
-        user = client.users.delete(
+        user = client.user.delete(
             "username",
         )
         assert user is None
 
     @parametrize
     def test_raw_response_delete(self, client: Sam) -> None:
-        response = client.users.with_raw_response.delete(
+        response = client.user.with_raw_response.delete(
             "username",
         )
 
@@ -170,7 +170,7 @@ class TestUsers:
 
     @parametrize
     def test_streaming_response_delete(self, client: Sam) -> None:
-        with client.users.with_streaming_response.delete(
+        with client.user.with_streaming_response.delete(
             "username",
         ) as response:
             assert not response.is_closed
@@ -184,20 +184,20 @@ class TestUsers:
     @parametrize
     def test_path_params_delete(self, client: Sam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `username` but received ''"):
-            client.users.with_raw_response.delete(
+            client.user.with_raw_response.delete(
                 "",
             )
 
     @parametrize
-    def test_method_create_with_list(self, client: Sam) -> None:
-        user = client.users.create_with_list(
+    def test_method_create_list(self, client: Sam) -> None:
+        user = client.user.create_list(
             body=[{}],
         )
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
-    def test_raw_response_create_with_list(self, client: Sam) -> None:
-        response = client.users.with_raw_response.create_with_list(
+    def test_raw_response_create_list(self, client: Sam) -> None:
+        response = client.user.with_raw_response.create_list(
             body=[{}],
         )
 
@@ -207,8 +207,8 @@ class TestUsers:
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
-    def test_streaming_response_create_with_list(self, client: Sam) -> None:
-        with client.users.with_streaming_response.create_with_list(
+    def test_streaming_response_create_list(self, client: Sam) -> None:
+        with client.user.with_streaming_response.create_list(
             body=[{}],
         ) as response:
             assert not response.is_closed
@@ -221,12 +221,12 @@ class TestUsers:
 
     @parametrize
     def test_method_login(self, client: Sam) -> None:
-        user = client.users.login()
+        user = client.user.login()
         assert_matches_type(str, user, path=["response"])
 
     @parametrize
     def test_method_login_with_all_params(self, client: Sam) -> None:
-        user = client.users.login(
+        user = client.user.login(
             password="password",
             username="username",
         )
@@ -234,7 +234,7 @@ class TestUsers:
 
     @parametrize
     def test_raw_response_login(self, client: Sam) -> None:
-        response = client.users.with_raw_response.login()
+        response = client.user.with_raw_response.login()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -243,7 +243,7 @@ class TestUsers:
 
     @parametrize
     def test_streaming_response_login(self, client: Sam) -> None:
-        with client.users.with_streaming_response.login() as response:
+        with client.user.with_streaming_response.login() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -254,12 +254,12 @@ class TestUsers:
 
     @parametrize
     def test_method_logout(self, client: Sam) -> None:
-        user = client.users.logout()
+        user = client.user.logout()
         assert user is None
 
     @parametrize
     def test_raw_response_logout(self, client: Sam) -> None:
-        response = client.users.with_raw_response.logout()
+        response = client.user.with_raw_response.logout()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -268,7 +268,7 @@ class TestUsers:
 
     @parametrize
     def test_streaming_response_logout(self, client: Sam) -> None:
-        with client.users.with_streaming_response.logout() as response:
+        with client.user.with_streaming_response.logout() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -278,17 +278,17 @@ class TestUsers:
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncUsers:
+class TestAsyncUser:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_create(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.create()
+        user = await async_client.user.create()
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.create(
+        user = await async_client.user.create(
             id=10,
             email="john@email.com",
             first_name="John",
@@ -302,7 +302,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncSam) -> None:
-        response = await async_client.users.with_raw_response.create()
+        response = await async_client.user.with_raw_response.create()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -311,7 +311,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncSam) -> None:
-        async with async_client.users.with_streaming_response.create() as response:
+        async with async_client.user.with_streaming_response.create() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -322,14 +322,14 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.retrieve(
+        user = await async_client.user.retrieve(
             "username",
         )
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncSam) -> None:
-        response = await async_client.users.with_raw_response.retrieve(
+        response = await async_client.user.with_raw_response.retrieve(
             "username",
         )
 
@@ -340,7 +340,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncSam) -> None:
-        async with async_client.users.with_streaming_response.retrieve(
+        async with async_client.user.with_streaming_response.retrieve(
             "username",
         ) as response:
             assert not response.is_closed
@@ -354,20 +354,20 @@ class TestAsyncUsers:
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncSam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `username` but received ''"):
-            await async_client.users.with_raw_response.retrieve(
+            await async_client.user.with_raw_response.retrieve(
                 "",
             )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.update(
+        user = await async_client.user.update(
             path_username="username",
         )
         assert user is None
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.update(
+        user = await async_client.user.update(
             path_username="username",
             id=10,
             email="john@email.com",
@@ -382,7 +382,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncSam) -> None:
-        response = await async_client.users.with_raw_response.update(
+        response = await async_client.user.with_raw_response.update(
             path_username="username",
         )
 
@@ -393,7 +393,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncSam) -> None:
-        async with async_client.users.with_streaming_response.update(
+        async with async_client.user.with_streaming_response.update(
             path_username="username",
         ) as response:
             assert not response.is_closed
@@ -407,21 +407,21 @@ class TestAsyncUsers:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncSam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_username` but received ''"):
-            await async_client.users.with_raw_response.update(
+            await async_client.user.with_raw_response.update(
                 path_username="",
                 body_username="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.delete(
+        user = await async_client.user.delete(
             "username",
         )
         assert user is None
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncSam) -> None:
-        response = await async_client.users.with_raw_response.delete(
+        response = await async_client.user.with_raw_response.delete(
             "username",
         )
 
@@ -432,7 +432,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncSam) -> None:
-        async with async_client.users.with_streaming_response.delete(
+        async with async_client.user.with_streaming_response.delete(
             "username",
         ) as response:
             assert not response.is_closed
@@ -446,20 +446,20 @@ class TestAsyncUsers:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncSam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `username` but received ''"):
-            await async_client.users.with_raw_response.delete(
+            await async_client.user.with_raw_response.delete(
                 "",
             )
 
     @parametrize
-    async def test_method_create_with_list(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.create_with_list(
+    async def test_method_create_list(self, async_client: AsyncSam) -> None:
+        user = await async_client.user.create_list(
             body=[{}],
         )
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
-    async def test_raw_response_create_with_list(self, async_client: AsyncSam) -> None:
-        response = await async_client.users.with_raw_response.create_with_list(
+    async def test_raw_response_create_list(self, async_client: AsyncSam) -> None:
+        response = await async_client.user.with_raw_response.create_list(
             body=[{}],
         )
 
@@ -469,8 +469,8 @@ class TestAsyncUsers:
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
-    async def test_streaming_response_create_with_list(self, async_client: AsyncSam) -> None:
-        async with async_client.users.with_streaming_response.create_with_list(
+    async def test_streaming_response_create_list(self, async_client: AsyncSam) -> None:
+        async with async_client.user.with_streaming_response.create_list(
             body=[{}],
         ) as response:
             assert not response.is_closed
@@ -483,12 +483,12 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_method_login(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.login()
+        user = await async_client.user.login()
         assert_matches_type(str, user, path=["response"])
 
     @parametrize
     async def test_method_login_with_all_params(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.login(
+        user = await async_client.user.login(
             password="password",
             username="username",
         )
@@ -496,7 +496,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_raw_response_login(self, async_client: AsyncSam) -> None:
-        response = await async_client.users.with_raw_response.login()
+        response = await async_client.user.with_raw_response.login()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -505,7 +505,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_streaming_response_login(self, async_client: AsyncSam) -> None:
-        async with async_client.users.with_streaming_response.login() as response:
+        async with async_client.user.with_streaming_response.login() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -516,12 +516,12 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_method_logout(self, async_client: AsyncSam) -> None:
-        user = await async_client.users.logout()
+        user = await async_client.user.logout()
         assert user is None
 
     @parametrize
     async def test_raw_response_logout(self, async_client: AsyncSam) -> None:
-        response = await async_client.users.with_raw_response.logout()
+        response = await async_client.user.with_raw_response.logout()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -530,7 +530,7 @@ class TestAsyncUsers:
 
     @parametrize
     async def test_streaming_response_logout(self, async_client: AsyncSam) -> None:
-        async with async_client.users.with_streaming_response.logout() as response:
+        async with async_client.user.with_streaming_response.logout() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
