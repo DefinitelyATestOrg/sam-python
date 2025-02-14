@@ -8,8 +8,8 @@ from typing import Any, cast
 import pytest
 
 from sam import Sam, AsyncSam
+from sam.types import Order
 from tests.utils import assert_matches_type
-from sam.types.store import CoolOrder
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestOrders:
         order = client.store.orders.retrieve(
             0,
         )
-        assert_matches_type(CoolOrder, order, path=["response"])
+        assert_matches_type(Order, order, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Sam) -> None:
@@ -33,7 +33,7 @@ class TestOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         order = response.parse()
-        assert_matches_type(CoolOrder, order, path=["response"])
+        assert_matches_type(Order, order, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Sam) -> None:
@@ -44,7 +44,7 @@ class TestOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             order = response.parse()
-            assert_matches_type(CoolOrder, order, path=["response"])
+            assert_matches_type(Order, order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -88,7 +88,7 @@ class TestAsyncOrders:
         order = await async_client.store.orders.retrieve(
             0,
         )
-        assert_matches_type(CoolOrder, order, path=["response"])
+        assert_matches_type(Order, order, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncSam) -> None:
@@ -99,7 +99,7 @@ class TestAsyncOrders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         order = await response.parse()
-        assert_matches_type(CoolOrder, order, path=["response"])
+        assert_matches_type(Order, order, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncSam) -> None:
@@ -110,7 +110,7 @@ class TestAsyncOrders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             order = await response.parse()
-            assert_matches_type(CoolOrder, order, path=["response"])
+            assert_matches_type(Order, order, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

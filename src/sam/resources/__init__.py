@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .user import (
+    UserResource,
+    AsyncUserResource,
+    UserResourceWithRawResponse,
+    AsyncUserResourceWithRawResponse,
+    UserResourceWithStreamingResponse,
+    AsyncUserResourceWithStreamingResponse,
+)
 from .store import (
     StoreResource,
     AsyncStoreResource,
@@ -7,14 +15,6 @@ from .store import (
     AsyncStoreResourceWithRawResponse,
     StoreResourceWithStreamingResponse,
     AsyncStoreResourceWithStreamingResponse,
-)
-from .users import (
-    UsersResource,
-    AsyncUsersResource,
-    UsersResourceWithRawResponse,
-    AsyncUsersResourceWithRawResponse,
-    UsersResourceWithStreamingResponse,
-    AsyncUsersResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncStoreResourceWithRawResponse",
     "StoreResourceWithStreamingResponse",
     "AsyncStoreResourceWithStreamingResponse",
-    "UsersResource",
-    "AsyncUsersResource",
-    "UsersResourceWithRawResponse",
-    "AsyncUsersResourceWithRawResponse",
-    "UsersResourceWithStreamingResponse",
-    "AsyncUsersResourceWithStreamingResponse",
+    "UserResource",
+    "AsyncUserResource",
+    "UserResourceWithRawResponse",
+    "AsyncUserResourceWithRawResponse",
+    "UserResourceWithStreamingResponse",
+    "AsyncUserResourceWithStreamingResponse",
 ]
