@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0-alpha.7 (2025-02-14)
+
+Full Changelog: [v0.15.0-alpha.6...v0.15.0-alpha.7](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.6...v0.15.0-alpha.7)
+
+### Chores
+
+* **internal:** update client tests ([#219](https://github.com/DefinitelyATestOrg/sam-python/issues/219)) ([4bd9ccd](https://github.com/DefinitelyATestOrg/sam-python/commit/4bd9ccd122400e4bc44e3062d8fc289c0392ff9c))
+
 ## 0.15.0-alpha.6 (2025-02-14)
 
 Full Changelog: [v0.15.0-alpha.5...v0.15.0-alpha.6](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.5...v0.15.0-alpha.6)
