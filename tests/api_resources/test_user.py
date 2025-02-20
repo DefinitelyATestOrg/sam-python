@@ -190,16 +190,30 @@ class TestUser:
 
     @parametrize
     def test_method_create_list(self, client: Sam) -> None:
+        user = client.user.create_list()
+        assert_matches_type(User, user, path=["response"])
+
+    @parametrize
+    def test_method_create_list_with_all_params(self, client: Sam) -> None:
         user = client.user.create_list(
-            body=[{}],
+            body=[
+                {
+                    "id": 10,
+                    "email": "john@email.com",
+                    "first_name": "John",
+                    "last_name": "James",
+                    "password": "12345",
+                    "phone": "12345",
+                    "username": "theUser",
+                    "user_status": 1,
+                }
+            ],
         )
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
     def test_raw_response_create_list(self, client: Sam) -> None:
-        response = client.user.with_raw_response.create_list(
-            body=[{}],
-        )
+        response = client.user.with_raw_response.create_list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -208,9 +222,7 @@ class TestUser:
 
     @parametrize
     def test_streaming_response_create_list(self, client: Sam) -> None:
-        with client.user.with_streaming_response.create_list(
-            body=[{}],
-        ) as response:
+        with client.user.with_streaming_response.create_list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -452,16 +464,30 @@ class TestAsyncUser:
 
     @parametrize
     async def test_method_create_list(self, async_client: AsyncSam) -> None:
+        user = await async_client.user.create_list()
+        assert_matches_type(User, user, path=["response"])
+
+    @parametrize
+    async def test_method_create_list_with_all_params(self, async_client: AsyncSam) -> None:
         user = await async_client.user.create_list(
-            body=[{}],
+            body=[
+                {
+                    "id": 10,
+                    "email": "john@email.com",
+                    "first_name": "John",
+                    "last_name": "James",
+                    "password": "12345",
+                    "phone": "12345",
+                    "username": "theUser",
+                    "user_status": 1,
+                }
+            ],
         )
         assert_matches_type(User, user, path=["response"])
 
     @parametrize
     async def test_raw_response_create_list(self, async_client: AsyncSam) -> None:
-        response = await async_client.user.with_raw_response.create_list(
-            body=[{}],
-        )
+        response = await async_client.user.with_raw_response.create_list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -470,9 +496,7 @@ class TestAsyncUser:
 
     @parametrize
     async def test_streaming_response_create_list(self, async_client: AsyncSam) -> None:
-        async with async_client.user.with_streaming_response.create_list(
-            body=[{}],
-        ) as response:
+        async with async_client.user.with_streaming_response.create_list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
