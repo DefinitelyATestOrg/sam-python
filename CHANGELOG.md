@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.15.0-alpha.7 (2025-02-25)
+
+Full Changelog: [v0.15.0-alpha.6...v0.15.0-alpha.7](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.6...v0.15.0-alpha.7)
+
+### Features
+
+* **client:** allow passing `NotGiven` for body ([#221](https://github.com/DefinitelyATestOrg/sam-python/issues/221)) ([a93b2ca](https://github.com/DefinitelyATestOrg/sam-python/commit/a93b2ca797f24a745867ba860774e10d01191e2f))
+
+
+### Bug Fixes
+
+* **client:** mark some request bodies as optional ([a93b2ca](https://github.com/DefinitelyATestOrg/sam-python/commit/a93b2ca797f24a745867ba860774e10d01191e2f))
+
+
+### Chores
+
+* **internal:** fix devcontainers setup ([#222](https://github.com/DefinitelyATestOrg/sam-python/issues/222)) ([c1f7d19](https://github.com/DefinitelyATestOrg/sam-python/commit/c1f7d1987f80baf9f09e6388ea29cb502a215186))
+* **internal:** properly set __pydantic_private__ ([#223](https://github.com/DefinitelyATestOrg/sam-python/issues/223)) ([a131f16](https://github.com/DefinitelyATestOrg/sam-python/commit/a131f16f65df467d585012ad020fafb413c297c4))
+* **internal:** update client tests ([#219](https://github.com/DefinitelyATestOrg/sam-python/issues/219)) ([4bd9ccd](https://github.com/DefinitelyATestOrg/sam-python/commit/4bd9ccd122400e4bc44e3062d8fc289c0392ff9c))
+
 ## 0.15.0-alpha.6 (2025-02-14)
 
 Full Changelog: [v0.15.0-alpha.5...v0.15.0-alpha.6](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.5...v0.15.0-alpha.6)
