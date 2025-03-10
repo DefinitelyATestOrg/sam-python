@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.15.0-alpha.8 (2025-03-10)
+
+Full Changelog: [v0.15.0-alpha.7...v0.15.0-alpha.8](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.7...v0.15.0-alpha.8)
+
+### Features
+
+* **api:** api update ([#229](https://github.com/DefinitelyATestOrg/sam-python/issues/229)) ([d6e7435](https://github.com/DefinitelyATestOrg/sam-python/commit/d6e7435c09dd1c81174afe362ff9a15cbd97d967))
+
+
+### Chores
+
+* **docs:** update client docstring ([#227](https://github.com/DefinitelyATestOrg/sam-python/issues/227)) ([566923c](https://github.com/DefinitelyATestOrg/sam-python/commit/566923c54c22e7c6257863acb3de8d1642b9d998))
+* **internal:** remove unused http client options forwarding ([#228](https://github.com/DefinitelyATestOrg/sam-python/issues/228)) ([29059a7](https://github.com/DefinitelyATestOrg/sam-python/commit/29059a765d2143e62f0467c373b888e2f16e8dc4))
+
+
+### Documentation
+
+* update URLs from stainlessapi.com to stainless.com ([#225](https://github.com/DefinitelyATestOrg/sam-python/issues/225)) ([652f288](https://github.com/DefinitelyATestOrg/sam-python/commit/652f288fe1b46050eec694241c638b4e4ac102a7))
+
 ## 0.15.0-alpha.7 (2025-02-25)
 
 Full Changelog: [v0.15.0-alpha.6...v0.15.0-alpha.7](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.6...v0.15.0-alpha.7)
