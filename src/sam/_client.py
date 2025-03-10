@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import user
+from .resources import models, complete, models_beta_true, messages_beta_true
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import SamError, APIStatusError
 from ._base_client import (
@@ -32,14 +32,17 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.store import store
+from .resources.messages import messages
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Sam", "AsyncSam", "Client", "AsyncClient"]
 
 
 class Sam(SyncAPIClient):
-    store: store.StoreResource
-    user: user.UserResource
+    messages: messages.MessagesResource
+    complete: complete.CompleteResource
+    models: models.ModelsResource
+    messages_beta_true: messages_beta_true.MessagesBetaTrueResource
+    models_beta_true: models_beta_true.ModelsBetaTrueResource
     with_raw_response: SamWithRawResponse
     with_streaming_response: SamWithStreamedResponse
 
@@ -97,8 +100,11 @@ class Sam(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.store = store.StoreResource(self)
-        self.user = user.UserResource(self)
+        self.messages = messages.MessagesResource(self)
+        self.complete = complete.CompleteResource(self)
+        self.models = models.ModelsResource(self)
+        self.messages_beta_true = messages_beta_true.MessagesBetaTrueResource(self)
+        self.models_beta_true = models_beta_true.ModelsBetaTrueResource(self)
         self.with_raw_response = SamWithRawResponse(self)
         self.with_streaming_response = SamWithStreamedResponse(self)
 
@@ -106,12 +112,6 @@ class Sam(SyncAPIClient):
     @override
     def qs(self) -> Querystring:
         return Querystring(array_format="comma")
-
-    @property
-    @override
-    def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        return {"api_key": api_key}
 
     @property
     @override
@@ -208,8 +208,11 @@ class Sam(SyncAPIClient):
 
 
 class AsyncSam(AsyncAPIClient):
-    store: store.AsyncStoreResource
-    user: user.AsyncUserResource
+    messages: messages.AsyncMessagesResource
+    complete: complete.AsyncCompleteResource
+    models: models.AsyncModelsResource
+    messages_beta_true: messages_beta_true.AsyncMessagesBetaTrueResource
+    models_beta_true: models_beta_true.AsyncModelsBetaTrueResource
     with_raw_response: AsyncSamWithRawResponse
     with_streaming_response: AsyncSamWithStreamedResponse
 
@@ -267,8 +270,11 @@ class AsyncSam(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.store = store.AsyncStoreResource(self)
-        self.user = user.AsyncUserResource(self)
+        self.messages = messages.AsyncMessagesResource(self)
+        self.complete = complete.AsyncCompleteResource(self)
+        self.models = models.AsyncModelsResource(self)
+        self.messages_beta_true = messages_beta_true.AsyncMessagesBetaTrueResource(self)
+        self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResource(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
         self.with_streaming_response = AsyncSamWithStreamedResponse(self)
 
@@ -276,12 +282,6 @@ class AsyncSam(AsyncAPIClient):
     @override
     def qs(self) -> Querystring:
         return Querystring(array_format="comma")
-
-    @property
-    @override
-    def auth_headers(self) -> dict[str, str]:
-        api_key = self.api_key
-        return {"api_key": api_key}
 
     @property
     @override
@@ -379,26 +379,46 @@ class AsyncSam(AsyncAPIClient):
 
 class SamWithRawResponse:
     def __init__(self, client: Sam) -> None:
-        self.store = store.StoreResourceWithRawResponse(client.store)
-        self.user = user.UserResourceWithRawResponse(client.user)
+        self.messages = messages.MessagesResourceWithRawResponse(client.messages)
+        self.complete = complete.CompleteResourceWithRawResponse(client.complete)
+        self.models = models.ModelsResourceWithRawResponse(client.models)
+        self.messages_beta_true = messages_beta_true.MessagesBetaTrueResourceWithRawResponse(client.messages_beta_true)
+        self.models_beta_true = models_beta_true.ModelsBetaTrueResourceWithRawResponse(client.models_beta_true)
 
 
 class AsyncSamWithRawResponse:
     def __init__(self, client: AsyncSam) -> None:
-        self.store = store.AsyncStoreResourceWithRawResponse(client.store)
-        self.user = user.AsyncUserResourceWithRawResponse(client.user)
+        self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
+        self.complete = complete.AsyncCompleteResourceWithRawResponse(client.complete)
+        self.models = models.AsyncModelsResourceWithRawResponse(client.models)
+        self.messages_beta_true = messages_beta_true.AsyncMessagesBetaTrueResourceWithRawResponse(
+            client.messages_beta_true
+        )
+        self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResourceWithRawResponse(client.models_beta_true)
 
 
 class SamWithStreamedResponse:
     def __init__(self, client: Sam) -> None:
-        self.store = store.StoreResourceWithStreamingResponse(client.store)
-        self.user = user.UserResourceWithStreamingResponse(client.user)
+        self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
+        self.complete = complete.CompleteResourceWithStreamingResponse(client.complete)
+        self.models = models.ModelsResourceWithStreamingResponse(client.models)
+        self.messages_beta_true = messages_beta_true.MessagesBetaTrueResourceWithStreamingResponse(
+            client.messages_beta_true
+        )
+        self.models_beta_true = models_beta_true.ModelsBetaTrueResourceWithStreamingResponse(client.models_beta_true)
 
 
 class AsyncSamWithStreamedResponse:
     def __init__(self, client: AsyncSam) -> None:
-        self.store = store.AsyncStoreResourceWithStreamingResponse(client.store)
-        self.user = user.AsyncUserResourceWithStreamingResponse(client.user)
+        self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
+        self.complete = complete.AsyncCompleteResourceWithStreamingResponse(client.complete)
+        self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)
+        self.messages_beta_true = messages_beta_true.AsyncMessagesBetaTrueResourceWithStreamingResponse(
+            client.messages_beta_true
+        )
+        self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResourceWithStreamingResponse(
+            client.models_beta_true
+        )
 
 
 Client = Sam

@@ -29,16 +29,22 @@ The full API of this library can be found in [api.md](api.md).
 ```python
 from sam import Sam
 
-client = Sam()
+client = Sam(
+    api_key="My API Key",
+)
 
-user = client.user.create()
-print(user.id)
+message = client.messages.create(
+    max_tokens=1024,
+    messages=[
+        {
+            "content": "Hello, world",
+            "role": "user",
+        }
+    ],
+    model="claude-3-7-sonnet-20250219",
+)
+print(message.id)
 ```
-
-While you can provide an `api_key` keyword argument,
-we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `API_KEY="My API Key"` to your `.env` file
-so that your API Key is not stored in source control.
 
 ## Async usage
 
@@ -48,12 +54,23 @@ Simply import `AsyncSam` instead of `Sam` and use `await` with each API call:
 import asyncio
 from sam import AsyncSam
 
-client = AsyncSam()
+client = AsyncSam(
+    api_key="My API Key",
+)
 
 
 async def main() -> None:
-    user = await client.user.create()
-    print(user.id)
+    message = await client.messages.create(
+        max_tokens=1024,
+        messages=[
+            {
+                "content": "Hello, world",
+                "role": "user",
+            }
+        ],
+        model="claude-3-7-sonnet-20250219",
+    )
+    print(message.id)
 
 
 asyncio.run(main())
@@ -70,6 +87,31 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
+## Nested params
+
+Nested parameters are dictionaries, typed using `TypedDict`, for example:
+
+```python
+from sam import Sam
+
+client = Sam(
+    api_key="My API Key",
+)
+
+message = client.messages.create(
+    max_tokens=1024,
+    messages=[
+        {
+            "content": "Hello, world",
+            "role": "user",
+        }
+    ],
+    model="claude-3-7-sonnet-20250219",
+    metadata={"user_id": "13803d75-b4b5-4c3e-b2a2-6f21399b021b"},
+)
+print(message.metadata)
+```
+
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `sam.APIConnectionError` is raised.
@@ -83,10 +125,21 @@ All errors inherit from `sam.APIError`.
 import sam
 from sam import Sam
 
-client = Sam()
+client = Sam(
+    api_key="My API Key",
+)
 
 try:
-    client.user.create()
+    client.messages.create(
+        max_tokens=1024,
+        messages=[
+            {
+                "content": "Hello, world",
+                "role": "user",
+            }
+        ],
+        model="claude-3-7-sonnet-20250219",
+    )
 except sam.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -126,10 +179,20 @@ from sam import Sam
 client = Sam(
     # default is 2
     max_retries=0,
+    api_key="My API Key",
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).user.create()
+client.with_options(max_retries=5).messages.create(
+    max_tokens=1024,
+    messages=[
+        {
+            "content": "Hello, world",
+            "role": "user",
+        }
+    ],
+    model="claude-3-7-sonnet-20250219",
+)
 ```
 
 ### Timeouts
@@ -144,15 +207,26 @@ from sam import Sam
 client = Sam(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
+    api_key="My API Key",
 )
 
 # More granular control:
 client = Sam(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
+    api_key="My API Key",
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).user.create()
+client.with_options(timeout=5.0).messages.create(
+    max_tokens=1024,
+    messages=[
+        {
+            "content": "Hello, world",
+            "role": "user",
+        }
+    ],
+    model="claude-3-7-sonnet-20250219",
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -192,12 +266,21 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 ```py
 from sam import Sam
 
-client = Sam()
-response = client.user.with_raw_response.create()
+client = Sam(
+    api_key="My API Key",
+)
+response = client.messages.with_raw_response.create(
+    max_tokens=1024,
+    messages=[{
+        "content": "Hello, world",
+        "role": "user",
+    }],
+    model="claude-3-7-sonnet-20250219",
+)
 print(response.headers.get('X-My-Header'))
 
-user = response.parse()  # get the object that `user.create()` would have returned
-print(user.id)
+message = response.parse()  # get the object that `messages.create()` would have returned
+print(message.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/DefinitelyATestOrg/sam-python/tree/main/src/sam/_response.py) object.
@@ -211,7 +294,16 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.user.with_streaming_response.create() as response:
+with client.messages.with_streaming_response.create(
+    max_tokens=1024,
+    messages=[
+        {
+            "content": "Hello, world",
+            "role": "user",
+        }
+    ],
+    model="claude-3-7-sonnet-20250219",
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
@@ -273,6 +365,7 @@ client = Sam(
         proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
+    api_key="My API Key",
 )
 ```
 
@@ -289,7 +382,9 @@ By default the library closes underlying HTTP connections whenever the client is
 ```py
 from sam import Sam
 
-with Sam() as client:
+with Sam(
+    api_key="My API Key",
+) as client:
   # make requests here
   ...
 
