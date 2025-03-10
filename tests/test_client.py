@@ -28,7 +28,7 @@ from sam._models import BaseModel, FinalRequestOptions
 from sam._constants import RAW_RESPONSE_HEADER
 from sam._exceptions import APIStatusError, APITimeoutError, APIResponseValidationError
 from sam._base_client import DEFAULT_TIMEOUT, HTTPX_DEFAULT_TIMEOUT, BaseClient, make_request_options
-from sam.types.user_create_params import UserCreateParams
+from sam.types.message_create_params import MessageCreateParams
 
 from .utils import update_env
 
@@ -689,12 +689,27 @@ class TestSam:
     @mock.patch("sam._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/user").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/messages").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             self.client.post(
-                "/user",
-                body=cast(object, maybe_transform({}, UserCreateParams)),
+                "/v1/messages",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            max_tokens=1024,
+                            messages=[
+                                {
+                                    "content": "Hello, world",
+                                    "role": "user",
+                                }
+                            ],
+                            model="claude-3-7-sonnet-20250219",
+                        ),
+                        MessageCreateParams,
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -704,12 +719,27 @@ class TestSam:
     @mock.patch("sam._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/user").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/messages").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             self.client.post(
-                "/user",
-                body=cast(object, maybe_transform({}, UserCreateParams)),
+                "/v1/messages",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            max_tokens=1024,
+                            messages=[
+                                {
+                                    "content": "Hello, world",
+                                    "role": "user",
+                                }
+                            ],
+                            model="claude-3-7-sonnet-20250219",
+                        ),
+                        MessageCreateParams,
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -740,9 +770,18 @@ class TestSam:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/user").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/messages").mock(side_effect=retry_handler)
 
-        response = client.user.with_raw_response.create()
+        response = client.messages.with_raw_response.create(
+            max_tokens=1024,
+            messages=[
+                {
+                    "content": "Hello, world",
+                    "role": "user",
+                }
+            ],
+            model="claude-3-7-sonnet-20250219",
+        )
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -762,9 +801,19 @@ class TestSam:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/user").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/messages").mock(side_effect=retry_handler)
 
-        response = client.user.with_raw_response.create(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.messages.with_raw_response.create(
+            max_tokens=1024,
+            messages=[
+                {
+                    "content": "Hello, world",
+                    "role": "user",
+                }
+            ],
+            model="claude-3-7-sonnet-20250219",
+            extra_headers={"x-stainless-retry-count": Omit()},
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -785,9 +834,19 @@ class TestSam:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/user").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/messages").mock(side_effect=retry_handler)
 
-        response = client.user.with_raw_response.create(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.messages.with_raw_response.create(
+            max_tokens=1024,
+            messages=[
+                {
+                    "content": "Hello, world",
+                    "role": "user",
+                }
+            ],
+            model="claude-3-7-sonnet-20250219",
+            extra_headers={"x-stainless-retry-count": "42"},
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1443,12 +1502,27 @@ class TestAsyncSam:
     @mock.patch("sam._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/user").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.post("/v1/messages").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
             await self.client.post(
-                "/user",
-                body=cast(object, maybe_transform({}, UserCreateParams)),
+                "/v1/messages",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            max_tokens=1024,
+                            messages=[
+                                {
+                                    "content": "Hello, world",
+                                    "role": "user",
+                                }
+                            ],
+                            model="claude-3-7-sonnet-20250219",
+                        ),
+                        MessageCreateParams,
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1458,12 +1532,27 @@ class TestAsyncSam:
     @mock.patch("sam._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     async def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter) -> None:
-        respx_mock.post("/user").mock(return_value=httpx.Response(500))
+        respx_mock.post("/v1/messages").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
             await self.client.post(
-                "/user",
-                body=cast(object, maybe_transform({}, UserCreateParams)),
+                "/v1/messages",
+                body=cast(
+                    object,
+                    maybe_transform(
+                        dict(
+                            max_tokens=1024,
+                            messages=[
+                                {
+                                    "content": "Hello, world",
+                                    "role": "user",
+                                }
+                            ],
+                            model="claude-3-7-sonnet-20250219",
+                        ),
+                        MessageCreateParams,
+                    ),
+                ),
                 cast_to=httpx.Response,
                 options={"headers": {RAW_RESPONSE_HEADER: "stream"}},
             )
@@ -1495,9 +1584,18 @@ class TestAsyncSam:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/user").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/messages").mock(side_effect=retry_handler)
 
-        response = await client.user.with_raw_response.create()
+        response = await client.messages.with_raw_response.create(
+            max_tokens=1024,
+            messages=[
+                {
+                    "content": "Hello, world",
+                    "role": "user",
+                }
+            ],
+            model="claude-3-7-sonnet-20250219",
+        )
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1520,9 +1618,19 @@ class TestAsyncSam:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/user").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/messages").mock(side_effect=retry_handler)
 
-        response = await client.user.with_raw_response.create(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.messages.with_raw_response.create(
+            max_tokens=1024,
+            messages=[
+                {
+                    "content": "Hello, world",
+                    "role": "user",
+                }
+            ],
+            model="claude-3-7-sonnet-20250219",
+            extra_headers={"x-stainless-retry-count": Omit()},
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1544,9 +1652,19 @@ class TestAsyncSam:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.post("/user").mock(side_effect=retry_handler)
+        respx_mock.post("/v1/messages").mock(side_effect=retry_handler)
 
-        response = await client.user.with_raw_response.create(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.messages.with_raw_response.create(
+            max_tokens=1024,
+            messages=[
+                {
+                    "content": "Hello, world",
+                    "role": "user",
+                }
+            ],
+            model="claude-3-7-sonnet-20250219",
+            extra_headers={"x-stainless-retry-count": "42"},
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
