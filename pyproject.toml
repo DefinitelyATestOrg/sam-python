@@ -1,6 +1,6 @@
 [project]
 name = "sam"
-version = "0.15.0-alpha.8"
+version = "0.15.0-alpha.9"
 description = "The official Python library for the sam API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -36,7 +36,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/DefinitelyATestOrg/sam-python"
 Repository = "https://github.com/DefinitelyATestOrg/sam-python"
-
 
 
 [tool.rye]
@@ -151,7 +150,6 @@ reportImplicitOverride = true
 
 reportImportCycles = false
 reportPrivateUsage = false
-
 
 [tool.ruff]
 line-length = 120
