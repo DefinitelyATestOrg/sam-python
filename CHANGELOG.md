@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.15.0-alpha.9 (2025-03-14)
+
+Full Changelog: [v0.15.0-alpha.8...v0.15.0-alpha.9](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.8...v0.15.0-alpha.9)
+
+### Bug Fixes
+
+* **types:** handle more discriminated union shapes ([#236](https://github.com/DefinitelyATestOrg/sam-python/issues/236)) ([0621fdf](https://github.com/DefinitelyATestOrg/sam-python/commit/0621fdfa3c8370a3381790212ef86b418576e59d))
+
+
+### Chores
+
+* **internal:** bump rye to 0.44.0 ([#234](https://github.com/DefinitelyATestOrg/sam-python/issues/234)) ([6b6ba5b](https://github.com/DefinitelyATestOrg/sam-python/commit/6b6ba5bd1c985ae45276fa9c2879617ed5b9a7cc))
+* **internal:** codegen related update ([#235](https://github.com/DefinitelyATestOrg/sam-python/issues/235)) ([58a2924](https://github.com/DefinitelyATestOrg/sam-python/commit/58a2924d3a0b52912cb1d7228698006fa8966cbe))
+* **internal:** remove extra empty newlines ([#233](https://github.com/DefinitelyATestOrg/sam-python/issues/233)) ([7ffeb47](https://github.com/DefinitelyATestOrg/sam-python/commit/7ffeb47770c0763e09ae76411bab67a20276cd7a))
+
 ## 0.15.0-alpha.8 (2025-03-10)
 
 Full Changelog: [v0.15.0-alpha.7...v0.15.0-alpha.8](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.7...v0.15.0-alpha.8)
