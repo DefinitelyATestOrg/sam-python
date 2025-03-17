@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0-alpha.10 (2025-03-17)
+
+Full Changelog: [v0.15.0-alpha.9...v0.15.0-alpha.10](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.9...v0.15.0-alpha.10)
+
+### Bug Fixes
+
+* **ci:** ensure pip is always available ([#238](https://github.com/DefinitelyATestOrg/sam-python/issues/238)) ([b9f97c1](https://github.com/DefinitelyATestOrg/sam-python/commit/b9f97c1dc71e5f01a2b3b0b71ccf827ce7c6b11a))
+
 ## 0.15.0-alpha.9 (2025-03-14)
 
 Full Changelog: [v0.15.0-alpha.8...v0.15.0-alpha.9](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.8...v0.15.0-alpha.9)
