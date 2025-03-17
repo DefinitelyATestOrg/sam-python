@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0-alpha.11 (2025-03-17)
+
+Full Changelog: [v0.15.0-alpha.10...v0.15.0-alpha.11](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.10...v0.15.0-alpha.11)
+
+### Bug Fixes
+
+* **ci:** remove publishing patch ([#241](https://github.com/DefinitelyATestOrg/sam-python/issues/241)) ([8bfe755](https://github.com/DefinitelyATestOrg/sam-python/commit/8bfe7556dfb69033bfccd6bd9135955aa8fd647e))
+
 ## 0.15.0-alpha.10 (2025-03-17)
 
 Full Changelog: [v0.15.0-alpha.9...v0.15.0-alpha.10](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.9...v0.15.0-alpha.10)
