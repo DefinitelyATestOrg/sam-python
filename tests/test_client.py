@@ -1680,7 +1680,7 @@ class TestAsyncSam:
         import threading
 
         from sam._utils import asyncify
-        from sam._base_client import get_platform 
+        from sam._base_client import get_platform
 
         async def test_main() -> None:
             result = await asyncify(get_platform)()
