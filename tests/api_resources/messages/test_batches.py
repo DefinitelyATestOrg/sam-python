@@ -407,21 +407,21 @@ class TestBatches:
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     def test_method_results(self, client: Sam) -> None:
-        batch = client.messages.batches.results(
+        batch_stream = client.messages.batches.results(
             message_batch_id="message_batch_id",
         )
-        assert_matches_type(JSONLDecoder[BatchResultsResponse], batch, path=["response"])
+        assert_matches_type(JSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     def test_method_results_with_all_params(self, client: Sam) -> None:
-        batch = client.messages.batches.results(
+        batch_stream = client.messages.batches.results(
             message_batch_id="message_batch_id",
             anthropic_beta=["string"],
             anthropic_version="anthropic-version",
             x_api_key="x-api-key",
         )
-        assert_matches_type(JSONLDecoder[BatchResultsResponse], batch, path=["response"])
+        assert_matches_type(JSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -430,10 +430,9 @@ class TestBatches:
             message_batch_id="message_batch_id",
         )
 
-        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        batch = response.parse()
-        assert_matches_type(JSONLDecoder[BatchResultsResponse], batch, path=["response"])
+        stream = response.parse()
+        stream.close()
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -444,8 +443,8 @@ class TestBatches:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            batch = response.parse()
-            assert_matches_type(JSONLDecoder[BatchResultsResponse], batch, path=["response"])
+            stream = response.parse()
+            stream.close()
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,21 +459,21 @@ class TestBatches:
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     def test_method_results_beta(self, client: Sam) -> None:
-        batch = client.messages.batches.results_beta(
+        batch_stream = client.messages.batches.results_beta(
             message_batch_id="message_batch_id",
         )
-        assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+        assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     def test_method_results_beta_with_all_params(self, client: Sam) -> None:
-        batch = client.messages.batches.results_beta(
+        batch_stream = client.messages.batches.results_beta(
             message_batch_id="message_batch_id",
             anthropic_beta=["string"],
             anthropic_version="anthropic-version",
             x_api_key="x-api-key",
         )
-        assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+        assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -483,10 +482,9 @@ class TestBatches:
             message_batch_id="message_batch_id",
         )
 
-        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        batch = response.parse()
-        assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+        stream = response.parse()
+        stream.close()
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -497,8 +495,8 @@ class TestBatches:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            batch = response.parse()
-            assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+            stream = response.parse()
+            stream.close()
 
         assert cast(Any, response.is_closed) is True
 
@@ -894,21 +892,21 @@ class TestAsyncBatches:
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     async def test_method_results(self, async_client: AsyncSam) -> None:
-        batch = await async_client.messages.batches.results(
+        batch_stream = await async_client.messages.batches.results(
             message_batch_id="message_batch_id",
         )
-        assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch, path=["response"])
+        assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     async def test_method_results_with_all_params(self, async_client: AsyncSam) -> None:
-        batch = await async_client.messages.batches.results(
+        batch_stream = await async_client.messages.batches.results(
             message_batch_id="message_batch_id",
             anthropic_beta=["string"],
             anthropic_version="anthropic-version",
             x_api_key="x-api-key",
         )
-        assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch, path=["response"])
+        assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -917,10 +915,9 @@ class TestAsyncBatches:
             message_batch_id="message_batch_id",
         )
 
-        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        batch = await response.parse()
-        assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch, path=["response"])
+        stream = await response.parse()
+        await stream.close()
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -931,8 +928,8 @@ class TestAsyncBatches:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            batch = await response.parse()
-            assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch, path=["response"])
+            stream = await response.parse()
+            await stream.close()
 
         assert cast(Any, response.is_closed) is True
 
@@ -947,21 +944,21 @@ class TestAsyncBatches:
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     async def test_method_results_beta(self, async_client: AsyncSam) -> None:
-        batch = await async_client.messages.batches.results_beta(
+        batch_stream = await async_client.messages.batches.results_beta(
             message_batch_id="message_batch_id",
         )
-        assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+        assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
     async def test_method_results_beta_with_all_params(self, async_client: AsyncSam) -> None:
-        batch = await async_client.messages.batches.results_beta(
+        batch_stream = await async_client.messages.batches.results_beta(
             message_batch_id="message_batch_id",
             anthropic_beta=["string"],
             anthropic_version="anthropic-version",
             x_api_key="x-api-key",
         )
-        assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+        assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -970,10 +967,9 @@ class TestAsyncBatches:
             message_batch_id="message_batch_id",
         )
 
-        assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        batch = await response.parse()
-        assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+        stream = await response.parse()
+        await stream.close()
 
     @pytest.mark.skip(reason="Prism doesn't support JSONL responses yet")
     @parametrize
@@ -984,8 +980,8 @@ class TestAsyncBatches:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            batch = await response.parse()
-            assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch, path=["response"])
+            stream = await response.parse()
+            await stream.close()
 
         assert cast(Any, response.is_closed) is True
 
