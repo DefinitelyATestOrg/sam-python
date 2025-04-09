@@ -24,14 +24,6 @@ from .messages import (
     MessagesResourceWithStreamingResponse,
     AsyncMessagesResourceWithStreamingResponse,
 )
-from .sam_plop_plop import (
-    SamPlopPlopResource,
-    AsyncSamPlopPlopResource,
-    SamPlopPlopResourceWithRawResponse,
-    AsyncSamPlopPlopResourceWithRawResponse,
-    SamPlopPlopResourceWithStreamingResponse,
-    AsyncSamPlopPlopResourceWithStreamingResponse,
-)
 from .models_beta_true import (
     ModelsBetaTrueResource,
     AsyncModelsBetaTrueResource,
@@ -80,10 +72,4 @@ __all__ = [
     "AsyncModelsBetaTrueResourceWithRawResponse",
     "ModelsBetaTrueResourceWithStreamingResponse",
     "AsyncModelsBetaTrueResourceWithStreamingResponse",
-    "SamPlopPlopResource",
-    "AsyncSamPlopPlopResource",
-    "SamPlopPlopResourceWithRawResponse",
-    "AsyncSamPlopPlopResourceWithRawResponse",
-    "SamPlopPlopResourceWithStreamingResponse",
-    "AsyncSamPlopPlopResourceWithStreamingResponse",
 ]
