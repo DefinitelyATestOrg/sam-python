@@ -24,7 +24,7 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import models, complete, models_beta_true, messages_beta_true
+from .resources import models, complete, sam_plop_plop, models_beta_true, messages_beta_true
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import SamError, APIStatusError
 from ._base_client import (
@@ -43,6 +43,7 @@ class Sam(SyncAPIClient):
     models: models.ModelsResource
     messages_beta_true: messages_beta_true.MessagesBetaTrueResource
     models_beta_true: models_beta_true.ModelsBetaTrueResource
+    sam_plop_plop: sam_plop_plop.SamPlopPlopResource
     with_raw_response: SamWithRawResponse
     with_streaming_response: SamWithStreamedResponse
 
@@ -105,6 +106,7 @@ class Sam(SyncAPIClient):
         self.models = models.ModelsResource(self)
         self.messages_beta_true = messages_beta_true.MessagesBetaTrueResource(self)
         self.models_beta_true = models_beta_true.ModelsBetaTrueResource(self)
+        self.sam_plop_plop = sam_plop_plop.SamPlopPlopResource(self)
         self.with_raw_response = SamWithRawResponse(self)
         self.with_streaming_response = SamWithStreamedResponse(self)
 
@@ -213,6 +215,7 @@ class AsyncSam(AsyncAPIClient):
     models: models.AsyncModelsResource
     messages_beta_true: messages_beta_true.AsyncMessagesBetaTrueResource
     models_beta_true: models_beta_true.AsyncModelsBetaTrueResource
+    sam_plop_plop: sam_plop_plop.AsyncSamPlopPlopResource
     with_raw_response: AsyncSamWithRawResponse
     with_streaming_response: AsyncSamWithStreamedResponse
 
@@ -275,6 +278,7 @@ class AsyncSam(AsyncAPIClient):
         self.models = models.AsyncModelsResource(self)
         self.messages_beta_true = messages_beta_true.AsyncMessagesBetaTrueResource(self)
         self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResource(self)
+        self.sam_plop_plop = sam_plop_plop.AsyncSamPlopPlopResource(self)
         self.with_raw_response = AsyncSamWithRawResponse(self)
         self.with_streaming_response = AsyncSamWithStreamedResponse(self)
 
@@ -384,6 +388,7 @@ class SamWithRawResponse:
         self.models = models.ModelsResourceWithRawResponse(client.models)
         self.messages_beta_true = messages_beta_true.MessagesBetaTrueResourceWithRawResponse(client.messages_beta_true)
         self.models_beta_true = models_beta_true.ModelsBetaTrueResourceWithRawResponse(client.models_beta_true)
+        self.sam_plop_plop = sam_plop_plop.SamPlopPlopResourceWithRawResponse(client.sam_plop_plop)
 
 
 class AsyncSamWithRawResponse:
@@ -395,6 +400,7 @@ class AsyncSamWithRawResponse:
             client.messages_beta_true
         )
         self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResourceWithRawResponse(client.models_beta_true)
+        self.sam_plop_plop = sam_plop_plop.AsyncSamPlopPlopResourceWithRawResponse(client.sam_plop_plop)
 
 
 class SamWithStreamedResponse:
@@ -406,6 +412,7 @@ class SamWithStreamedResponse:
             client.messages_beta_true
         )
         self.models_beta_true = models_beta_true.ModelsBetaTrueResourceWithStreamingResponse(client.models_beta_true)
+        self.sam_plop_plop = sam_plop_plop.SamPlopPlopResourceWithStreamingResponse(client.sam_plop_plop)
 
 
 class AsyncSamWithStreamedResponse:
@@ -419,6 +426,7 @@ class AsyncSamWithStreamedResponse:
         self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResourceWithStreamingResponse(
             client.models_beta_true
         )
+        self.sam_plop_plop = sam_plop_plop.AsyncSamPlopPlopResourceWithStreamingResponse(client.sam_plop_plop)
 
 
 Client = Sam
