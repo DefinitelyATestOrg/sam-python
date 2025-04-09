@@ -119,15 +119,3 @@ from sam.types import ModelsBetaTrueListResponse
 Methods:
 
 - <code title="get /v1/models?beta=true">client.models_beta_true.<a href="./src/sam/resources/models_beta_true.py">list</a>(\*\*<a href="src/sam/types/models_beta_true_list_params.py">params</a>) -> <a href="./src/sam/types/models_beta_true_list_response.py">ModelsBetaTrueListResponse</a></code>
-
-# SamPlopPlop
-
-Types:
-
-```python
-from sam.types import SamPlopPlopCreateMessageResponse
-```
-
-Methods:
-
-- <code title="post /v1/sam-plop-plop">client.sam_plop_plop.<a href="./src/sam/resources/sam_plop_plop.py">create_message</a>(\*\*<a href="src/sam/types/sam_plop_plop_create_message_params.py">params</a>) -> <a href="./src/sam/types/sam_plop_plop_create_message_response.py">SamPlopPlopCreateMessageResponse</a></code>
