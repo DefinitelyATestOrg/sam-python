@@ -177,9 +177,9 @@ from sam import Sam
 
 # Configure the default for all requests:
 client = Sam(
+    api_key="My API Key",
     # default is 2
     max_retries=0,
-    api_key="My API Key",
 )
 
 # Or, configure per-request:
@@ -205,15 +205,15 @@ from sam import Sam
 
 # Configure the default for all requests:
 client = Sam(
+    api_key="My API Key",
     # 20 seconds (default is 1 minute)
     timeout=20.0,
-    api_key="My API Key",
 )
 
 # More granular control:
 client = Sam(
-    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
     api_key="My API Key",
+    timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
 # Override per-request:
@@ -359,13 +359,13 @@ import httpx
 from sam import Sam, DefaultHttpxClient
 
 client = Sam(
+    api_key="My API Key",
     # Or use the `SAM_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
-    api_key="My API Key",
 )
 ```
 
