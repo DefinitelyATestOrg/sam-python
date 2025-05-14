@@ -1,5 +1,48 @@
 # Changelog
 
+## 0.15.0-alpha.12 (2025-05-14)
+
+Full Changelog: [v0.15.0-alpha.11...v0.15.0-alpha.12](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.11...v0.15.0-alpha.12)
+
+### Features
+
+* **api:** my cool feature ([#250](https://github.com/DefinitelyATestOrg/sam-python/issues/250)) ([a47b826](https://github.com/DefinitelyATestOrg/sam-python/commit/a47b826f84d036b51e1ee6295637dd2ae730c795))
+* cool cool cool ([#251](https://github.com/DefinitelyATestOrg/sam-python/issues/251)) ([253ec50](https://github.com/DefinitelyATestOrg/sam-python/commit/253ec50277ec1a42766c0cb5a43fc08d8b464528))
+
+
+### Bug Fixes
+
+* **package:** support direct resource imports ([6611818](https://github.com/DefinitelyATestOrg/sam-python/commit/6611818f6976350bd8e313910b5ef45b725a94aa))
+* **perf:** optimize some hot paths ([b934ece](https://github.com/DefinitelyATestOrg/sam-python/commit/b934ece500851976dd6e3bee437ec5af5ca5cee1))
+* **perf:** skip traversing types for NotGiven values ([63bd3fe](https://github.com/DefinitelyATestOrg/sam-python/commit/63bd3fec7eed946d9d5def7601a66de515f8ecf2))
+* **pydantic v1:** more robust ModelField.annotation check ([2d01d23](https://github.com/DefinitelyATestOrg/sam-python/commit/2d01d23afe0ab3df17e7b99665edf105076bad80))
+
+
+### Chores
+
+* broadly detect json family of content-type headers ([a21bf3e](https://github.com/DefinitelyATestOrg/sam-python/commit/a21bf3ed1033a1d6055641bbaaf093d91cbd2b0f))
+* **ci:** add timeout thresholds for CI jobs ([62a59a9](https://github.com/DefinitelyATestOrg/sam-python/commit/62a59a9d6c0b52c7d16d7fbfacd416c6b5968835))
+* **ci:** only use depot for staging repos ([577d039](https://github.com/DefinitelyATestOrg/sam-python/commit/577d039ac4015b89bb2327f0f5c7911877b8137a))
+* **ci:** run on more branches and use depot runners ([8af2b16](https://github.com/DefinitelyATestOrg/sam-python/commit/8af2b16a0b427f84966466e1bc942787e86c0cd4))
+* **ci:** upload sdks to package manager ([eb1e41a](https://github.com/DefinitelyATestOrg/sam-python/commit/eb1e41ac840ebac39a77b7ad7c47d79990f6c634))
+* **client:** minor internal fixes ([36002a4](https://github.com/DefinitelyATestOrg/sam-python/commit/36002a4352ab3fdfad756a0a1da23e875406725f))
+* fix typos ([#244](https://github.com/DefinitelyATestOrg/sam-python/issues/244)) ([e17a94c](https://github.com/DefinitelyATestOrg/sam-python/commit/e17a94cc853d8d8edf35207ef9ac9afc7f09da37))
+* **internal:** avoid errors for isinstance checks on proxies ([a1b2b16](https://github.com/DefinitelyATestOrg/sam-python/commit/a1b2b169a0ced82ff0c165ce2df2abf4317d1dd4))
+* **internal:** base client updates ([49f7157](https://github.com/DefinitelyATestOrg/sam-python/commit/49f7157427c8707b7b2cdb24847aa46cc8385ed0))
+* **internal:** bump pyright version ([2202d16](https://github.com/DefinitelyATestOrg/sam-python/commit/2202d16cdcb6fb483baa4e4362aafe3b6b583f9e))
+* **internal:** codegen related update ([bb9bcf8](https://github.com/DefinitelyATestOrg/sam-python/commit/bb9bcf8ee8928653038d97a6f157e6f349f76fdf))
+* **internal:** expand CI branch coverage ([#249](https://github.com/DefinitelyATestOrg/sam-python/issues/249)) ([4ad81be](https://github.com/DefinitelyATestOrg/sam-python/commit/4ad81be4ea6b88ab8c86d9be78dc7e54a633d42d))
+* **internal:** fix list file params ([48cbc18](https://github.com/DefinitelyATestOrg/sam-python/commit/48cbc18ee1aa2202c942458d2ebb046072c4d72e))
+* **internal:** import reformatting ([62efac5](https://github.com/DefinitelyATestOrg/sam-python/commit/62efac52fc86e548622e0d44414bf43e5dc48614))
+* **internal:** minor formatting changes ([13ed47c](https://github.com/DefinitelyATestOrg/sam-python/commit/13ed47c99baa28c432e19a99b9191daf9a0b511c))
+* **internal:** reduce CI branch coverage ([a99f5d3](https://github.com/DefinitelyATestOrg/sam-python/commit/a99f5d30b3eaff462c9c2bcbae124b5ec6184c34))
+* **internal:** refactor retries to not use recursion ([1854460](https://github.com/DefinitelyATestOrg/sam-python/commit/185446009fdaa9766b1945fb411cd87591eff69f))
+* **internal:** remove trailing character ([#246](https://github.com/DefinitelyATestOrg/sam-python/issues/246)) ([391b29b](https://github.com/DefinitelyATestOrg/sam-python/commit/391b29b078a53d37a9c20c56f00e5333f2de4e11))
+* **internal:** slight transform perf improvement ([#248](https://github.com/DefinitelyATestOrg/sam-python/issues/248)) ([6f4d71b](https://github.com/DefinitelyATestOrg/sam-python/commit/6f4d71b16acb1175c9ec1dcb9e775e41db40121e))
+* **internal:** update models test ([4edf616](https://github.com/DefinitelyATestOrg/sam-python/commit/4edf616353a9151e0328f219e88659cabeeb9128))
+* **internal:** update pyright settings ([e7ed44b](https://github.com/DefinitelyATestOrg/sam-python/commit/e7ed44b71635476481a314046db0a485a9f71094))
+* **internal:** variable name and test updates ([#247](https://github.com/DefinitelyATestOrg/sam-python/issues/247)) ([f5ef65b](https://github.com/DefinitelyATestOrg/sam-python/commit/f5ef65bc1e2381bb39ec5e58b203da53199f8ba5))
+
 ## 0.15.0-alpha.11 (2025-03-17)
 
 Full Changelog: [v0.15.0-alpha.10...v0.15.0-alpha.11](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.10...v0.15.0-alpha.11)
