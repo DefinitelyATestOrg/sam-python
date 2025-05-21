@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.15.0-alpha.13 (2025-05-21)
+
+Full Changelog: [v0.15.0-alpha.12...v0.15.0-alpha.13](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.12...v0.15.0-alpha.13)
+
+### Chores
+
+* **ci:** fix installation instructions ([5d4b859](https://github.com/DefinitelyATestOrg/sam-python/commit/5d4b85912cc022732af4e195250ba60ef3e06593))
+* **ci:** use --pre flag for prerelease installation instructions ([e9e9ab1](https://github.com/DefinitelyATestOrg/sam-python/commit/e9e9ab18f51195434a08131551ef2d3e616c20ac))
+* **ci:** use --pre flag for prerelease installation instructions ([c10cf5f](https://github.com/DefinitelyATestOrg/sam-python/commit/c10cf5f4bf2081fe8e08ca695376302a5d543fdb))
+* **docs:** grammar improvements ([be51a39](https://github.com/DefinitelyATestOrg/sam-python/commit/be51a39cab29503d92bb28d275b2d857e94b95d5))
+
 ## 0.15.0-alpha.12 (2025-05-14)
 
 Full Changelog: [v0.15.0-alpha.11...v0.15.0-alpha.12](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.11...v0.15.0-alpha.12)
