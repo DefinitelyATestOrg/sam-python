@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.15.0-alpha.13 (2025-06-12)
+
+Full Changelog: [v0.15.0-alpha.12...v0.15.0-alpha.13](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.12...v0.15.0-alpha.13)
+
+### Features
+
+* **client:** add follow_redirects request option ([7642826](https://github.com/DefinitelyATestOrg/sam-python/commit/7642826050d429ef13db95d07350c6d42a48c93f))
+
+
+### Bug Fixes
+
+* **client:** correctly parse binary response | stream ([6beb9c2](https://github.com/DefinitelyATestOrg/sam-python/commit/6beb9c2f3323c7390a181d69604cfba4553bada7))
+
+
+### Chores
+
+* **ci:** fix installation instructions ([5d4b859](https://github.com/DefinitelyATestOrg/sam-python/commit/5d4b85912cc022732af4e195250ba60ef3e06593))
+* **ci:** use --pre flag for prerelease installation instructions ([e9e9ab1](https://github.com/DefinitelyATestOrg/sam-python/commit/e9e9ab18f51195434a08131551ef2d3e616c20ac))
+* **ci:** use --pre flag for prerelease installation instructions ([c10cf5f](https://github.com/DefinitelyATestOrg/sam-python/commit/c10cf5f4bf2081fe8e08ca695376302a5d543fdb))
+* **docs:** grammar improvements ([be51a39](https://github.com/DefinitelyATestOrg/sam-python/commit/be51a39cab29503d92bb28d275b2d857e94b95d5))
+* **docs:** remove reference to rye shell ([8799f7b](https://github.com/DefinitelyATestOrg/sam-python/commit/8799f7b7f06cecf89d94c8edce1922a4b746d19c))
+* **docs:** remove unnecessary param examples ([3e39508](https://github.com/DefinitelyATestOrg/sam-python/commit/3e3950828f8a6bce2887db5a816e13ae5a0fe9b6))
+* **tests:** run tests in parallel ([7c9d73e](https://github.com/DefinitelyATestOrg/sam-python/commit/7c9d73ec6f30129967ee807e93bc42df0f806c6b))
+
 ## 0.15.0-alpha.12 (2025-05-14)
 
 Full Changelog: [v0.15.0-alpha.11...v0.15.0-alpha.12](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.11...v0.15.0-alpha.12)
