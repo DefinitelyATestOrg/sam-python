@@ -1,6 +1,6 @@
 # Sam Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/sam.svg)](https://pypi.org/project/sam/)
+[![PyPI version](<https://img.shields.io/pypi/v/sam.svg?label=pypi%20(stable)>)](https://pypi.org/project/sam/)
 
 The Sam Python library provides convenient access to the Sam REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
