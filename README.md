@@ -78,6 +78,46 @@ asyncio.run(main())
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
 
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from the production repo
+pip install 'sam[aiohttp] @ git+ssh://git@github.com/DefinitelyATestOrg/sam-python.git'
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import asyncio
+from sam import DefaultAioHttpClient
+from sam import AsyncSam
+
+
+async def main() -> None:
+    async with AsyncSam(
+        api_key="My API Key",
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        message = await client.messages.create(
+            max_tokens=1024,
+            messages=[
+                {
+                    "content": "Hello, world",
+                    "role": "user",
+                }
+            ],
+            model="claude-3-7-sonnet-20250219",
+        )
+        print(message.id)
+
+
+asyncio.run(main())
+```
+
 ## Using types
 
 Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typing.html#typing.TypedDict). Responses are [Pydantic models](https://docs.pydantic.dev) which also provide helper methods for things like:
