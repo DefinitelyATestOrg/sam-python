@@ -1,5 +1,43 @@
 # Changelog
 
+## 0.15.0-alpha.13 (2025-06-26)
+
+Full Changelog: [v0.15.0-alpha.12...v0.15.0-alpha.13](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.12...v0.15.0-alpha.13)
+
+### Features
+
+* **client:** add follow_redirects request option ([7642826](https://github.com/DefinitelyATestOrg/sam-python/commit/7642826050d429ef13db95d07350c6d42a48c93f))
+* **client:** add support for aiohttp ([b677e6d](https://github.com/DefinitelyATestOrg/sam-python/commit/b677e6db50b41e24d1a89218fc258b6477a5da11))
+
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([865d770](https://github.com/DefinitelyATestOrg/sam-python/commit/865d7701dd0557439e31d0c79d6f8f4ce3e5e72b))
+* **client:** correctly parse binary response | stream ([6beb9c2](https://github.com/DefinitelyATestOrg/sam-python/commit/6beb9c2f3323c7390a181d69604cfba4553bada7))
+* **tests:** fix: tests which call HTTP endpoints directly with the example parameters ([ae65c81](https://github.com/DefinitelyATestOrg/sam-python/commit/ae65c8132d87db7c14dee804e3a6cdfeac5122b5))
+
+
+### Chores
+
+* change publish docs url ([b8a0a93](https://github.com/DefinitelyATestOrg/sam-python/commit/b8a0a93e7e7b8b85aefa4bed66191eacd295f1a2))
+* **ci:** enable for pull requests ([6f49aed](https://github.com/DefinitelyATestOrg/sam-python/commit/6f49aed71f5ba65c524acae56e067ad6d2e45056))
+* **ci:** fix installation instructions ([5d4b859](https://github.com/DefinitelyATestOrg/sam-python/commit/5d4b85912cc022732af4e195250ba60ef3e06593))
+* **ci:** use --pre flag for prerelease installation instructions ([e9e9ab1](https://github.com/DefinitelyATestOrg/sam-python/commit/e9e9ab18f51195434a08131551ef2d3e616c20ac))
+* **ci:** use --pre flag for prerelease installation instructions ([c10cf5f](https://github.com/DefinitelyATestOrg/sam-python/commit/c10cf5f4bf2081fe8e08ca695376302a5d543fdb))
+* **docs:** grammar improvements ([be51a39](https://github.com/DefinitelyATestOrg/sam-python/commit/be51a39cab29503d92bb28d275b2d857e94b95d5))
+* **docs:** remove reference to rye shell ([8799f7b](https://github.com/DefinitelyATestOrg/sam-python/commit/8799f7b7f06cecf89d94c8edce1922a4b746d19c))
+* **docs:** remove unnecessary param examples ([3e39508](https://github.com/DefinitelyATestOrg/sam-python/commit/3e3950828f8a6bce2887db5a816e13ae5a0fe9b6))
+* **internal:** update conftest.py ([831bb0b](https://github.com/DefinitelyATestOrg/sam-python/commit/831bb0b400f2470cbe9163fc6e8729ad4f1f7519))
+* **readme:** update badges ([c374cc6](https://github.com/DefinitelyATestOrg/sam-python/commit/c374cc6466d92dcb281d64e9783fe62df473fec5))
+* **tests:** add tests for httpx client instantiation & proxies ([8656ab3](https://github.com/DefinitelyATestOrg/sam-python/commit/8656ab32963b4170b1ec0e854a1da29a153ed8c0))
+* **tests:** run tests in parallel ([7c9d73e](https://github.com/DefinitelyATestOrg/sam-python/commit/7c9d73ec6f30129967ee807e93bc42df0f806c6b))
+* **tests:** skip some failing tests on the latest python versions ([bd2655d](https://github.com/DefinitelyATestOrg/sam-python/commit/bd2655d3862a2340f15f82e88591ed3c48252c03))
+
+
+### Documentation
+
+* **client:** fix httpx.Timeout documentation reference ([9a2cf78](https://github.com/DefinitelyATestOrg/sam-python/commit/9a2cf7833b1a575bdfa6b9fbfabc977ca9781de2))
+
 ## 0.15.0-alpha.12 (2025-05-14)
 
 Full Changelog: [v0.15.0-alpha.11...v0.15.0-alpha.12](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.11...v0.15.0-alpha.12)
