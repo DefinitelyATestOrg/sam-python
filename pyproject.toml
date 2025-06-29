@@ -1,6 +1,6 @@
 [project]
 name = "sam"
-version = "0.15.0-alpha.13"
+version = "0.15.0-alpha.14"
 description = "The official Python library for the sam API"
 dynamic = ["readme"]
 license = "Apache-2.0"
