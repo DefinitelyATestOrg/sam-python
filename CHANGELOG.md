@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.15.0-alpha.14 (2025-06-29)
+
+Full Changelog: [v0.15.0-alpha.13...v0.15.0-alpha.14](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.13...v0.15.0-alpha.14)
+
+### Bug Fixes
+
+* **ci:** correct conditional ([3633610](https://github.com/DefinitelyATestOrg/sam-python/commit/36336108bd50f9d3200ba0498d28dfd924837a56))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([0f88502](https://github.com/DefinitelyATestOrg/sam-python/commit/0f885025fe318c1affc0db5ffd06d72523112f1d))
+
 ## 0.15.0-alpha.13 (2025-06-26)
 
 Full Changelog: [v0.15.0-alpha.12...v0.15.0-alpha.13](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.12...v0.15.0-alpha.13)
