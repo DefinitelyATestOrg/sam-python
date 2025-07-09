@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.15.0-alpha.15 (2025-07-09)
+
+Full Changelog: [v0.15.0-alpha.14...v0.15.0-alpha.15](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.14...v0.15.0-alpha.15)
+
+### Bug Fixes
+
+* **parsing:** correctly handle nested discriminated unions ([6d825ed](https://github.com/DefinitelyATestOrg/sam-python/commit/6d825ed3ed33ed39a680ebad00806dfa69ac99c2))
+
+
+### Chores
+
+* **ci:** change upload type ([289eb8f](https://github.com/DefinitelyATestOrg/sam-python/commit/289eb8f0fdfdd374a9083be2f578e09425ecad88))
+* **internal:** bump pinned h11 dep ([0cd29b5](https://github.com/DefinitelyATestOrg/sam-python/commit/0cd29b5002695b38b0ec455b95a1cf0f7d01aac6))
+* **internal:** codegen related update ([7e98627](https://github.com/DefinitelyATestOrg/sam-python/commit/7e98627aba16c18abcba517a5c55b3bb0378462b))
+* **package:** mark python 3.13 as supported ([fd79ccb](https://github.com/DefinitelyATestOrg/sam-python/commit/fd79ccb4187555df8366a74d981585dae680c04c))
+
 ## 0.15.0-alpha.14 (2025-06-29)
 
 Full Changelog: [v0.15.0-alpha.13...v0.15.0-alpha.14](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.13...v0.15.0-alpha.14)
