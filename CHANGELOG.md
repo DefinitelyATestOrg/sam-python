@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.15.0-alpha.16 (2025-07-11)
+
+Full Changelog: [v0.15.0-alpha.15...v0.15.0-alpha.16](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.15...v0.15.0-alpha.16)
+
+### Bug Fixes
+
+* **client:** don't send Content-Type header on GET requests ([ad7e693](https://github.com/DefinitelyATestOrg/sam-python/commit/ad7e69311a79fd7df3bd8e81facbfc56d1ae8deb))
+
+
+### Chores
+
+* **readme:** fix version rendering on pypi ([72caf83](https://github.com/DefinitelyATestOrg/sam-python/commit/72caf8361f157b2d8aede5cca803f093bd95b745))
+
 ## 0.15.0-alpha.15 (2025-07-09)
 
 Full Changelog: [v0.15.0-alpha.14...v0.15.0-alpha.15](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.14...v0.15.0-alpha.15)
