@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0-alpha.17 (2025-07-21)
+
+Full Changelog: [v0.15.0-alpha.16...v0.15.0-alpha.17](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.16...v0.15.0-alpha.17)
+
+### Bug Fixes
+
+* **parsing:** ignore empty metadata ([f285bae](https://github.com/DefinitelyATestOrg/sam-python/commit/f285bae20f4d54a4b039f53d89ae05a2d4f8f1a7))
+
 ## 0.15.0-alpha.16 (2025-07-11)
 
 Full Changelog: [v0.15.0-alpha.15...v0.15.0-alpha.16](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.15...v0.15.0-alpha.16)
