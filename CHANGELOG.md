@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.0-alpha.18 (2025-07-22)
+
+Full Changelog: [v0.15.0-alpha.17...v0.15.0-alpha.18](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.17...v0.15.0-alpha.18)
+
+### Bug Fixes
+
+* **parsing:** parse extra field types ([2472aa4](https://github.com/DefinitelyATestOrg/sam-python/commit/2472aa450d09ec674d269a55506c9fb5a25466af))
+
 ## 0.15.0-alpha.17 (2025-07-21)
 
 Full Changelog: [v0.15.0-alpha.16...v0.15.0-alpha.17](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.16...v0.15.0-alpha.17)
