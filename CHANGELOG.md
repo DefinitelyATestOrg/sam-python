@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.15.0-alpha.19 (2025-08-08)
+
+Full Changelog: [v0.15.0-alpha.18...v0.15.0-alpha.19](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.18...v0.15.0-alpha.19)
+
+### Features
+
+* **client:** support file upload requests ([3bc7fe1](https://github.com/DefinitelyATestOrg/sam-python/commit/3bc7fe16d24c44da34bd3dfa484af7971689e618))
+
+
+### Chores
+
+* **internal:** fix ruff target version ([f62157a](https://github.com/DefinitelyATestOrg/sam-python/commit/f62157a0c7846d3485d86d9ee0cf1c135433a2a3))
+* **internal:** update comment in script ([c1e6817](https://github.com/DefinitelyATestOrg/sam-python/commit/c1e681780d3226c093344aa39372ee485716afef))
+* **project:** add settings file for vscode ([2f7dd10](https://github.com/DefinitelyATestOrg/sam-python/commit/2f7dd10a0c408769e5538a0aed3e3dce07af4847))
+* update @stainless-api/prism-cli to v5.15.0 ([8c519d3](https://github.com/DefinitelyATestOrg/sam-python/commit/8c519d3b07f18245a1e873bb0b2ee2af64bf8444))
+
 ## 0.15.0-alpha.18 (2025-07-22)
 
 Full Changelog: [v0.15.0-alpha.17...v0.15.0-alpha.18](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.17...v0.15.0-alpha.18)
