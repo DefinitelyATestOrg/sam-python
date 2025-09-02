@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Union, Iterable
 
 import httpx
 
 from ..types import messages_beta_true_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,7 +50,7 @@ class MessagesBetaTrueResource(SyncAPIResource):
         messages: Iterable[messages_beta_true_create_params.Message],
         model: str,
         metadata: messages_beta_true_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: List[str] | NotGiven = NOT_GIVEN,
+        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         system: Union[str, Iterable[messages_beta_true_create_params.SystemUnionMember1]] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -59,7 +59,7 @@ class MessagesBetaTrueResource(SyncAPIResource):
         tools: Iterable[messages_beta_true_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -401,7 +401,7 @@ class AsyncMessagesBetaTrueResource(AsyncAPIResource):
         messages: Iterable[messages_beta_true_create_params.Message],
         model: str,
         metadata: messages_beta_true_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: List[str] | NotGiven = NOT_GIVEN,
+        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         system: Union[str, Iterable[messages_beta_true_create_params.SystemUnionMember1]] | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
@@ -410,7 +410,7 @@ class AsyncMessagesBetaTrueResource(AsyncAPIResource):
         tools: Iterable[messages_beta_true_create_params.Tool] | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,
         top_p: float | NotGiven = NOT_GIVEN,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

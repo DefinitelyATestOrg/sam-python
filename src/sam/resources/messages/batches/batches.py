@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Iterable
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from .beta_true import (
     BetaTrueResource,
@@ -67,7 +67,7 @@ class BatchesResource(SyncAPIResource):
         self,
         *,
         requests: Iterable[batch_create_params.Request],
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +139,7 @@ class BatchesResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -212,7 +212,7 @@ class BatchesResource(SyncAPIResource):
         after_id: str | NotGiven = NOT_GIVEN,
         before_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -299,7 +299,7 @@ class BatchesResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -370,7 +370,7 @@ class BatchesResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -447,7 +447,7 @@ class BatchesResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -524,7 +524,7 @@ class BatchesResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -598,7 +598,7 @@ class BatchesResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -697,7 +697,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         self,
         *,
         requests: Iterable[batch_create_params.Request],
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -769,7 +769,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -842,7 +842,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         after_id: str | NotGiven = NOT_GIVEN,
         before_id: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -929,7 +929,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1000,7 +1000,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1077,7 +1077,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1154,7 +1154,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1228,7 +1228,7 @@ class AsyncBatchesResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
