@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Iterable, Optional
+from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
-from .._types import Base64FileInput
+from .._types import SequenceNotStr, Base64FileInput
 from .._utils import PropertyInfo
 from .._models import set_pydantic_config
 
@@ -283,7 +283,7 @@ class MessageCountTokensParams(TypedDict, total=False):
     See our [guide](https://docs.anthropic.com/en/docs/tool-use) for more details.
     """
 
-    anthropic_beta: Annotated[List[str], PropertyInfo(alias="anthropic-beta")]
+    anthropic_beta: Annotated[SequenceNotStr[str], PropertyInfo(alias="anthropic-beta")]
     """Optional header to specify the beta version(s) you want to use.
 
     To use multiple betas, use a comma separated list like `beta1,beta2` or specify

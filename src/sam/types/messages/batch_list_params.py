@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Annotated, TypedDict
 
+from ..._types import SequenceNotStr
 from ..._utils import PropertyInfo
 
 __all__ = ["BatchListParams"]
@@ -29,7 +29,7 @@ class BatchListParams(TypedDict, total=False):
     Defaults to `20`. Ranges from `1` to `1000`.
     """
 
-    anthropic_beta: Annotated[List[str], PropertyInfo(alias="anthropic-beta")]
+    anthropic_beta: Annotated[SequenceNotStr[str], PropertyInfo(alias="anthropic-beta")]
     """Optional header to specify the beta version(s) you want to use.
 
     To use multiple betas, use a comma separated list like `beta1,beta2` or specify

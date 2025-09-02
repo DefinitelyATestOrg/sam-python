@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Optional
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 
 __all__ = ["CompleteCreateParams", "Metadata"]
@@ -44,7 +45,7 @@ class CompleteCreateParams(TypedDict, total=False):
     metadata: Metadata
     """An object describing metadata about the request."""
 
-    stop_sequences: List[str]
+    stop_sequences: SequenceNotStr[str]
     """Sequences that will cause the model to stop generating.
 
     Our models stop on `"\n\nHuman:"`, and may include additional built-in stop

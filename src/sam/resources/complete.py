@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List
-
 import httpx
 
 from ..types import complete_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from .._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,7 +48,7 @@ class CompleteResource(SyncAPIResource):
         model: str,
         prompt: str,
         metadata: complete_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: List[str] | NotGiven = NOT_GIVEN,
+        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,
@@ -218,7 +216,7 @@ class AsyncCompleteResource(AsyncAPIResource):
         model: str,
         prompt: str,
         metadata: complete_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: List[str] | NotGiven = NOT_GIVEN,
+        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         stream: bool | NotGiven = NOT_GIVEN,
         temperature: float | NotGiven = NOT_GIVEN,
         top_k: int | NotGiven = NOT_GIVEN,

@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
-
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ...._utils import is_given, strip_not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -47,7 +45,7 @@ class BetaTrueResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -118,7 +116,7 @@ class BetaTrueResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -210,7 +208,7 @@ class AsyncBetaTrueResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -281,7 +279,7 @@ class AsyncBetaTrueResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: List[str] | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
         anthropic_version: str | NotGiven = NOT_GIVEN,
         x_api_key: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
