@@ -7,7 +7,7 @@ from typing import Union, Iterable
 import httpx
 
 from ..types import messages_beta_true_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,25 +49,25 @@ class MessagesBetaTrueResource(SyncAPIResource):
         max_tokens: int,
         messages: Iterable[messages_beta_true_create_params.Message],
         model: str,
-        metadata: messages_beta_true_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        system: Union[str, Iterable[messages_beta_true_create_params.SystemUnionMember1]] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        thinking: messages_beta_true_create_params.Thinking | NotGiven = NOT_GIVEN,
-        tool_choice: messages_beta_true_create_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[messages_beta_true_create_params.Tool] | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        metadata: messages_beta_true_create_params.Metadata | Omit = omit,
+        stop_sequences: SequenceNotStr[str] | Omit = omit,
+        stream: bool | Omit = omit,
+        system: Union[str, Iterable[messages_beta_true_create_params.SystemUnionMember1]] | Omit = omit,
+        temperature: float | Omit = omit,
+        thinking: messages_beta_true_create_params.Thinking | Omit = omit,
+        tool_choice: messages_beta_true_create_params.ToolChoice | Omit = omit,
+        tools: Iterable[messages_beta_true_create_params.Tool] | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagesBetaTrueCreateResponse:
         """
         Send a structured list of input messages with text and/or image content, and the
@@ -340,7 +340,7 @@ class MessagesBetaTrueResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -400,25 +400,25 @@ class AsyncMessagesBetaTrueResource(AsyncAPIResource):
         max_tokens: int,
         messages: Iterable[messages_beta_true_create_params.Message],
         model: str,
-        metadata: messages_beta_true_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        system: Union[str, Iterable[messages_beta_true_create_params.SystemUnionMember1]] | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        thinking: messages_beta_true_create_params.Thinking | NotGiven = NOT_GIVEN,
-        tool_choice: messages_beta_true_create_params.ToolChoice | NotGiven = NOT_GIVEN,
-        tools: Iterable[messages_beta_true_create_params.Tool] | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        metadata: messages_beta_true_create_params.Metadata | Omit = omit,
+        stop_sequences: SequenceNotStr[str] | Omit = omit,
+        stream: bool | Omit = omit,
+        system: Union[str, Iterable[messages_beta_true_create_params.SystemUnionMember1]] | Omit = omit,
+        temperature: float | Omit = omit,
+        thinking: messages_beta_true_create_params.Thinking | Omit = omit,
+        tool_choice: messages_beta_true_create_params.ToolChoice | Omit = omit,
+        tools: Iterable[messages_beta_true_create_params.Tool] | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessagesBetaTrueCreateResponse:
         """
         Send a structured list of input messages with text and/or image content, and the
@@ -691,7 +691,7 @@ class AsyncMessagesBetaTrueResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
