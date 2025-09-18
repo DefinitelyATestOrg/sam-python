@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import complete_create_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from .._utils import maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -47,20 +47,20 @@ class CompleteResource(SyncAPIResource):
         max_tokens_to_sample: int,
         model: str,
         prompt: str,
-        metadata: complete_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        metadata: complete_create_params.Metadata | Omit = omit,
+        stop_sequences: SequenceNotStr[str] | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CompleteCreateResponse:
         """[Legacy] Create a Text Completion.
 
@@ -215,20 +215,20 @@ class AsyncCompleteResource(AsyncAPIResource):
         max_tokens_to_sample: int,
         model: str,
         prompt: str,
-        metadata: complete_create_params.Metadata | NotGiven = NOT_GIVEN,
-        stop_sequences: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        stream: bool | NotGiven = NOT_GIVEN,
-        temperature: float | NotGiven = NOT_GIVEN,
-        top_k: int | NotGiven = NOT_GIVEN,
-        top_p: float | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        metadata: complete_create_params.Metadata | Omit = omit,
+        stop_sequences: SequenceNotStr[str] | Omit = omit,
+        stream: bool | Omit = omit,
+        temperature: float | Omit = omit,
+        top_k: int | Omit = omit,
+        top_p: float | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CompleteCreateResponse:
         """[Legacy] Create a Text Completion.
 
