@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -48,15 +48,15 @@ class BatchesBetaTrueResource(SyncAPIResource):
         self,
         *,
         requests: Iterable[batches_beta_true_create_params.Request],
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchesBetaTrueCreateResponse:
         """
         Send a batch of Message creation requests.
@@ -100,7 +100,7 @@ class BatchesBetaTrueResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -119,18 +119,18 @@ class BatchesBetaTrueResource(SyncAPIResource):
     def list(
         self,
         *,
-        after_id: str | NotGiven = NOT_GIVEN,
-        before_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        after_id: str | Omit = omit,
+        before_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchesBetaTrueListResponse:
         """List all Message Batches within a Workspace.
 
@@ -179,7 +179,7 @@ class BatchesBetaTrueResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -230,15 +230,15 @@ class AsyncBatchesBetaTrueResource(AsyncAPIResource):
         self,
         *,
         requests: Iterable[batches_beta_true_create_params.Request],
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchesBetaTrueCreateResponse:
         """
         Send a batch of Message creation requests.
@@ -282,7 +282,7 @@ class AsyncBatchesBetaTrueResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -303,18 +303,18 @@ class AsyncBatchesBetaTrueResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        after_id: str | NotGiven = NOT_GIVEN,
-        before_id: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        after_id: str | Omit = omit,
+        before_id: str | Omit = omit,
+        limit: int | Omit = omit,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchesBetaTrueListResponse:
         """List all Message Batches within a Workspace.
 
@@ -363,7 +363,7 @@ class AsyncBatchesBetaTrueResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }

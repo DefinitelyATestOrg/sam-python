@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ...._utils import is_given, strip_not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
@@ -45,15 +45,15 @@ class BetaTrueResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BetaTrueRetrieveResponse:
         """This endpoint is idempotent and can be used to poll for Message Batch
         completion.
@@ -97,7 +97,7 @@ class BetaTrueResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -116,15 +116,15 @@ class BetaTrueResource(SyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BetaTrueDeleteResponse:
         """
         Delete a Message Batch.
@@ -168,7 +168,7 @@ class BetaTrueResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -208,15 +208,15 @@ class AsyncBetaTrueResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BetaTrueRetrieveResponse:
         """This endpoint is idempotent and can be used to poll for Message Batch
         completion.
@@ -260,7 +260,7 @@ class AsyncBetaTrueResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -279,15 +279,15 @@ class AsyncBetaTrueResource(AsyncAPIResource):
         self,
         message_batch_id: str,
         *,
-        anthropic_beta: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        anthropic_version: str | NotGiven = NOT_GIVEN,
-        x_api_key: str | NotGiven = NOT_GIVEN,
+        anthropic_beta: SequenceNotStr[str] | Omit = omit,
+        anthropic_version: str | Omit = omit,
+        x_api_key: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BetaTrueDeleteResponse:
         """
         Delete a Message Batch.
@@ -331,7 +331,7 @@ class AsyncBetaTrueResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else NOT_GIVEN,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
