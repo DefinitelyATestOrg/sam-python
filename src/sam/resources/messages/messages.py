@@ -366,7 +366,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else not_given,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -637,7 +637,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else not_given,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -901,7 +901,7 @@ class MessagesResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else not_given,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -1253,7 +1253,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else not_given,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -1524,7 +1524,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else not_given,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
@@ -1788,7 +1788,7 @@ class AsyncMessagesResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else omit,
+                    "anthropic-beta": ",".join(anthropic_beta) if is_given(anthropic_beta) else not_given,
                     "anthropic-version": anthropic_version,
                     "x-api-key": x_api_key,
                 }
