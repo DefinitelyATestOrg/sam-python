@@ -110,6 +110,8 @@ class CompleteCreateParams(TypedDict, total=False):
 
 
 class Metadata(TypedDict, total=False):
+    """An object describing metadata about the request."""
+
     user_id: Optional[str]
     """An external identifier for the user who is associated with the request.
 

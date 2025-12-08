@@ -885,6 +885,8 @@ Thinking: TypeAlias = Union[ThinkingThinkingConfigEnabled, ThinkingThinkingConfi
 
 
 class ToolChoiceToolChoiceAuto(TypedDict, total=False):
+    """The model will automatically decide whether to use tools."""
+
     type: Required[Literal["auto"]]
 
     disable_parallel_tool_use: bool
@@ -896,6 +898,8 @@ class ToolChoiceToolChoiceAuto(TypedDict, total=False):
 
 
 class ToolChoiceToolChoiceAny(TypedDict, total=False):
+    """The model will use any available tools."""
+
     type: Required[Literal["any"]]
 
     disable_parallel_tool_use: bool
@@ -907,6 +911,8 @@ class ToolChoiceToolChoiceAny(TypedDict, total=False):
 
 
 class ToolChoiceToolChoiceTool(TypedDict, total=False):
+    """The model will use the specified tool with `tool_choice.name`."""
+
     name: Required[str]
     """The name of the tool to use."""
 
@@ -921,6 +927,8 @@ class ToolChoiceToolChoiceTool(TypedDict, total=False):
 
 
 class ToolChoiceToolChoiceNone(TypedDict, total=False):
+    """The model will not be allowed to use tools."""
+
     type: Required[Literal["none"]]
 
 
@@ -930,6 +938,11 @@ ToolChoice: TypeAlias = Union[
 
 
 class ToolToolInputSchemaTyped(TypedDict, total=False):
+    """[JSON schema](https://json-schema.org/draft/2020-12) for this tool's input.
+
+    This defines the shape of the `input` that your tool accepts and that the model will produce.
+    """
+
     type: Required[Literal["object"]]
 
     properties: Optional[object]

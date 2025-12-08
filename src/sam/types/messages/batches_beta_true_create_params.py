@@ -643,6 +643,8 @@ class RequestParamsMessage(TypedDict, total=False):
 
 
 class RequestParamsMetadata(TypedDict, total=False):
+    """An object describing metadata about the request."""
+
     user_id: Optional[str]
     """An external identifier for the user who is associated with the request.
 
@@ -742,6 +744,8 @@ RequestParamsThinking: TypeAlias = Union[
 
 
 class RequestParamsToolChoiceBetaToolChoiceAuto(TypedDict, total=False):
+    """The model will automatically decide whether to use tools."""
+
     type: Required[Literal["auto"]]
 
     disable_parallel_tool_use: bool
@@ -753,6 +757,8 @@ class RequestParamsToolChoiceBetaToolChoiceAuto(TypedDict, total=False):
 
 
 class RequestParamsToolChoiceBetaToolChoiceAny(TypedDict, total=False):
+    """The model will use any available tools."""
+
     type: Required[Literal["any"]]
 
     disable_parallel_tool_use: bool
@@ -764,6 +770,8 @@ class RequestParamsToolChoiceBetaToolChoiceAny(TypedDict, total=False):
 
 
 class RequestParamsToolChoiceBetaToolChoiceTool(TypedDict, total=False):
+    """The model will use the specified tool with `tool_choice.name`."""
+
     name: Required[str]
     """The name of the tool to use."""
 
@@ -778,6 +786,8 @@ class RequestParamsToolChoiceBetaToolChoiceTool(TypedDict, total=False):
 
 
 class RequestParamsToolChoiceBetaToolChoiceNone(TypedDict, total=False):
+    """The model will not be allowed to use tools."""
+
     type: Required[Literal["none"]]
 
 
@@ -790,6 +800,11 @@ RequestParamsToolChoice: TypeAlias = Union[
 
 
 class RequestParamsToolBetaToolInputSchemaTyped(TypedDict, total=False):
+    """[JSON schema](https://json-schema.org/draft/2020-12) for this tool's input.
+
+    This defines the shape of the `input` that your tool accepts and that the model will produce.
+    """
+
     type: Required[Literal["object"]]
 
     properties: Optional[object]
@@ -956,6 +971,11 @@ RequestParamsTool: TypeAlias = Union[
 
 
 class RequestParams(TypedDict, total=False):
+    """Messages API creation parameters for the individual request.
+
+    See the [Messages API reference](/en/api/messages) for full documentation on available parameters.
+    """
+
     max_tokens: Required[int]
     """The maximum number of tokens to generate before stopping.
 
