@@ -10,6 +10,11 @@ __all__ = ["BatchesBetaTrueListResponse", "Data", "DataRequestCounts"]
 
 
 class DataRequestCounts(BaseModel):
+    """Tallies requests within the Message Batch, categorized by their status.
+
+    Requests start as `processing` and move to one of the other statuses only once processing of the entire batch ends. The sum of all values always matches the total number of requests in the batch.
+    """
+
     canceled: int
     """Number of requests in the Message Batch that have been canceled.
 
