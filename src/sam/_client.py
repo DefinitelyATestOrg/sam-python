@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,8 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import models, complete, models_beta_true, messages_beta_true
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import SamError, APIStatusError
 from ._base_client import (
@@ -29,20 +29,19 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.messages import messages
+
+if TYPE_CHECKING:
+    from .resources import models, complete, messages, models_beta_true, messages_beta_true
+    from .resources.models import ModelsResource, AsyncModelsResource
+    from .resources.complete import CompleteResource, AsyncCompleteResource
+    from .resources.models_beta_true import ModelsBetaTrueResource, AsyncModelsBetaTrueResource
+    from .resources.messages.messages import MessagesResource, AsyncMessagesResource
+    from .resources.messages_beta_true import MessagesBetaTrueResource, AsyncMessagesBetaTrueResource
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "Sam", "AsyncSam", "Client", "AsyncClient"]
 
 
 class Sam(SyncAPIClient):
-    messages: messages.MessagesResource
-    complete: complete.CompleteResource
-    models: models.ModelsResource
-    messages_beta_true: messages_beta_true.MessagesBetaTrueResource
-    models_beta_true: models_beta_true.ModelsBetaTrueResource
-    with_raw_response: SamWithRawResponse
-    with_streaming_response: SamWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -97,13 +96,43 @@ class Sam(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.messages = messages.MessagesResource(self)
-        self.complete = complete.CompleteResource(self)
-        self.models = models.ModelsResource(self)
-        self.messages_beta_true = messages_beta_true.MessagesBetaTrueResource(self)
-        self.models_beta_true = models_beta_true.ModelsBetaTrueResource(self)
-        self.with_raw_response = SamWithRawResponse(self)
-        self.with_streaming_response = SamWithStreamedResponse(self)
+    @cached_property
+    def messages(self) -> MessagesResource:
+        from .resources.messages import MessagesResource
+
+        return MessagesResource(self)
+
+    @cached_property
+    def complete(self) -> CompleteResource:
+        from .resources.complete import CompleteResource
+
+        return CompleteResource(self)
+
+    @cached_property
+    def models(self) -> ModelsResource:
+        from .resources.models import ModelsResource
+
+        return ModelsResource(self)
+
+    @cached_property
+    def messages_beta_true(self) -> MessagesBetaTrueResource:
+        from .resources.messages_beta_true import MessagesBetaTrueResource
+
+        return MessagesBetaTrueResource(self)
+
+    @cached_property
+    def models_beta_true(self) -> ModelsBetaTrueResource:
+        from .resources.models_beta_true import ModelsBetaTrueResource
+
+        return ModelsBetaTrueResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> SamWithRawResponse:
+        return SamWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> SamWithStreamedResponse:
+        return SamWithStreamedResponse(self)
 
     @property
     @override
@@ -205,14 +234,6 @@ class Sam(SyncAPIClient):
 
 
 class AsyncSam(AsyncAPIClient):
-    messages: messages.AsyncMessagesResource
-    complete: complete.AsyncCompleteResource
-    models: models.AsyncModelsResource
-    messages_beta_true: messages_beta_true.AsyncMessagesBetaTrueResource
-    models_beta_true: models_beta_true.AsyncModelsBetaTrueResource
-    with_raw_response: AsyncSamWithRawResponse
-    with_streaming_response: AsyncSamWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -267,13 +288,43 @@ class AsyncSam(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.messages = messages.AsyncMessagesResource(self)
-        self.complete = complete.AsyncCompleteResource(self)
-        self.models = models.AsyncModelsResource(self)
-        self.messages_beta_true = messages_beta_true.AsyncMessagesBetaTrueResource(self)
-        self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResource(self)
-        self.with_raw_response = AsyncSamWithRawResponse(self)
-        self.with_streaming_response = AsyncSamWithStreamedResponse(self)
+    @cached_property
+    def messages(self) -> AsyncMessagesResource:
+        from .resources.messages import AsyncMessagesResource
+
+        return AsyncMessagesResource(self)
+
+    @cached_property
+    def complete(self) -> AsyncCompleteResource:
+        from .resources.complete import AsyncCompleteResource
+
+        return AsyncCompleteResource(self)
+
+    @cached_property
+    def models(self) -> AsyncModelsResource:
+        from .resources.models import AsyncModelsResource
+
+        return AsyncModelsResource(self)
+
+    @cached_property
+    def messages_beta_true(self) -> AsyncMessagesBetaTrueResource:
+        from .resources.messages_beta_true import AsyncMessagesBetaTrueResource
+
+        return AsyncMessagesBetaTrueResource(self)
+
+    @cached_property
+    def models_beta_true(self) -> AsyncModelsBetaTrueResource:
+        from .resources.models_beta_true import AsyncModelsBetaTrueResource
+
+        return AsyncModelsBetaTrueResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncSamWithRawResponse:
+        return AsyncSamWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncSamWithStreamedResponse:
+        return AsyncSamWithStreamedResponse(self)
 
     @property
     @override
@@ -375,47 +426,151 @@ class AsyncSam(AsyncAPIClient):
 
 
 class SamWithRawResponse:
+    _client: Sam
+
     def __init__(self, client: Sam) -> None:
-        self.messages = messages.MessagesResourceWithRawResponse(client.messages)
-        self.complete = complete.CompleteResourceWithRawResponse(client.complete)
-        self.models = models.ModelsResourceWithRawResponse(client.models)
-        self.messages_beta_true = messages_beta_true.MessagesBetaTrueResourceWithRawResponse(client.messages_beta_true)
-        self.models_beta_true = models_beta_true.ModelsBetaTrueResourceWithRawResponse(client.models_beta_true)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithRawResponse:
+        from .resources.messages import MessagesResourceWithRawResponse
+
+        return MessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def complete(self) -> complete.CompleteResourceWithRawResponse:
+        from .resources.complete import CompleteResourceWithRawResponse
+
+        return CompleteResourceWithRawResponse(self._client.complete)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithRawResponse:
+        from .resources.models import ModelsResourceWithRawResponse
+
+        return ModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def messages_beta_true(self) -> messages_beta_true.MessagesBetaTrueResourceWithRawResponse:
+        from .resources.messages_beta_true import MessagesBetaTrueResourceWithRawResponse
+
+        return MessagesBetaTrueResourceWithRawResponse(self._client.messages_beta_true)
+
+    @cached_property
+    def models_beta_true(self) -> models_beta_true.ModelsBetaTrueResourceWithRawResponse:
+        from .resources.models_beta_true import ModelsBetaTrueResourceWithRawResponse
+
+        return ModelsBetaTrueResourceWithRawResponse(self._client.models_beta_true)
 
 
 class AsyncSamWithRawResponse:
+    _client: AsyncSam
+
     def __init__(self, client: AsyncSam) -> None:
-        self.messages = messages.AsyncMessagesResourceWithRawResponse(client.messages)
-        self.complete = complete.AsyncCompleteResourceWithRawResponse(client.complete)
-        self.models = models.AsyncModelsResourceWithRawResponse(client.models)
-        self.messages_beta_true = messages_beta_true.AsyncMessagesBetaTrueResourceWithRawResponse(
-            client.messages_beta_true
-        )
-        self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResourceWithRawResponse(client.models_beta_true)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithRawResponse:
+        from .resources.messages import AsyncMessagesResourceWithRawResponse
+
+        return AsyncMessagesResourceWithRawResponse(self._client.messages)
+
+    @cached_property
+    def complete(self) -> complete.AsyncCompleteResourceWithRawResponse:
+        from .resources.complete import AsyncCompleteResourceWithRawResponse
+
+        return AsyncCompleteResourceWithRawResponse(self._client.complete)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithRawResponse:
+        from .resources.models import AsyncModelsResourceWithRawResponse
+
+        return AsyncModelsResourceWithRawResponse(self._client.models)
+
+    @cached_property
+    def messages_beta_true(self) -> messages_beta_true.AsyncMessagesBetaTrueResourceWithRawResponse:
+        from .resources.messages_beta_true import AsyncMessagesBetaTrueResourceWithRawResponse
+
+        return AsyncMessagesBetaTrueResourceWithRawResponse(self._client.messages_beta_true)
+
+    @cached_property
+    def models_beta_true(self) -> models_beta_true.AsyncModelsBetaTrueResourceWithRawResponse:
+        from .resources.models_beta_true import AsyncModelsBetaTrueResourceWithRawResponse
+
+        return AsyncModelsBetaTrueResourceWithRawResponse(self._client.models_beta_true)
 
 
 class SamWithStreamedResponse:
+    _client: Sam
+
     def __init__(self, client: Sam) -> None:
-        self.messages = messages.MessagesResourceWithStreamingResponse(client.messages)
-        self.complete = complete.CompleteResourceWithStreamingResponse(client.complete)
-        self.models = models.ModelsResourceWithStreamingResponse(client.models)
-        self.messages_beta_true = messages_beta_true.MessagesBetaTrueResourceWithStreamingResponse(
-            client.messages_beta_true
-        )
-        self.models_beta_true = models_beta_true.ModelsBetaTrueResourceWithStreamingResponse(client.models_beta_true)
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.MessagesResourceWithStreamingResponse:
+        from .resources.messages import MessagesResourceWithStreamingResponse
+
+        return MessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def complete(self) -> complete.CompleteResourceWithStreamingResponse:
+        from .resources.complete import CompleteResourceWithStreamingResponse
+
+        return CompleteResourceWithStreamingResponse(self._client.complete)
+
+    @cached_property
+    def models(self) -> models.ModelsResourceWithStreamingResponse:
+        from .resources.models import ModelsResourceWithStreamingResponse
+
+        return ModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def messages_beta_true(self) -> messages_beta_true.MessagesBetaTrueResourceWithStreamingResponse:
+        from .resources.messages_beta_true import MessagesBetaTrueResourceWithStreamingResponse
+
+        return MessagesBetaTrueResourceWithStreamingResponse(self._client.messages_beta_true)
+
+    @cached_property
+    def models_beta_true(self) -> models_beta_true.ModelsBetaTrueResourceWithStreamingResponse:
+        from .resources.models_beta_true import ModelsBetaTrueResourceWithStreamingResponse
+
+        return ModelsBetaTrueResourceWithStreamingResponse(self._client.models_beta_true)
 
 
 class AsyncSamWithStreamedResponse:
+    _client: AsyncSam
+
     def __init__(self, client: AsyncSam) -> None:
-        self.messages = messages.AsyncMessagesResourceWithStreamingResponse(client.messages)
-        self.complete = complete.AsyncCompleteResourceWithStreamingResponse(client.complete)
-        self.models = models.AsyncModelsResourceWithStreamingResponse(client.models)
-        self.messages_beta_true = messages_beta_true.AsyncMessagesBetaTrueResourceWithStreamingResponse(
-            client.messages_beta_true
-        )
-        self.models_beta_true = models_beta_true.AsyncModelsBetaTrueResourceWithStreamingResponse(
-            client.models_beta_true
-        )
+        self._client = client
+
+    @cached_property
+    def messages(self) -> messages.AsyncMessagesResourceWithStreamingResponse:
+        from .resources.messages import AsyncMessagesResourceWithStreamingResponse
+
+        return AsyncMessagesResourceWithStreamingResponse(self._client.messages)
+
+    @cached_property
+    def complete(self) -> complete.AsyncCompleteResourceWithStreamingResponse:
+        from .resources.complete import AsyncCompleteResourceWithStreamingResponse
+
+        return AsyncCompleteResourceWithStreamingResponse(self._client.complete)
+
+    @cached_property
+    def models(self) -> models.AsyncModelsResourceWithStreamingResponse:
+        from .resources.models import AsyncModelsResourceWithStreamingResponse
+
+        return AsyncModelsResourceWithStreamingResponse(self._client.models)
+
+    @cached_property
+    def messages_beta_true(self) -> messages_beta_true.AsyncMessagesBetaTrueResourceWithStreamingResponse:
+        from .resources.messages_beta_true import AsyncMessagesBetaTrueResourceWithStreamingResponse
+
+        return AsyncMessagesBetaTrueResourceWithStreamingResponse(self._client.messages_beta_true)
+
+    @cached_property
+    def models_beta_true(self) -> models_beta_true.AsyncModelsBetaTrueResourceWithStreamingResponse:
+        from .resources.models_beta_true import AsyncModelsBetaTrueResourceWithStreamingResponse
+
+        return AsyncModelsBetaTrueResourceWithStreamingResponse(self._client.models_beta_true)
 
 
 Client = Sam
