@@ -404,7 +404,7 @@ class TestBatches:
                 message_batch_id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_method_results(self, client: Sam) -> None:
         batch_stream = client.messages.batches.results(
@@ -412,7 +412,7 @@ class TestBatches:
         )
         assert_matches_type(JSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_method_results_with_all_params(self, client: Sam) -> None:
         batch_stream = client.messages.batches.results(
@@ -423,7 +423,7 @@ class TestBatches:
         )
         assert_matches_type(JSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_raw_response_results(self, client: Sam) -> None:
         response = client.messages.batches.with_raw_response.results(
@@ -434,7 +434,7 @@ class TestBatches:
         stream = response.parse()
         stream.close()
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_streaming_response_results(self, client: Sam) -> None:
         with client.messages.batches.with_streaming_response.results(
@@ -448,7 +448,7 @@ class TestBatches:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_path_params_results(self, client: Sam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_batch_id` but received ''"):
@@ -456,7 +456,7 @@ class TestBatches:
                 message_batch_id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_method_results_beta(self, client: Sam) -> None:
         batch_stream = client.messages.batches.results_beta(
@@ -464,7 +464,7 @@ class TestBatches:
         )
         assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_method_results_beta_with_all_params(self, client: Sam) -> None:
         batch_stream = client.messages.batches.results_beta(
@@ -475,7 +475,7 @@ class TestBatches:
         )
         assert_matches_type(JSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_raw_response_results_beta(self, client: Sam) -> None:
         response = client.messages.batches.with_raw_response.results_beta(
@@ -486,7 +486,7 @@ class TestBatches:
         stream = response.parse()
         stream.close()
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_streaming_response_results_beta(self, client: Sam) -> None:
         with client.messages.batches.with_streaming_response.results_beta(
@@ -500,7 +500,7 @@ class TestBatches:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     def test_path_params_results_beta(self, client: Sam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_batch_id` but received ''"):
@@ -891,7 +891,7 @@ class TestAsyncBatches:
                 message_batch_id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_method_results(self, async_client: AsyncSam) -> None:
         batch_stream = await async_client.messages.batches.results(
@@ -899,7 +899,7 @@ class TestAsyncBatches:
         )
         assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_method_results_with_all_params(self, async_client: AsyncSam) -> None:
         batch_stream = await async_client.messages.batches.results(
@@ -910,7 +910,7 @@ class TestAsyncBatches:
         )
         assert_matches_type(AsyncJSONLDecoder[BatchResultsResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_raw_response_results(self, async_client: AsyncSam) -> None:
         response = await async_client.messages.batches.with_raw_response.results(
@@ -921,7 +921,7 @@ class TestAsyncBatches:
         stream = await response.parse()
         await stream.close()
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_streaming_response_results(self, async_client: AsyncSam) -> None:
         async with async_client.messages.batches.with_streaming_response.results(
@@ -935,7 +935,7 @@ class TestAsyncBatches:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_path_params_results(self, async_client: AsyncSam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_batch_id` but received ''"):
@@ -943,7 +943,7 @@ class TestAsyncBatches:
                 message_batch_id="",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_method_results_beta(self, async_client: AsyncSam) -> None:
         batch_stream = await async_client.messages.batches.results_beta(
@@ -951,7 +951,7 @@ class TestAsyncBatches:
         )
         assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_method_results_beta_with_all_params(self, async_client: AsyncSam) -> None:
         batch_stream = await async_client.messages.batches.results_beta(
@@ -962,7 +962,7 @@ class TestAsyncBatches:
         )
         assert_matches_type(AsyncJSONLDecoder[BatchResultsBetaResponse], batch_stream, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_raw_response_results_beta(self, async_client: AsyncSam) -> None:
         response = await async_client.messages.batches.with_raw_response.results_beta(
@@ -973,7 +973,7 @@ class TestAsyncBatches:
         stream = await response.parse()
         await stream.close()
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_streaming_response_results_beta(self, async_client: AsyncSam) -> None:
         async with async_client.messages.batches.with_streaming_response.results_beta(
@@ -987,7 +987,7 @@ class TestAsyncBatches:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support application/x-jsonl responses")
+    @pytest.mark.skip(reason="Mock server doesn't support application/x-jsonl responses")
     @parametrize
     async def test_path_params_results_beta(self, async_client: AsyncSam) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_batch_id` but received ''"):
