@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr, Base64FileInput
@@ -1015,7 +1015,7 @@ ToolChoice: TypeAlias = Union[
 ]
 
 
-class ToolToolInputSchemaTyped(TypedDict, total=False):
+class ToolToolInputSchema(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """[JSON schema](https://json-schema.org/draft/2020-12) for this tool's input.
 
     This defines the shape of the `input` that your tool accepts and that the model will produce.
@@ -1024,9 +1024,6 @@ class ToolToolInputSchemaTyped(TypedDict, total=False):
     type: Required[Literal["object"]]
 
     properties: Optional[object]
-
-
-ToolToolInputSchema: TypeAlias = Union[ToolToolInputSchemaTyped, Dict[str, object]]
 
 
 class ToolToolCacheControl(TypedDict, total=False):

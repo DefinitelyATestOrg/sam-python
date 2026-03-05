@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import SequenceNotStr, Base64FileInput
@@ -787,7 +787,7 @@ RequestParamsToolChoice: TypeAlias = Union[
 ]
 
 
-class RequestParamsToolToolInputSchemaTyped(TypedDict, total=False):
+class RequestParamsToolToolInputSchema(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
     """[JSON schema](https://json-schema.org/draft/2020-12) for this tool's input.
 
     This defines the shape of the `input` that your tool accepts and that the model will produce.
@@ -796,9 +796,6 @@ class RequestParamsToolToolInputSchemaTyped(TypedDict, total=False):
     type: Required[Literal["object"]]
 
     properties: Optional[object]
-
-
-RequestParamsToolToolInputSchema: TypeAlias = Union[RequestParamsToolToolInputSchemaTyped, Dict[str, object]]
 
 
 class RequestParamsToolToolCacheControl(TypedDict, total=False):
