@@ -7,7 +7,7 @@ from typing import Iterable
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ...._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .beta_true import (
     BetaTrueResource,
     AsyncBetaTrueResource,
@@ -199,7 +199,7 @@ class BatchesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/messages/batches/{message_batch_id}",
+            path_template("/v1/messages/batches/{message_batch_id}", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -359,7 +359,7 @@ class BatchesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/v1/messages/batches/{message_batch_id}",
+            path_template("/v1/messages/batches/{message_batch_id}", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -436,7 +436,7 @@ class BatchesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/v1/messages/batches/{message_batch_id}/cancel",
+            path_template("/v1/messages/batches/{message_batch_id}/cancel", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -513,7 +513,9 @@ class BatchesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/v1/messages/batches/{message_batch_id}/cancel?beta=true",
+            path_template(
+                "/v1/messages/batches/{message_batch_id}/cancel?beta=true", message_batch_id=message_batch_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -586,7 +588,7 @@ class BatchesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/messages/batches/{message_batch_id}/results",
+            path_template("/v1/messages/batches/{message_batch_id}/results", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -660,7 +662,9 @@ class BatchesResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/messages/batches/{message_batch_id}/results?beta=true",
+            path_template(
+                "/v1/messages/batches/{message_batch_id}/results?beta=true", message_batch_id=message_batch_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -829,7 +833,7 @@ class AsyncBatchesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/messages/batches/{message_batch_id}",
+            path_template("/v1/messages/batches/{message_batch_id}", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -989,7 +993,7 @@ class AsyncBatchesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/v1/messages/batches/{message_batch_id}",
+            path_template("/v1/messages/batches/{message_batch_id}", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1066,7 +1070,7 @@ class AsyncBatchesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/v1/messages/batches/{message_batch_id}/cancel",
+            path_template("/v1/messages/batches/{message_batch_id}/cancel", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1143,7 +1147,9 @@ class AsyncBatchesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/v1/messages/batches/{message_batch_id}/cancel?beta=true",
+            path_template(
+                "/v1/messages/batches/{message_batch_id}/cancel?beta=true", message_batch_id=message_batch_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1216,7 +1222,7 @@ class AsyncBatchesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/messages/batches/{message_batch_id}/results",
+            path_template("/v1/messages/batches/{message_batch_id}/results", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -1290,7 +1296,9 @@ class AsyncBatchesResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/messages/batches/{message_batch_id}/results?beta=true",
+            path_template(
+                "/v1/messages/batches/{message_batch_id}/results?beta=true", message_batch_id=message_batch_id
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
