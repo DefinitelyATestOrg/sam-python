@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ...._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import is_given, strip_not_given
+from ...._utils import is_given, path_template, strip_not_given
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
@@ -105,7 +105,7 @@ class BetaTrueResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._get(
-            f"/v1/messages/batches/{message_batch_id}?beta=true",
+            path_template("/v1/messages/batches/{message_batch_id}?beta=true", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -176,7 +176,7 @@ class BetaTrueResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._delete(
-            f"/v1/messages/batches/{message_batch_id}?beta=true",
+            path_template("/v1/messages/batches/{message_batch_id}?beta=true", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -268,7 +268,7 @@ class AsyncBetaTrueResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._get(
-            f"/v1/messages/batches/{message_batch_id}?beta=true",
+            path_template("/v1/messages/batches/{message_batch_id}?beta=true", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -339,7 +339,7 @@ class AsyncBetaTrueResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._delete(
-            f"/v1/messages/batches/{message_batch_id}?beta=true",
+            path_template("/v1/messages/batches/{message_batch_id}?beta=true", message_batch_id=message_batch_id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
