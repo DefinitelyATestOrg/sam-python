@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.19...v0.16.0) (2026-04-06)
+
+
+### Chores
+
+* prepare stable release ([298a0ad](https://github.com/DefinitelyATestOrg/sam-python/commit/298a0ad805dd37aaa9fe1d15601362cb90b6872c))
+
 ## [0.15.0-alpha.19](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.18...v0.15.0-alpha.19) (2026-04-06)
 
 
