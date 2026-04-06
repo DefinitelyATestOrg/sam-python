@@ -1,5 +1,97 @@
 # Changelog
 
+## [0.17.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.16.0...v0.17.0) (2026-04-06)
+
+
+### Features
+
+* **api:** add invoices endpoint ([e3dc36b](https://github.com/DefinitelyATestOrg/sam-python/commit/e3dc36b80f30e192090132e464441e68d3a76290))
+* **client:** add custom JSON encoder for extended type support ([c3b5654](https://github.com/DefinitelyATestOrg/sam-python/commit/c3b56548e16c1bb7d138a6eabdca7d5283c79a1d))
+* **client:** add support for binary request streaming ([9fab813](https://github.com/DefinitelyATestOrg/sam-python/commit/9fab813a588cbddaec8c5d1913f2713db4183a1f))
+* **client:** support file upload requests ([c30571f](https://github.com/DefinitelyATestOrg/sam-python/commit/c30571f49418ff590d178d7ea3a5811b0087fbb7))
+* improve future compat with pydantic v3 ([34c4771](https://github.com/DefinitelyATestOrg/sam-python/commit/34c4771d1f5feb2a8f9cf074659ea6bce841f881))
+* **internal:** implement indices array format for query and form serialization ([ca40ea2](https://github.com/DefinitelyATestOrg/sam-python/commit/ca40ea2f730fe33bcecfc7e77e3f478b28cd0265))
+* **types:** replace List[str] with SequenceNotStr in params ([2feea72](https://github.com/DefinitelyATestOrg/sam-python/commit/2feea725f78bd93709f97c8b2d38d79e6efc734f))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([97a6bd0](https://github.com/DefinitelyATestOrg/sam-python/commit/97a6bd0f9ae6cda46c35002d36270cfdb37378dc))
+* **client:** close streams without requiring full consumption ([07565f4](https://github.com/DefinitelyATestOrg/sam-python/commit/07565f4b4f8838833fbd1dc0d83f52e6871576e3))
+* compat with Python 3.14 ([6d9dced](https://github.com/DefinitelyATestOrg/sam-python/commit/6d9dced8ff3917680da0907a3ac3dc1e2ab2c7d6))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([04fe99a](https://github.com/DefinitelyATestOrg/sam-python/commit/04fe99aa803287fa5e0ec859f726d0892b5f941a))
+* **deps:** bump minimum typing-extensions version ([6fed404](https://github.com/DefinitelyATestOrg/sam-python/commit/6fed4045494b065914cb01cd54f6040cc64815a0))
+* do not set headers with default to omit ([c12f85d](https://github.com/DefinitelyATestOrg/sam-python/commit/c12f85de04b21e05b5150d2404442226fc4e1b4b))
+* **docs:** fix mcp installation instructions for remote servers ([838a057](https://github.com/DefinitelyATestOrg/sam-python/commit/838a057059429a0b3d87d5c929de8e7b6ca427ba))
+* ensure streams are always closed ([ad6ecbb](https://github.com/DefinitelyATestOrg/sam-python/commit/ad6ecbb0fe3e3546e2cc897a672a61592998c0c6))
+* **pydantic:** do not pass `by_alias` unless set ([5bc0723](https://github.com/DefinitelyATestOrg/sam-python/commit/5bc07234baab607e16ae34d25c5ef490f4d96e78))
+* sanitize endpoint path params ([c336747](https://github.com/DefinitelyATestOrg/sam-python/commit/c3367471cf378aabc5fc3215fa65bb64db6d5b9d))
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([94805b4](https://github.com/DefinitelyATestOrg/sam-python/commit/94805b4f1b53994365e1aa50d07a621a990a13dd))
+* use async_to_httpx_files in patch method ([01b63cf](https://github.com/DefinitelyATestOrg/sam-python/commit/01b63cfac7b5df927f8690f7408494ab70ac0394))
+
+
+### Chores
+
+* add missing docstrings ([87e6c26](https://github.com/DefinitelyATestOrg/sam-python/commit/87e6c26d684588f21b0a4bb779bb725feaf79c68))
+* bump `httpx-aiohttp` version to 0.1.9 ([5873278](https://github.com/DefinitelyATestOrg/sam-python/commit/58732781de5274a5f60fcf6d8f85fc8a6f9b2a46))
+* **ci:** skip lint on metadata-only changes ([1b39b39](https://github.com/DefinitelyATestOrg/sam-python/commit/1b39b393c44840b5a38780ae27ecdfc7812acb99))
+* **ci:** skip uploading artifacts on stainless-internal branches ([7a402a1](https://github.com/DefinitelyATestOrg/sam-python/commit/7a402a14362938f187f41ed727a0a3b7517d8ab9))
+* **ci:** upgrade `actions/github-script` ([1259c91](https://github.com/DefinitelyATestOrg/sam-python/commit/1259c91bc29aa944bc9cb9c0515579b3ff7a7a7c))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([9bd7727](https://github.com/DefinitelyATestOrg/sam-python/commit/9bd77276ecca0e21d238146304f64d91bf0ff8a5))
+* do not install brew dependencies in ./scripts/bootstrap by default ([9b57d88](https://github.com/DefinitelyATestOrg/sam-python/commit/9b57d88b119daa13264811b32fa1e57c71678daf))
+* format all `api.md` files ([70e6bf5](https://github.com/DefinitelyATestOrg/sam-python/commit/70e6bf58b6496873613300e60eb6ed16af3d622d))
+* **internal/tests:** avoid race condition with implicit client cleanup ([ea1f00b](https://github.com/DefinitelyATestOrg/sam-python/commit/ea1f00b100b30c96f4c3a2fbdd4b3273d6d3245f))
+* **internal:** add `--fix` argument to lint script ([5176747](https://github.com/DefinitelyATestOrg/sam-python/commit/517674702a6a0e791aabf943c0f55d88eb18b6f8))
+* **internal:** add missing files argument to base client ([6cd26b3](https://github.com/DefinitelyATestOrg/sam-python/commit/6cd26b3e45fe809d96ab22975374732e811ba124))
+* **internal:** add request options to SSE classes ([e98ec3c](https://github.com/DefinitelyATestOrg/sam-python/commit/e98ec3cf8d5af40e8547bd75d3f0e7ea554e9da1))
+* **internal:** add Sequence related utils ([b2efcd8](https://github.com/DefinitelyATestOrg/sam-python/commit/b2efcd8917c2790147f028b3b79c0f688e55b3f9))
+* **internal:** bump dependencies ([b1b4293](https://github.com/DefinitelyATestOrg/sam-python/commit/b1b4293c10d5c1b23eed25eff87536197a53e8e9))
+* **internal:** change ci workflow machines ([66e396d](https://github.com/DefinitelyATestOrg/sam-python/commit/66e396d9c9399c576c6018c4a75a3eb709c7ba2a))
+* **internal:** codegen related update ([adc4ebe](https://github.com/DefinitelyATestOrg/sam-python/commit/adc4ebe32868b1ba952737a69652524dc3660b09))
+* **internal:** codegen related update ([51fe70f](https://github.com/DefinitelyATestOrg/sam-python/commit/51fe70f6107464b7e04d7763ed8355e33f4489d1))
+* **internal:** detect missing future annotations with ruff ([8bb696e](https://github.com/DefinitelyATestOrg/sam-python/commit/8bb696e889d939f9e203904020b42ea08869f4e4))
+* **internal:** fix lint error on Python 3.14 ([402a3bc](https://github.com/DefinitelyATestOrg/sam-python/commit/402a3bc70a2a2cebc1ab81474e375c70ec98d755))
+* **internal:** fix ruff target version ([f17e091](https://github.com/DefinitelyATestOrg/sam-python/commit/f17e091f3b5e35540dc3eade60c373f3a0e329df))
+* **internal:** grammar fix (it's -&gt; its) ([43b245e](https://github.com/DefinitelyATestOrg/sam-python/commit/43b245e55767a4848181ea90affca49b215762e0))
+* **internal:** make `test_proxy_environment_variables` more resilient ([a0ffa26](https://github.com/DefinitelyATestOrg/sam-python/commit/a0ffa26b7e5b7da27634bd61ebbb8d2828b05a12))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([2231274](https://github.com/DefinitelyATestOrg/sam-python/commit/2231274df2cdb034d85b6ae0cbf86b2d07deb3c1))
+* **internal:** move mypy configurations to `pyproject.toml` file ([98f6e39](https://github.com/DefinitelyATestOrg/sam-python/commit/98f6e39ae9db35d79e3737e3cf84e4ed1daf8264))
+* **internal:** tweak CI branches ([512d5e8](https://github.com/DefinitelyATestOrg/sam-python/commit/512d5e86c0a53b84e94d59940b1aca57cf716f42))
+* **internal:** update `actions/checkout` version ([84f9a41](https://github.com/DefinitelyATestOrg/sam-python/commit/84f9a4108537d4d9716e7b911b6f5649d9068d46))
+* **internal:** update comment in script ([01e1f9c](https://github.com/DefinitelyATestOrg/sam-python/commit/01e1f9cb25085dcdeec77706d6f24032f1160be6))
+* **internal:** update gitignore ([f61bc0d](https://github.com/DefinitelyATestOrg/sam-python/commit/f61bc0d0069f4aa1dd19da2a3be46c3b96e21fa9))
+* **internal:** update jsonl tests ([be21d08](https://github.com/DefinitelyATestOrg/sam-python/commit/be21d0888a92ba2a63f3d30b8ae338fbb690de2a))
+* **internal:** update pydantic dependency ([8a90b34](https://github.com/DefinitelyATestOrg/sam-python/commit/8a90b3472e79780bd09e39018b6abc27a8dff10c))
+* **internal:** update pyright exclude list ([eac3ee9](https://github.com/DefinitelyATestOrg/sam-python/commit/eac3ee967ea13a2ad81be3e1c992b01f17e2b23e))
+* **internal:** update test skipping reason ([d722eee](https://github.com/DefinitelyATestOrg/sam-python/commit/d722eeea24964b2161a734080d359b609747c929))
+* **package:** drop Python 3.8 support ([5e082f8](https://github.com/DefinitelyATestOrg/sam-python/commit/5e082f808ca5742580b0e781be7283fa0a14753c))
+* **project:** add settings file for vscode ([f239a0a](https://github.com/DefinitelyATestOrg/sam-python/commit/f239a0ac4761c614a4e2d65d5fa6e0cee331ef5d))
+* speedup initial import ([44cc4f8](https://github.com/DefinitelyATestOrg/sam-python/commit/44cc4f8751c95994540a522d8f64de97f9c56fad))
+* **test:** do not count install time for mock server timeout ([5ccf216](https://github.com/DefinitelyATestOrg/sam-python/commit/5ccf216337e64050a30b01d2fb55bcdf1941942f))
+* **tests:** bump steady to v0.19.4 ([b7db238](https://github.com/DefinitelyATestOrg/sam-python/commit/b7db238d2720d01bcc66852684ad123859a999d3))
+* **tests:** bump steady to v0.19.5 ([c23276a](https://github.com/DefinitelyATestOrg/sam-python/commit/c23276add44645c7634e2f13dba3322995f74c2d))
+* **tests:** bump steady to v0.19.6 ([408cbed](https://github.com/DefinitelyATestOrg/sam-python/commit/408cbed7b8f88bd817ffa4724b66cfdae0fc1e70))
+* **tests:** bump steady to v0.19.7 ([7d2195a](https://github.com/DefinitelyATestOrg/sam-python/commit/7d2195a65807083efdc10c580b1e3b7bd61f5331))
+* **tests:** bump steady to v0.20.1 ([88c428e](https://github.com/DefinitelyATestOrg/sam-python/commit/88c428ee5089d9e8d27fecca398b5b39e7becf8e))
+* **tests:** bump steady to v0.20.2 ([b649c85](https://github.com/DefinitelyATestOrg/sam-python/commit/b649c85672e5b6620c625366a57180169ee7ba27))
+* **tests:** simplify `get_platform` test ([28154a0](https://github.com/DefinitelyATestOrg/sam-python/commit/28154a025d9902a92a39d01badaf41d37ab52f06))
+* **types:** change optional parameter type from NotGiven to Omit ([8296334](https://github.com/DefinitelyATestOrg/sam-python/commit/8296334bac2c05785448595af432dc9a7dbc754d))
+* update @stainless-api/prism-cli to v5.15.0 ([5820c96](https://github.com/DefinitelyATestOrg/sam-python/commit/5820c96088fe7b9c7711c5b00f044050ea170821))
+* update github action ([7eb64fb](https://github.com/DefinitelyATestOrg/sam-python/commit/7eb64fbacbf53d996b6ad3940b1b066243671f9d))
+* update lockfile ([ebfe54a](https://github.com/DefinitelyATestOrg/sam-python/commit/ebfe54a8d00b52e6e61e6e263c96a62b2f04b85a))
+* update mock server docs ([fefe4a4](https://github.com/DefinitelyATestOrg/sam-python/commit/fefe4a49db2c06abd6c2c1d5d31ae583bc2d0eb2))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([06e0b8f](https://github.com/DefinitelyATestOrg/sam-python/commit/06e0b8fc25942356032df3f014a40ab504a57c37))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([57556cd](https://github.com/DefinitelyATestOrg/sam-python/commit/57556cdcfc9b92687bd82ca04d62b2f07d4048c6))
+* **types:** use `extra_items` from PEP 728 ([8f9357f](https://github.com/DefinitelyATestOrg/sam-python/commit/8f9357f8b9cc7fd478505b694b3d65e422ac335a))
+
 ## [0.16.0](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.19...v0.16.0) (2026-04-06)
 
 
