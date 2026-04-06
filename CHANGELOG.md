@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.15.0-alpha.19](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.18...v0.15.0-alpha.19) (2026-04-06)
+
+
+### Bug Fixes
+
+* use PAT for release-please workflow ([511d48c](https://github.com/DefinitelyATestOrg/sam-python/commit/511d48cea1d323f6c1ad2d9727c9c7a1375b15a0))
+
+
+### Chores
+
+* migrate to stock release-please ([55ac159](https://github.com/DefinitelyATestOrg/sam-python/commit/55ac159629be95991a9c8406617ca36b1bcffb09))
+
 ## 0.15.0-alpha.18 (2025-07-22)
 
 Full Changelog: [v0.15.0-alpha.17...v0.15.0-alpha.18](https://github.com/DefinitelyATestOrg/sam-python/compare/v0.15.0-alpha.17...v0.15.0-alpha.18)
